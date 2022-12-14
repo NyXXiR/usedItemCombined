@@ -1,3 +1,5 @@
+
+
 import java.sql.SQLException;
 import java.util.*;
 import itemDB.*;
@@ -75,23 +77,27 @@ public class Test {
 
 
 
-    }
-    if (selectNum == 2) {
-      itemDB.insertData();
-    }
-    if (selectNum == 3) {
-      itemDB.deleteData(null);
+      if (selectNum == 2) {
+        itemDB.insertData();
+      }
+      if (selectNum == 3) {
+        itemDB.deleteData(null);
 
-    }
-    if (selectNum == 4) {
-      System.out.println("검색어를 입력하세요.");
-      String name = sc.next();
-      System.out.println(itemDB.searchData(name));
+      }
+      if (selectNum == 4) {
+        System.out.println("검색어를 입력하세요.");
+        String name = sc.next();
+        System.out.println(itemDB.searchData(name));
 
+      }
+      if (selectNum == 5) {
+        System.out.println("프로그램 종료");
+        run = false;
+      }
+      // itemDB.selectAll();
+      // itemDB.deleteData(null);
     }
-    // itemDB.selectAll();
-    // itemDB.deleteData(null);
+
   }
-
-
 }
+
