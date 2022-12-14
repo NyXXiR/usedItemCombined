@@ -17,7 +17,7 @@ public class ItemDB {
   public ItemDB() throws ClassNotFoundException, SQLException {
     // connection part
     Class.forName("com.mysql.cj.jdbc.Driver");
-    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/usedItemProject", "root2",
+    conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
         "mysql");
     System.out.println("itemDB 연결 성공");
   }
