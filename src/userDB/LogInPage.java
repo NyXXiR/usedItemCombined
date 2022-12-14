@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 public class LogInPage extends JFrame implements ActionListener {
 	static LogInPage logInPage;
-	static UserDto logInUser = new UserDto();
+	public static UserDto logInUser = new UserDto();
 	
 	// 데이터연동
 	UserDao userDao = new UserDao();
