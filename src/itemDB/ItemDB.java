@@ -205,16 +205,14 @@ public class ItemDB {
   void updateData() {}
 
 
-  // 판매된 itemDB의 행 soldItemDB에 추가 > itemDB 행 삭제
-  void moveData() {
-    // String column = null;
-    // soldItemDB.insertData(column);
 
-    // 특정한 행의 데이터를 가져와서 복제하고 기존 행을 삭제.
+  // 찜하기 버튼 클릭시 like가 1 올라가는 기능. 체크박스 해제시 like가 다시 1 감소해야 함.
+  void likePlus() {}
+
+  // this 활용해 addListener 통해 클릭된 행에 적용
+  void likeMinus() {}
 
 
-
-  }
 
 }
 
