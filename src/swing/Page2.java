@@ -52,7 +52,7 @@ public class Page2 extends JFrame {
 			EventQueue.invokeAndWait(new Runnable() {
 				public void run() {
 					try {
-						CheckBox frame = new CheckBox();
+						Page2 frame = new Page2();
 						frame.setVisible(true);
 					}
 					catch(Exception e) {
@@ -65,7 +65,7 @@ public class Page2 extends JFrame {
 		
 	
 ////////
-	public CheckBox() {
+	public Page2() {
 		run();
 	}
 	
@@ -81,7 +81,7 @@ public class Page2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton button = new JButton("등록하기");
+		JButton button = new JButton("등록하기"); //하단 등록하기 버튼
 		
 		button.addActionListener(new ActionListener() {
 			String str = "";
@@ -107,7 +107,7 @@ public class Page2 extends JFrame {
 //	      panel4.add(bt1);
 //	      panel4.setLayout(null);
 	      
-	      //검색바
+	      //상단검색바
 	      textField3 = new JTextField("  검색");
 	      textField3.addFocusListener(new FocusListener() {
 
@@ -140,7 +140,7 @@ public class Page2 extends JFrame {
 	      btnNewButton_2.setBounds(693, 24, 85, 42);
 //	      panel4.add(btnNewButton_2);
 	      
-	      //돋보기 버튼
+	      //상단 검색창 돋보기 버튼
 	      JButton bt2 = new JButton();
 	      bt2.addActionListener(new java.awt.event.ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
@@ -154,7 +154,7 @@ public class Page2 extends JFrame {
 			contentPane.add(button);
 			
 			
-			
+			//상단
 			 JPanel panel4 = new JPanel();
 		     panel4.setBounds(0, 0, 1000, 109);
 		     contentPane.add(panel4);
@@ -236,7 +236,7 @@ public class Page2 extends JFrame {
 			radio2 = new JRadioButton("택배거래");
 			panel3.add(radio2);
 			
-			
+			//하단 상품등록 제목창
 			textField1 = new JTextField();
 			textField1.setBorder(new TitledBorder(null,"제목",TitledBorder.LEADING,TitledBorder.TOP,null,null));
 			textField1.setBounds(55, 350, 418, 45);
@@ -244,7 +244,7 @@ public class Page2 extends JFrame {
 			contentPane.add(textField1);
 			textField1.setColumns(10);
 			
-			
+			//하단 상품등록 상품상세정보창
 			textField2 = new JTextField();
 			textField2.setBorder(new TitledBorder(null,"상품상세정보",TitledBorder.LEADING,TitledBorder.TOP,null,null));
 			textField2.setBounds(55, 610, 600, 140);
@@ -255,7 +255,8 @@ public class Page2 extends JFrame {
 		
 		
 	       
-			    
+			//Panel 1~3 -> 하단부분
+			//Panel 4 -> 상단부분
 		
 			
 			
