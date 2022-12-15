@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -16,11 +19,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+
 public class Page2 extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField textField1;
 	private JTextField textField2;
+	private JTextField textField3;
 	
 	private JCheckBox checkBox1;
 	private JCheckBox checkBox2;
@@ -36,6 +41,7 @@ public class Page2 extends JFrame {
 	private JRadioButton radio1;
 	private JRadioButton radio2;
 	
+	private String value;
 	
 
 
@@ -46,7 +52,7 @@ public class Page2 extends JFrame {
 			EventQueue.invokeAndWait(new Runnable() {
 				public void run() {
 					try {
-						Page2 frame = new Page2();
+						CheckBox frame = new CheckBox();
 						frame.setVisible(true);
 					}
 					catch(Exception e) {
@@ -59,7 +65,7 @@ public class Page2 extends JFrame {
 		
 	
 ////////
-	public Page2() {
+	public CheckBox() {
 		run();
 	}
 	
@@ -81,80 +87,7 @@ public class Page2 extends JFrame {
 			String str = "";
 			
 			public void actionPerformed(ActionEvent e) {
-				if(radio1.isSelected()) {
-					str+=radio1.getText();
-				}
-				
-				str+="";
-				
-				if(radio2.isSelected()) {
-					str+=radio2.getText();
-				}
-				
-				str+="--->";
-						
-				
-				if(checkBox1.isSelected()) {
-					str+=checkBox1.getText();
-					str+=" /";
-				}
-				
-				
-				if(checkBox2.isSelected()) {
-					str+=checkBox2.getText();
-					str+=" /";
-				}
-				
-				
-				if(checkBox3.isSelected()) {
-					str+=checkBox3.getText();
-					str+=" /";
-				}
-				
-				
-				
-				if(checkBox4.isSelected()) {
-					str+=checkBox4.getText();
-					str+=" /";
-				}
-				
-				
-				if(checkBox5.isSelected()) {
-					str+=checkBox5.getText();
-				}
-				
-				str+=" ";
-				
-				if(checkBox6.isSelected()) {
-					str+=checkBox6.getText();
-				}
-				
-				str+=" ";
-				
-				if(checkBox7.isSelected()) {
-					str+=checkBox7.getText();
-				}
-				
-				str+=" ";
-				
-				if(checkBox8.isSelected()) {
-					str+=checkBox8.getText();
-				}
-				
-				str+=" ";
-				
-				if(checkBox9.isSelected()) {
-					str+=checkBox9.getText();
-				}
-				
-				str+=" ";
-				
-				if(checkBox10.isSelected()) {
-					str+=checkBox10.getText();
-				}
-				
-				
-				
+			
 				 JFrame jFrame = new JFrame();
 			     JOptionPane.showMessageDialog(jFrame, "상품등록완료");
 			     
@@ -163,12 +96,82 @@ public class Page2 extends JFrame {
 			
 		});
 		
+		 JButton bt1 = new JButton();
+	      bt1.addActionListener(new java.awt.event.ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            
+	         }
+	      });
+	      bt1.setBorderPainted(false);
+	      bt1.setBounds(12, 10, 180, 60);
+//	      panel4.add(bt1);
+//	      panel4.setLayout(null);
+	      
+	      //검색바
+	      textField3 = new JTextField("  검색");
+	      textField3.addFocusListener(new FocusListener() {
+
+	         @Override
+	         public void focusGained(FocusEvent e) {
+	            textField3.setText("");
+	            value = textField3.getText();
+	         }
+
+	         @Override
+	         public void focusLost(FocusEvent e) {
+	            
+	         }
+	      });
+	      textField3.setBounds(234, 25, 333, 34);
+	      textField3.setBorder(BorderFactory.createLineBorder(Color.decode("#ff0000")));
+//	      panel4.add(textField3);
+	      textField3.setColumns(10);
+	      
+	      //상단 우측 버튼들
+	      JButton btnNewButton = new JButton("로그아웃");
+	      btnNewButton.setBounds(887, 23, 85, 42);
+//	      panel4.add(btnNewButton);
+	      
+	      JButton btnNewButton_1 = new JButton("내 상점");
+	      btnNewButton_1.setBounds(790, 24, 85, 42);
+//	      panel4.add(btnNewButton_1);
+	      
+	      JButton btnNewButton_2 = new JButton("판매하기");
+	      btnNewButton_2.setBounds(693, 24, 85, 42);
+//	      panel4.add(btnNewButton_2);
+	      
+	      //돋보기 버튼
+	      JButton bt2 = new JButton();
+	      bt2.addActionListener(new java.awt.event.ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            
+	         }
+	      });
+		
+		
 		
 			button.setBounds(850, 650, 97, 55);
 			contentPane.add(button);
 			
 			
+			
+			 JPanel panel4 = new JPanel();
+		     panel4.setBounds(0, 0, 1000, 109);
+		     contentPane.add(panel4);
+		     panel4.add(textField3);
+		     panel4.add(btnNewButton);
+		     panel4.add(btnNewButton_1);
+		     panel4.add(btnNewButton_2);
+		     panel4.add(bt1);
+		     panel4.setLayout(null);
+		     bt2.setBounds(574, 30, 28, 23);
+		     panel4.add(bt2);
+		     
+		     
 			//////////대분류////////////
+		     
+		     
+		    
 			JPanel panel =new JPanel();
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 					"대분류",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
