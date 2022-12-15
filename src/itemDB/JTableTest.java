@@ -67,9 +67,14 @@ class JTableTest extends JPanel implements MouseListener {
     int column = jtable.getSelectedColumn();
     // 클릭하면 getValueAt 선택할 수 있게 됨
 
-    System.out.println(row + "행, " + column + "열: " + jtable.getValueAt(row, column) + "선택");
+    // System.out.println(row + "행, " + column + "열: " + jtable.getValueAt(row, column) + "선택");
+
+    System.out.println(jtable.getSelectedRow());
+    
+    for(int i=0; i<)
 
   }
+
 
   @Override
   public void mousePressed(MouseEvent e) {
