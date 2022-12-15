@@ -33,24 +33,24 @@ public class Page1 extends JFrame {
 	private JTextField textField;
 	private String value;
 
-	// ¹ø°³ÀåÅÍ ·Î°í ¹öÆ°
+	// ë²ˆê°œì¥í„° ë¡œê³  ë²„íŠ¼
 	ImageIcon icon = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
 	Image img = icon.getImage();
 	Image imgChange = img.getScaledInstance(180, 60, Image.SCALE_SMOOTH);
 	ImageIcon updateIcon = new ImageIcon(imgChange);
 
-	// °Ë»ö¹Ù µ¸º¸±â ¹öÆ°
+	// ê²€ìƒ‰ë°” ë‹ë³´ê¸° ë²„íŠ¼
 	ImageIcon icon2 = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Icon.png");
 	Image img2 = icon2.getImage();
 	Image imgChange2 = img2.getScaledInstance(28, 23, Image.SCALE_SMOOTH);
 	ImageIcon updateIcon2 = new ImageIcon(imgChange2);
 
-	// ¸ŞÀÎ ¸Ş¼Òµå
+	// ë©”ì¸ ë©”ì†Œë“œ
 	public static void main(String[] args) {
 		run();
 	}
 
-	// ½ÇÇà ¸Ş¼Òµå
+	// ì‹¤í–‰ ë©”ì†Œë“œ
 	public static void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -64,7 +64,7 @@ public class Page1 extends JFrame {
 		});
 	}
 
-	// »õ·Î°íÄ§ ¸Ş¼Òµå
+	// ìƒˆë¡œê³ ì¹¨ ë©”ì†Œë“œ
 	public static void run2() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -78,24 +78,26 @@ public class Page1 extends JFrame {
 		});
 	}
 
-	// »ı¼ºÀÚ ¸Ş¼Òµå
+	// ìƒì„±ì ë©”ì†Œë“œ
 	public Page1() {
 		initialize();
 	}
 
 	private void initialize() {
-		// ÇÁ·¹ÀÓ
+		// í”„ë ˆì„
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1012, 680);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		// »ó´Ü ÆĞ³Î
+		
+////////////////////íŒ¨ë„ ìƒë‹¨
+		
+		// ìƒë‹¨ íŒ¨ë„
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1000, 109);
 		frame.getContentPane().add(panel);
 
-		// ¹ø°³ÀåÅÍ ·Î°í ¹öÆ° + ¸ŞÀÎÆäÀÌÁö ÀÌµ¿
+		// ë²ˆê°œì¥í„° ë¡œê³  ë²„íŠ¼ + ë©”ì¸í˜ì´ì§€ ì´ë™
 		JButton bt1 = new JButton(updateIcon);
 		bt1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,8 +108,8 @@ public class Page1 extends JFrame {
 		panel.add(bt1);
 		panel.setLayout(null);
 
-		// °Ë»ö¹Ù
-		textField = new JTextField("  °Ë»ö");
+		// ê²€ìƒ‰ë°”
+		textField = new JTextField("  ê²€ìƒ‰");
 		textField.addFocusListener(new FocusListener() {
 
 			@Override
@@ -126,20 +128,20 @@ public class Page1 extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		// »ó´Ü ¿ìÃø ¹öÆ°µé
-		JButton btnNewButton = new JButton("·Î±×¾Æ¿ô");
+		// ìƒë‹¨ ìš°ì¸¡ ë²„íŠ¼ë“¤
+		JButton btnNewButton = new JButton("ë¡œê·¸ì•„ì›ƒ");
 		btnNewButton.setBounds(887, 23, 85, 42);
 		panel.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("³» »óÁ¡");
+		JButton btnNewButton_1 = new JButton("ë‚´ ìƒì ");
 		btnNewButton_1.setBounds(790, 24, 85, 42);
 		panel.add(btnNewButton_1);
 
-		JButton btnNewButton_2 = new JButton("ÆÇ¸ÅÇÏ±â");
+		JButton btnNewButton_2 = new JButton("íŒë§¤í•˜ê¸°");
 		btnNewButton_2.setBounds(693, 24, 85, 42);
 		panel.add(btnNewButton_2);
 
-		// µ¸º¸±â ¹öÆ°
+		// ë‹ë³´ê¸° ë²„íŠ¼
 		JButton bt2 = new JButton(updateIcon2);
 		bt2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,25 +151,27 @@ public class Page1 extends JFrame {
 		bt2.setBounds(574, 30, 28, 23);
 		panel.add(bt2);
 
-		// ÇÏ´Ü ÆĞ³Î ºÎºĞ
+////////////////////íŒ¨ë„ í•˜ë‹¨
+		
+		// í•˜ë‹¨ íŒ¨ë„ ë¶€ë¶„
 		JPanel panel12 = new JPanel();
 		panel12.setBounds(0, 108, 995, 533);
 		frame.getContentPane().add(panel12);
 		panel12.setLayout(null);
 
-		JButton btnNewButton11 = new JButton("Á¤È®µµ¼ø");
+		JButton btnNewButton11 = new JButton("ì •í™•ë„ìˆœ");
 		btnNewButton11.setBounds(646, 12, 88, 23);
 		panel12.add(btnNewButton11);
 
-		JButton btnNewButton12 = new JButton("ÃÖ½Å¼ø");
+		JButton btnNewButton12 = new JButton("ìµœì‹ ìˆœ");
 		btnNewButton12.setBounds(740, 12, 74, 23);
 		panel12.add(btnNewButton12);
 
-		JButton btnNewButton13 = new JButton("Àú°¡¼ø");
+		JButton btnNewButton13 = new JButton("ì €ê°€ìˆœ");
 		btnNewButton13.setBounds(819, 12, 75, 23);
 		panel12.add(btnNewButton13);
 
-		JButton btnNewButton14 = new JButton("°í°¡¼ø");
+		JButton btnNewButton14 = new JButton("ê³ ê°€ìˆœ");
 		btnNewButton14.setBounds(898, 12, 74, 23);
 		panel12.add(btnNewButton14);
 		
