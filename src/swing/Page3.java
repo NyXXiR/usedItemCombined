@@ -33,13 +33,13 @@ public class Page3 extends JFrame {
 	public JButton[] arr2 = new JButton[5];
 	public Object[][] arr3 = new Object[5][2];
 
-	// ¹ø°³ÀåÅÍ ·Î°í ¹öÆ°
+	// ë²ˆê°œì¥í„° ë¡œê³  ë²„íŠ¼
 	ImageIcon icon = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
 	Image img = icon.getImage();
 	Image imgChange = img.getScaledInstance(180, 60, Image.SCALE_SMOOTH);
 	ImageIcon updateIcon = new ImageIcon(imgChange);
 
-	// °Ë»ö¹Ù µ¸º¸±â ¹öÆ°
+	// ê²€ìƒ‰ë°” ë‹ë³´ê¸° ë²„íŠ¼
 	ImageIcon icon2 = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Icon.png");
 	Image img2 = icon2.getImage();
 	Image imgChange2 = img2.getScaledInstance(28, 23, Image.SCALE_SMOOTH);
@@ -58,25 +58,22 @@ public class Page3 extends JFrame {
 		});
 	}
 
-	// »ı¼ºÀÚ ¸Ş¼Òµå
+	// ìƒì„±ì ë©”ì†Œë“œ
 	public Page3() {
 		top();
 	}
 
-	// »ó´Ü ½ÇÇà ¸Ş¼Òµå
+	// ìƒë‹¨ ì‹¤í–‰ ë©”ì†Œë“œ
 	private void top() {
-		// ÇÁ·¹ÀÓ
+		// í”„ë ˆì„
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1012, 680);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		// »ó´Ü ÆĞ³Î
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1000, 109);
-		frame.getContentPane().add(panel);
-
-		//ÇÏ´Ü ÆĞ³Î ¸ğÀ½
+////////////////////íŒ¨ë„ í•˜ë‹¨
+		
+		//í•˜ë‹¨ íŒ¨ë„ ëª¨ìŒ
 		JPanel panel1 = new JPanel();
 		arr1[0] = panel1;
 		panel1.setBounds(0, 239, 995, 402);
@@ -108,59 +105,59 @@ public class Page3 extends JFrame {
 		panel5.setVisible(false);
 		
 		
-		//ÇÏ´ÜÆĞ³Î È®ÀÎ¿ë ÅØ½ºÆ® ÇÊµå
-		textField1 = new JTextField("Âò");
+		//í•˜ë‹¨íŒ¨ë„ í™•ì¸ìš© í…ìŠ¤íŠ¸ í•„ë“œ
+		textField1 = new JTextField("ì°œ");
 		textField1.setBounds(162, 94, 232, 117);
 		panel1.add(textField1);
 		textField1.setColumns(10);
 		
-		textField2 = new JTextField("ÆÇ¸Å");
+		textField2 = new JTextField("íŒë§¤");
 		textField2.setBounds(162, 94, 232, 117);
 		panel2.add(textField2);
 		textField2.setColumns(10);
 		
-		textField3 = new JTextField("±¸¸Å");
+		textField3 = new JTextField("êµ¬ë§¤");
 		textField3.setBounds(162, 94, 232, 117);
 		panel3.add(textField3);
 		textField3.setColumns(10);
 		
-		textField4 = new JTextField("¤»¤»");
+		textField4 = new JTextField("ã…‹ã…‹");
 		textField4.setBounds(162, 94, 232, 117);
 		panel4.add(textField4);
 		textField4.setColumns(10);
 		
-		textField5 = new JTextField("¤¾¤¾¤¾¤¾");
+		textField5 = new JTextField("ã…ã…ã…ã…");
 		textField5.setBounds(162, 94, 232, 117);
 		panel5.add(textField5);
 		textField5.setColumns(10);
 		
-		//¹öÆ°
-		JButton bt1 = new JButton("1¹ø");
+		//ë²„íŠ¼
+		JButton bt1 = new JButton("1ë²ˆ");
 		arr2[0] = bt1;
 		bt1.setBounds(-1, 140, 199, 89);
 		frame.getContentPane().add(bt1);
 		
-		JButton bt2 = new JButton("2¹ø");
+		JButton bt2 = new JButton("2ë²ˆ");
 		arr2[1] = bt2;
 		bt2.setBounds(197, 140, 199, 89);
 		frame.getContentPane().add(bt2);
 		
-		JButton bt3 = new JButton("3¹ø");
+		JButton bt3 = new JButton("3ë²ˆ");
 		arr2[2] = bt3;
 		bt3.setBounds(397, 140, 199, 89);
 		frame.getContentPane().add(bt3);
 		
-		JButton bt4 = new JButton("4¹ø");
+		JButton bt4 = new JButton("4ë²ˆ");
 		arr2[3] = bt4;
 		bt4.setBounds(597, 140, 199, 89);
 		frame.getContentPane().add(bt4);
 		
-		JButton bt5 = new JButton("5¹ø");
+		JButton bt5 = new JButton("5ë²ˆ");
 		arr2[4] = bt5;
 		bt5.setBounds(796, 140, 199, 89);
 		frame.getContentPane().add(bt5);
 		
-		//Å¬¸¯ ÀÌº¥Æ®
+		//í´ë¦­ ì´ë²¤íŠ¸
 		arr3[0][0]=panel1;
 		arr3[0][1]=bt1;
 		
@@ -179,17 +176,24 @@ public class Page3 extends JFrame {
 		for(Object[] object : arr3) {
 			((JButton)object[1]).addActionListener((e)-> {
 				
-				//ÃÊ±âÈ­
+				//ì´ˆê¸°í™”
 				for(Object[] object2 : arr3) {
 					((JPanel)object2[0]).setVisible(false);
 				}
 				
-				//¿øÇÏ´Â ºÎºĞ º¸¿©ÁÖ±â
+				//ì›í•˜ëŠ” ë¶€ë¶„ ë³´ì—¬ì£¼ê¸°
 				((JPanel)object[0]).setVisible(true);
 			});
 		}
 
-		// ¹ø°³ÀåÅÍ ·Î°í ¹öÆ° + ¸ŞÀÎÆäÀÌÁö ÀÌµ¿
+////////////////////íŒ¨ë„ ìƒë‹¨
+
+		// ìƒë‹¨ íŒ¨ë„
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1000, 109);
+		frame.getContentPane().add(panel);
+		
+		// ë²ˆê°œì¥í„° ë¡œê³  ë²„íŠ¼ + ë©”ì¸í˜ì´ì§€ ì´ë™
 		JButton bt11 = new JButton(updateIcon);
 		bt11.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -201,8 +205,8 @@ public class Page3 extends JFrame {
 		panel.add(bt11);
 		panel.setLayout(null);
 
-		// °Ë»ö¹Ù
-		textField = new JTextField("  °Ë»ö");
+		// ê²€ìƒ‰ë°”
+		textField = new JTextField("  ê²€ìƒ‰");
 		textField.addFocusListener(new FocusListener() {
 
 			@Override
@@ -221,20 +225,20 @@ public class Page3 extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		// »ó´Ü ¿ìÃø ¹öÆ°µé
-		JButton btnNewButton = new JButton("·Î±×¾Æ¿ô");
+		// ìƒë‹¨ ìš°ì¸¡ ë²„íŠ¼ë“¤
+		JButton btnNewButton = new JButton("ë¡œê·¸ì•„ì›ƒ");
 		btnNewButton.setBounds(887, 23, 85, 42);
 		panel.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("³» »óÁ¡");
+		JButton btnNewButton_1 = new JButton("ë‚´ ìƒì ");
 		btnNewButton_1.setBounds(790, 24, 85, 42);
 		panel.add(btnNewButton_1);
 
-		JButton btnNewButton_2 = new JButton("ÆÇ¸ÅÇÏ±â");
+		JButton btnNewButton_2 = new JButton("íŒë§¤í•˜ê¸°");
 		btnNewButton_2.setBounds(693, 24, 85, 42);
 		panel.add(btnNewButton_2);
 
-		// µ¸º¸±â ¹öÆ°
+		// ë‹ë³´ê¸° ë²„íŠ¼
 		JButton bt12 = new JButton(updateIcon2);
 		bt12.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
