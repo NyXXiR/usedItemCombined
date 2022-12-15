@@ -34,13 +34,13 @@ public class Page3 extends JFrame {
 	public Object[][] arr3 = new Object[5][2];
 
 	// 번개장터 로고 버튼
-	ImageIcon icon = new ImageIcon("C:\\\\_dev\\\\team\\\\src\\\\team12/Logo.jpg");
+	ImageIcon icon = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
 	Image img = icon.getImage();
 	Image imgChange = img.getScaledInstance(180, 60, Image.SCALE_SMOOTH);
 	ImageIcon updateIcon = new ImageIcon(imgChange);
 
 	// 검색바 돋보기 버튼
-	ImageIcon icon2 = new ImageIcon("C:\\\\_dev\\\\team\\\\src\\\\team12/Icon.png");
+	ImageIcon icon2 = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Icon.png");
 	Image img2 = icon2.getImage();
 	Image imgChange2 = img2.getScaledInstance(28, 23, Image.SCALE_SMOOTH);
 	ImageIcon updateIcon2 = new ImageIcon(imgChange2);
