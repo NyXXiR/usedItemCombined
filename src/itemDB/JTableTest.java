@@ -70,8 +70,6 @@ class JTableTest extends JPanel implements MouseListener {
     // System.out.println(row + "행, " + column + "열: " + jtable.getValueAt(row, column) + "선택");
 
     System.out.println(jtable.getSelectedRow());
-    
-    for(int i=0; i<)
 
   }
 

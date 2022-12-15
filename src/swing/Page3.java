@@ -71,11 +71,8 @@ public class Page3 extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		// 상단 패널
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1000, 109);
-		frame.getContentPane().add(panel);
-
+////////////////////패널 하단
+		
 		//하단 패널 모음
 		JPanel panel1 = new JPanel();
 		arr1[0] = panel1;
@@ -189,6 +186,13 @@ public class Page3 extends JFrame {
 			});
 		}
 
+////////////////////패널 상단
+
+		// 상단 패널
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1000, 109);
+		frame.getContentPane().add(panel);
+		
 		// 번개장터 로고 버튼 + 메인페이지 이동
 		JButton bt11 = new JButton(updateIcon);
 		bt11.addActionListener(new java.awt.event.ActionListener() {

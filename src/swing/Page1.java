@@ -89,7 +89,9 @@ public class Page1 extends JFrame {
 		frame.setBounds(100, 100, 1012, 680);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
+		
+////////////////////패널 상단
+		
 		// 상단 패널
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1000, 109);
@@ -149,6 +151,8 @@ public class Page1 extends JFrame {
 		bt2.setBounds(574, 30, 28, 23);
 		panel.add(bt2);
 
+////////////////////패널 하단
+		
 		// 하단 패널 부분
 		JPanel panel12 = new JPanel();
 		panel12.setBounds(0, 108, 995, 533);
