@@ -1,4 +1,4 @@
-package secondHandSite.user2;
+package secondHand_site.userDB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,14 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectMovie2.User;
 
 public class UserDao {
-	Connection conn = null;
-	ResultSet rs = null;
-	PreparedStatement pstmt = null;
+	public Connection conn = null;
+	public ResultSet rs = null;
+	public PreparedStatement pstmt = null;
 
-	void connect() {
+	public UserDao(){
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("드라이버 설치");
@@ -49,14 +48,14 @@ public class UserDao {
 	}
 
 	// userDB -> userList(ArrayList)에 집어넣기
-	ArrayList<UserDto> fromUserDbToUserList() {
-		ArrayList<UserDto> userList = new ArrayList<UserDto>();
+	public ArrayList<User> fromUserDbToUserList() {
+		ArrayList<User> userList = new ArrayList<User>();
 		String sql = "select * from user";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				UserDto user = new UserDto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+				User user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getInt(6));
 				userList.add(user);
 			}
@@ -70,7 +69,7 @@ public class UserDao {
 		return userList;
 	}
 
-	public int insertUserDB(UserDto newUser) {
+	public int insertUserDB(User newUser) {
 		int result = 0;
 		String sql = "" + "INSERT INTO user(id, pwd, name, address, nick, phone) " + "VALUES (?, ?, ?, ?, ?,?)";
 		try {
@@ -94,7 +93,7 @@ public class UserDao {
 
 //	정보수정.
 //  id가 키 값. 나머지는 변경 값. (id는 변경불가)
-	public int updateUserDB(UserDto user) {
+	public int updateUserDB(User user) {
 		int result = 0;
 		String sql = "UPDATE user SET pwd=?, name=?, address=?, nick=?, phone=? WHERE id=?";
 		try {
@@ -177,8 +176,8 @@ public class UserDao {
 	}
 
 	// 로그인 성공한 사람의 정보들을 리턴
-	public UserDto getLogInUserInfo(String inputId) {
-		UserDto logInUser = new UserDto();
+	public User getLogInUserInfo(String inputId) {
+		User logInUser = new User();
 		try {
 			String checkingStr = "SELECT * FROM user WHERE id = ?";
 			pstmt = conn.prepareStatement(checkingStr);
@@ -204,7 +203,7 @@ public class UserDao {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage() +"=>getLogInUserInfo() fail");
+			System.out.println(e.getMessage() +"=> getLogInUserInfo() fail");
 			e.printStackTrace();
 		} finally {
 			dbClose();
