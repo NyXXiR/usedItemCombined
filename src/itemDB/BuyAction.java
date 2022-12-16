@@ -49,7 +49,7 @@ public class BuyAction extends ItemDB {
     //
     // delete * from itemDB where num= ±¸ÇÑ°ª
 
-.num..num.
+.num..num.....num..
   }
 
 }
