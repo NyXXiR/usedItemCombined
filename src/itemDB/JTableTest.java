@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 
 class JTableTest extends JPanel implements MouseListener {
   String[] columns;
-  ArrayList data = new ArrayList();
   JTable jtable;
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
   List<ItemList> dataList = new ArrayList<>();
@@ -22,22 +21,24 @@ class JTableTest extends JPanel implements MouseListener {
     // column을 입력하고
     // 각 배열마다 데이터 집어넣음
 
-    String[] columns = {"id", "name", "price", "address", "content", "transaction", "like", "date"};
+    String[] columns =
+        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
 
     String[] row = new String[columns.length];
 
-    for (int j = 0; j < columns.length; j++) {
-      row[0] = itemList.get(j).id;
-      row[1] = itemList.get(j).name;
-      row[2] = itemList.get(j).price;
-      row[3] = itemList.get(j).address;
-      row[4] = itemList.get(j).content;
-      row[5] = itemList.get(j).transaction;
-      row[6] = itemList.get(j).like;
-      row[7] = itemList.get(j).date;
+    for (int j = 0; j < itemList.size(); j++) {
+      row[0] = itemList.get(j).num;
+      row[1] = itemList.get(j).id;
+      row[2] = itemList.get(j).name;
+      row[3] = itemList.get(j).price;
+      row[4] = itemList.get(j).address;
+      row[5] = itemList.get(j).content;
+      row[6] = itemList.get(j).transaction;
+      row[7] = itemList.get(j).like;
+      row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
 
@@ -65,11 +66,13 @@ class JTableTest extends JPanel implements MouseListener {
     // TODO Auto-generated method stub
     int row = jtable.getSelectedRow();
     int column = jtable.getSelectedColumn();
-    // 클릭하면 getValueAt 선택할 수 있게 됨
 
-    // System.out.println(row + "행, " + column + "열: " + jtable.getValueAt(row, column) + "선택");
 
-    System.out.println(jtable.getSelectedRow());
+    // jtable.getValueAt(row,0) 하면 pri key 얻을 수 있음
+    System.out.println(jtable.getValueAt(row, 0) + "선택");
+
+    // System.out.println(jtable.getSelectedRow());
+    // 넘버까지 나오게 하고 넘버만 받게 만들자
 
   }
 

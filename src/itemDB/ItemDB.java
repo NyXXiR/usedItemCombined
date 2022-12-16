@@ -37,6 +37,7 @@ public class ItemDB {
     rs = stmt.executeQuery(sql);
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
       String price = rs.getString("price");
@@ -46,7 +47,7 @@ public class ItemDB {
       String like = rs.getString("like");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
     return itemList;
   }
@@ -59,6 +60,7 @@ public class ItemDB {
 
     // for문으로 바꿔서 한 줄씩 출력되게 만들어야
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
       String price = rs.getString("price");
@@ -68,7 +70,7 @@ public class ItemDB {
       String like = rs.getString("like");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
     return itemList;
   }
@@ -79,6 +81,7 @@ public class ItemDB {
     rs = stmt.executeQuery(sql);
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
       String price = rs.getString("price");
@@ -88,7 +91,7 @@ public class ItemDB {
       String like = rs.getString("like");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
     return itemList;
   }
@@ -99,6 +102,7 @@ public class ItemDB {
     rs = stmt.executeQuery(sql);
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
       String price = rs.getString("price");
@@ -108,7 +112,7 @@ public class ItemDB {
       String like = rs.getString("like");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
     return itemList;
   }
@@ -120,6 +124,7 @@ public class ItemDB {
     rs = stmt.executeQuery(sql);
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
       String price = rs.getString("price");
@@ -129,7 +134,7 @@ public class ItemDB {
       String like = rs.getString("like");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
     return itemList;
   }
@@ -187,9 +192,9 @@ public class ItemDB {
 
   // 몇 가지 변수는 마우스로 입력할 수 있으면 편할 듯. address랑 transaction
 
-  public void deleteData(String name) throws SQLException {
+  public void deleteData(String num) throws SQLException {
     stmt = conn.createStatement();
-    String sql = String.format("delete from student where name=%s", name);
+    String sql = String.format("delete from student where num=%s", num);
     int result = stmt.executeUpdate(sql);
     System.out.println(result + " 건의 데이터가 삭제되었습니다.");
 
