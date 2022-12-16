@@ -202,7 +202,15 @@ public class ItemDB {
   // update 필요하면 구현
 
 
-  void updateData() {}
+  void updateData(ItemList itemList) {
+    // String sql = "update itemDB " + "set column1 = ?, 2=? ~~";
+    // try {
+    // pstm = conn.prepareStatement(sql);
+    // pstm.setString(1, itemList.id);
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+  }
 
 
 
