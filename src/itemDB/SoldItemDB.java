@@ -1,7 +1,7 @@
 package itemDB;
 
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class SoldItemDB {
   // columns: num, id, name, price, address, date
@@ -10,6 +10,7 @@ public class SoldItemDB {
   ResultSet rs;
   Scanner sc = new Scanner(System.in);
   String sql;
+  public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
 
   public SoldItemDB() throws ClassNotFoundException, SQLException {
@@ -29,29 +30,29 @@ public class SoldItemDB {
 
 
   // 메소드 오버로딩
-  String searchData(String column) throws SQLException {
+  ArrayList<ItemList> searchData(String column) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from soldItemDB where name like '%" + column + "%'";
     rs = stmt.executeQuery(sql);
     String str = null;
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
-      int price = rs.getInt("price");
+      String price = rs.getString("price");
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      int like = rs.getInt("like");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
 
-
-      str += String.format("[%s] %s %d %s %s %s %d \n", id, name, price, address, content,
-          transaction, like);
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
-    return str;
+    return itemList;
   }
 
-  String selectData() throws SQLException {
+  ArrayList<ItemList> selectData() throws SQLException {
     // executeQuery는 수행결과로 ResultSet 객체의 값을 반환한다.
     stmt = conn.createStatement();
     sql = "select * from soldItemDB";
@@ -59,85 +60,86 @@ public class SoldItemDB {
     String str = null;
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
-      int price = rs.getInt("price");
+      String price = rs.getString("price");
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      int like = rs.getInt("like");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
 
-
-      str += String.format("[%s] %s %d %s %s %s %d \n", id, name, price, address, content,
-          transaction, like);
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
-    return str;
+    return itemList;
   }
 
-  String selectData(String column) throws SQLException {
+  ArrayList<ItemList> selectData(String column) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from soldItemDB order by %s;", column);
     rs = stmt.executeQuery(sql);
     String str = null;
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
-      int price = rs.getInt("price");
+      String price = rs.getString("price");
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      int like = rs.getInt("like");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
 
-
-      str += String.format("[%s] %s %d %s %s %s %d \n", id, name, price, address, content,
-          transaction, like);
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
-    return str;
+    return itemList;
   }
 
-  String selectData(String column, String column2) throws SQLException {
+  ArrayList<ItemList> selectData(String column, String column2) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from soldItemDB order by %s, %s;", column, column2);
     rs = stmt.executeQuery(sql);
     String str = null;
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
-      int price = rs.getInt("price");
+      String price = rs.getString("price");
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      int like = rs.getInt("like");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
 
-
-      str += String.format("[%s] %s %d %s %s %s %d \n", id, name, price, address, content,
-          transaction, like);
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
-    return str;
+    return itemList;
   }
 
-  String selectData(String column, String column2, String column3) throws SQLException {
+  ArrayList<ItemList> selectData(String column, String column2, String column3)
+      throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from soldItemDB order by %s, %s, %s;", column, column2, column3);
     rs = stmt.executeQuery(sql);
     String str = null;
 
     while (rs.next()) {
+      String num = rs.getString("num");
       String id = rs.getString("id");
       String name = rs.getString("name");
-      int price = rs.getInt("price");
+      String price = rs.getString("price");
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      int like = rs.getInt("like");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
 
-
-      str += String.format("[%s] %s %d %s %s %s %d \n", id, name, price, address, content,
-          transaction, like);
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
     }
-    return str;
+    return itemList;
   }
 
 

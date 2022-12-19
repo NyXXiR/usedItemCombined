@@ -11,6 +11,7 @@ public class ItemDB {
   ResultSet rs;
   Scanner sc = new Scanner(System.in);
   String sql;
+
   SoldItemDB soldItemDB = new SoldItemDB();
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
@@ -170,19 +171,6 @@ public class ItemDB {
     System.out.println(result + " 건의 데이터를 처리했습니다.");
   }
 
-  int insertData2(ItemList itemDB) throws SQLException {
-    String sql =
-        "insert into ItemDB(name, price, address, content, transaction) values (?,?,?,?,?)";
-    pstm = conn.prepareStatement(sql);
-    pstm.setString(1, itemDB.name);
-    pstm.setString(2, itemDB.price);
-    pstm.setString(3, itemDB.address);
-    pstm.setString(4, itemDB.content);
-    pstm.setString(5, itemDB.transaction);
-
-    return 0;
-  }
-
 
 
   // 뭘 매개변수로 넣어서 delete를 실행하는 게 좋을까? 클릭된 this를 지우면 된다.
@@ -198,10 +186,76 @@ public class ItemDB {
     int result = stmt.executeUpdate(sql);
     System.out.println(result + " 건의 데이터가 삭제되었습니다.");
 
-
-
   }
 
+
+  // 구매했을 때 액션. 이름 moveData, num을 입력받으면 itemDB에서 해당 num을 가진 행을 soldItemDB로 복제한다.
+  // sql문: select * from itemDB where num=?
+
+
+  // select한 데이터를 일단 itemList에 넣어서 리턴하자.
+
+  // 리턴받은 values들을 넣으면 되잖아
+  // 그러려면 num을 선택한 itemList를 리턴하는 메소드를 만들어야돼
+  // 만들었어
+  // 그럼 이제 ItemList의 각 값들을 insert하자.
+
+
+  public ArrayList<ItemList> numSelect(String num1) throws SQLException {
+    stmt = conn.createStatement();
+    sql = String.format("select * from itemDB where num=%s;", num1);
+    rs = stmt.executeQuery(sql);
+
+    while (rs.next()) {
+      String num = rs.getString("num");
+      String id = rs.getString("id");
+      String name = rs.getString("name");
+      String price = rs.getString("price");
+      String address = rs.getString("address");
+      String content = rs.getString("content");
+      String transaction = rs.getString("transaction");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
+
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+    }
+    return itemList;
+  }
+
+  public void moveData(String num1) throws SQLException, ClassNotFoundException {
+
+    ArrayList<ItemList> itemList1 = new ArrayList<>();
+    // num을 추출해 soldData에 입력
+    ItemDB itemDB = new ItemDB();
+    itemList1 = itemDB.numSelect(num1);
+    itemDB.insertSoldData(itemList1.get(0));
+
+    // itemDB 내 해당 num을 보유한 행 삭제
+    itemDB.deleteData(num1);
+  }
+
+
+  // int랑 string 맞춰야 할수도 있음(num, price, like)
+  public void insertSoldData(ItemList itemList) throws SQLException {
+    String sql = "insert into soldItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
+    pstm = conn.prepareStatement(sql);
+    pstm.setString(1, itemList.num);
+    pstm.setString(2, itemList.id);
+    pstm.setString(3, itemList.name);
+    pstm.setString(4, itemList.price);
+    pstm.setString(5, itemList.address);
+    pstm.setString(1, itemList.content);
+    pstm.setString(1, itemList.transaction);
+    pstm.setString(1, itemList.date);
+    // 로그인유저 아이디 받아야함
+    pstm.setString(1, "buyerIDNeeded");
+    pstm.setString(1, itemList.name);
+    pstm.setString(11, "now()");
+
+    int result = pstm.executeUpdate(sql);
+    System.out.println(result + "건을 처리했습니다.");
+
+  }
 
 
   // update 필요하면 구현
@@ -224,8 +278,5 @@ public class ItemDB {
 
   // this 활용해 addListener 통해 클릭된 행에 적용
   void likeMinus() {}
-
-
-
 }
 
