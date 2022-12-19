@@ -15,7 +15,7 @@ class JTableTest extends JPanel implements MouseListener {
 
   public JTableTest() throws ClassNotFoundException, SQLException {
     ItemDB itemDB = new ItemDB();
-    itemList = itemDB.selectData();
+    itemList = itemDB.selectData("price");
     System.out.println(itemList);
     setLayout(new BorderLayout());
     // column을 입력하고
