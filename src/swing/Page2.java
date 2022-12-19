@@ -26,6 +26,7 @@ public class Page2 extends JFrame {
 	private JTextField textField1;
 	private JTextField textField2;
 	private JTextField textField3;
+	private JTextField textField4;
 	
 	private JCheckBox checkBox1;
 	private JCheckBox checkBox2;
@@ -37,6 +38,9 @@ public class Page2 extends JFrame {
 	private JCheckBox checkBox8;
 	private JCheckBox checkBox9;
 	private JCheckBox checkBox10;
+	private JCheckBox checkBox11;
+	private JCheckBox checkBox12;
+	
 	
 	private JRadioButton radio1;
 	private JRadioButton radio2;
@@ -174,51 +178,62 @@ public class Page2 extends JFrame {
 		    
 			JPanel panel =new JPanel();
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
-					"대분류",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
+					"지역",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
 			
 			
 			panel.setBounds(50, 400, 200, 200);
 			contentPane.add(panel);
 			
-			checkBox1 = new JCheckBox("여성의류");
+			checkBox1 = new JCheckBox("서울");
 			panel.add(checkBox1);
 			
-			checkBox2 = new JCheckBox("남성의류");
+			checkBox2 = new JCheckBox("인천");
 			panel.add(checkBox2);
 			
-			checkBox3 = new JCheckBox("패션잡화");
+			checkBox3 = new JCheckBox("제주");
 			panel.add(checkBox3);
 			
-			checkBox4 = new JCheckBox("가전&가구");
+			checkBox4 = new JCheckBox("대전");
 			panel.add(checkBox4);
 			
+			checkBox11 = new JCheckBox("부산");
+			panel.add(checkBox11);
 			
-			///////////중분류///////////
-			JPanel panel2 =new JPanel();
-			panel2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
-					"중분류",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
+			checkBox12 = new JCheckBox("광주");
+			panel.add(checkBox12);
 			
 			
-			panel2.setBounds(300, 400, 200, 200);
-			contentPane.add(panel2);
 			
-			checkBox5 = new JCheckBox("상의");
-			panel2.add(checkBox5);
 			
-			checkBox6 = new JCheckBox("하의");
-			panel2.add(checkBox6);
 			
-			checkBox7 = new JCheckBox("가방");
-			panel2.add(checkBox7);
 			
-			checkBox8 = new JCheckBox("신발");
-			panel2.add(checkBox8);
-			
-			checkBox9 = new JCheckBox("TV");
-			panel2.add(checkBox9);
-			
-			checkBox10 = new JCheckBox("침대");
-			panel2.add(checkBox10);
+//			
+//			///////////중분류///////////
+//			JPanel panel2 =new JPanel();
+//			panel2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
+//					"중분류",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
+//			
+//			
+//			panel2.setBounds(300, 400, 200, 200);
+//			contentPane.add(panel2);
+//			
+//			checkBox5 = new JCheckBox("상의");
+//			panel2.add(checkBox5);
+//			
+//			checkBox6 = new JCheckBox("하의");
+//			panel2.add(checkBox6);
+//			
+//			checkBox7 = new JCheckBox("가방");
+//			panel2.add(checkBox7);
+//			
+//			checkBox8 = new JCheckBox("신발");
+//			panel2.add(checkBox8);
+//			
+//			checkBox9 = new JCheckBox("TV");
+//			panel2.add(checkBox9);
+//			
+//			checkBox10 = new JCheckBox("침대");
+//			panel2.add(checkBox10);
 			
 			/////////////수령방법//////////
 			
@@ -227,7 +242,7 @@ public class Page2 extends JFrame {
 					TitledBorder.TOP,null,null));
 			
 			
-			panel3.setBounds(550, 400, 200, 200);
+			panel3.setBounds(300, 400, 200, 200);
 			contentPane.add(panel3);
 			
 			radio1 = new JRadioButton("직거래");
@@ -239,7 +254,7 @@ public class Page2 extends JFrame {
 			//하단 상품등록 제목창
 			textField1 = new JTextField();
 			textField1.setBorder(new TitledBorder(null,"제목",TitledBorder.LEADING,TitledBorder.TOP,null,null));
-			textField1.setBounds(55, 350, 418, 45);
+			textField1.setBounds(55, 350, 445, 45);
 			
 			contentPane.add(textField1);
 			textField1.setColumns(10);
@@ -251,6 +266,14 @@ public class Page2 extends JFrame {
 			
 			contentPane.add(textField2);
 			textField2.setColumns(10);
+			
+			//가격창
+			textField3 = new JTextField();
+			textField3.setBorder(new TitledBorder(null,"가격",TitledBorder.LEADING,TitledBorder.TOP,null,null));
+			textField3.setBounds(550, 350, 200, 45);
+			
+			contentPane.add(textField3);
+			textField3.setColumns(10);
 			
 		
 		
