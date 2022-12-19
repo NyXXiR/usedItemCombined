@@ -38,10 +38,10 @@ public class AfterLogInMain extends JFrame {
 	Image imgChange2 = img2.getScaledInstance(28, 23, Image.SCALE_SMOOTH);
 	ImageIcon updateIcon2 = new ImageIcon(imgChange2);
 
-	// 메인 메소드
-	//	public static void main(String[] args) {	
-	//		run();
-	//	}
+	 //메인 메소드
+		public static void main(String[] args) {	
+			run();
+		}
 
 	// 실행 메소드
 	public static void run() {
