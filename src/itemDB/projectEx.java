@@ -44,17 +44,17 @@ public class projectEx {
             if (inputSelect3 == 1) {
               inputColumn3 = sc.next();
               System.out.println("3가지로 정렬해서 출력합니다.");
-              System.out.println(itemDB.selectData(inputColumn1, inputColumn2, inputColumn3));
+              System.out.println(itemDB.orderData(inputColumn1, inputColumn2, inputColumn3));
 
 
             } else if (inputSelect3 == 0) {
-              itemList = itemDB.selectData(inputColumn1, inputColumn2);
+              itemList = itemDB.orderData(inputColumn1, inputColumn2);
               for (int i = 0; i < itemList.size(); i++) {
                 System.out.println(itemList.get(i));
               }
             }
           } else if (inputSelect2 == 0) {
-            itemList = itemDB.selectData(inputColumn1);
+            itemList = itemDB.orderData(inputColumn1);
             for (int i = 0; i < itemList.size(); i++) {
               System.out.println(itemList.get(i));
             }
@@ -77,7 +77,7 @@ public class projectEx {
 
 
       if (selectNum == 2) {
-        itemDB.insertData();
+        // itemDB.insertData();
       }
       if (selectNum == 3) {
         itemDB.deleteData(null);
@@ -86,7 +86,7 @@ public class projectEx {
       if (selectNum == 4) {
         System.out.println("검색어를 입력하세요.");
         String name = sc.next();
-        System.out.println(itemDB.searchData(name));
+        System.out.println(itemDB.likeData(name));
 
       }
       if (selectNum == 5) {
