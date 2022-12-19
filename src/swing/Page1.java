@@ -1,4 +1,4 @@
-package swing;
+package swing; 
 
 import java.awt.EventQueue;
 import java.awt.Image;
