@@ -27,29 +27,12 @@ public class Page2 extends JFrame {
 	private JTextField textField2;
 	private JTextField textField3;
 	private JTextField textField4;
-	
-	private JCheckBox checkBox1;
-	private JCheckBox checkBox2;
-	private JCheckBox checkBox3;
-	private JCheckBox checkBox4;
-	private JCheckBox checkBox5;
-	private JCheckBox checkBox6;
-	private JCheckBox checkBox7;
-	private JCheckBox checkBox8;
-	private JCheckBox checkBox9;
-	private JCheckBox checkBox10;
-	private JCheckBox checkBox11;
-	private JCheckBox checkBox12;
-	
-	
-	private JRadioButton radio1;
-	private JRadioButton radio2;
-	
+	private JTextField textField5;
 	private String value;
 	
 
 
-///////
+///////메인
 
 	public static void main(String[]args) throws InvocationTargetException, InterruptedException  {
 		
@@ -91,10 +74,15 @@ public class Page2 extends JFrame {
 			String str = "";
 			
 			public void actionPerformed(ActionEvent e) {
-			
-				 JFrame jFrame = new JFrame();
-			     JOptionPane.showMessageDialog(jFrame, "상품등록완료");
-			     
+				
+				
+					
+					 JFrame jFrame = new JFrame();
+				     JOptionPane.showMessageDialog(jFrame, "상품등록완료");
+				     
+					
+				
+			    
 				
 			}
 			
@@ -170,87 +158,7 @@ public class Page2 extends JFrame {
 		     panel4.setLayout(null);
 		     bt2.setBounds(574, 30, 28, 23);
 		     panel4.add(bt2);
-		     
-		     
-			//////////대분류////////////
-		     
-		     
-		    
-			JPanel panel =new JPanel();
-			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
-					"지역",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
-			
-			
-			panel.setBounds(50, 400, 200, 200);
-			contentPane.add(panel);
-			
-			checkBox1 = new JCheckBox("서울");
-			panel.add(checkBox1);
-			
-			checkBox2 = new JCheckBox("인천");
-			panel.add(checkBox2);
-			
-			checkBox3 = new JCheckBox("제주");
-			panel.add(checkBox3);
-			
-			checkBox4 = new JCheckBox("대전");
-			panel.add(checkBox4);
-			
-			checkBox11 = new JCheckBox("부산");
-			panel.add(checkBox11);
-			
-			checkBox12 = new JCheckBox("광주");
-			panel.add(checkBox12);
-			
-			
-			
-			
-			
-			
-//			
-//			///////////중분류///////////
-//			JPanel panel2 =new JPanel();
-//			panel2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
-//					"중분류",TitledBorder.LEADING,TitledBorder.TOP,null,new Color(0,0,0)));
-//			
-//			
-//			panel2.setBounds(300, 400, 200, 200);
-//			contentPane.add(panel2);
-//			
-//			checkBox5 = new JCheckBox("상의");
-//			panel2.add(checkBox5);
-//			
-//			checkBox6 = new JCheckBox("하의");
-//			panel2.add(checkBox6);
-//			
-//			checkBox7 = new JCheckBox("가방");
-//			panel2.add(checkBox7);
-//			
-//			checkBox8 = new JCheckBox("신발");
-//			panel2.add(checkBox8);
-//			
-//			checkBox9 = new JCheckBox("TV");
-//			panel2.add(checkBox9);
-//			
-//			checkBox10 = new JCheckBox("침대");
-//			panel2.add(checkBox10);
-			
-			/////////////수령방법//////////
-			
-			JPanel panel3 =new JPanel();
-			panel3.setBorder(new TitledBorder(null,"수령방법",TitledBorder.LEADING,
-					TitledBorder.TOP,null,null));
-			
-			
-			panel3.setBounds(300, 400, 200, 200);
-			contentPane.add(panel3);
-			
-			radio1 = new JRadioButton("직거래");
-			panel3.add(radio1);
-			
-			radio2 = new JRadioButton("택배거래");
-			panel3.add(radio2);
-			
+
 			//하단 상품등록 제목창
 			textField1 = new JTextField();
 			textField1.setBorder(new TitledBorder(null,"제목",TitledBorder.LEADING,TitledBorder.TOP,null,null));
@@ -262,7 +170,7 @@ public class Page2 extends JFrame {
 			//하단 상품등록 상품상세정보창
 			textField2 = new JTextField();
 			textField2.setBorder(new TitledBorder(null,"상품상세정보",TitledBorder.LEADING,TitledBorder.TOP,null,null));
-			textField2.setBounds(55, 610, 600, 140);
+			textField2.setBounds(55, 600, 600, 140);
 			
 			contentPane.add(textField2);
 			textField2.setColumns(10);
@@ -275,6 +183,22 @@ public class Page2 extends JFrame {
 			contentPane.add(textField3);
 			textField3.setColumns(10);
 			
+			
+			//지역창
+			textField4 = new JTextField();
+			textField4.setBorder(new TitledBorder(null,"지역(ex.ㅇㅇ시 ㅇㅇ구 ㅇㅇ동)",TitledBorder.LEADING,TitledBorder.TOP,null,null));
+			textField4.setBounds(55, 440, 445, 45);
+			
+			contentPane.add(textField4);
+			textField4.setColumns(10);
+			
+			//배송유형
+			textField5 = new JTextField();
+			textField5.setBorder(new TitledBorder(null,"배송유형(직거래/택배)",TitledBorder.LEADING,TitledBorder.TOP,null,null));
+			textField5.setBounds(55, 520, 445, 45);
+			
+			contentPane.add(textField5);
+			textField5.setColumns(10);
 		
 		
 	       
@@ -284,6 +208,10 @@ public class Page2 extends JFrame {
 			
 			
 	}
+	
+	
+		
+	
 	
 }
 	
