@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class JTables extends JPanel implements MouseListener {
   String[] columns;
   JTable jtable;
+  ArrayList<ItemList> itemList = new ArrayList<>();
 
 
 
@@ -25,7 +26,6 @@ public class JTables extends JPanel implements MouseListener {
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
-
     String[] row = new String[columns.length];
 
     for (int j = 0; j < itemList1.size(); j++) {
