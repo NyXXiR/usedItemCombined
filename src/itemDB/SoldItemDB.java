@@ -18,18 +18,18 @@ public class SoldItemDB {
     Class.forName("com.mysql.cj.jdbc.Driver");
     conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
         "mysql");
-    System.out.println("soldItemDB ¿¬°á ¼º°ø");
+    System.out.println("soldItemDB ì—°ê²° ì„±ê³µ");
   }
 
-  // ÀüÃ¼ select, Âò°¹¼öº°, µî·Ï½Ã°£¼ø, ³·Àº½Ã°£¼ø Á¤·Ä
-  // select¹®¿¡ order by ¸àÆ®¸¦ Ãß°¡ÇÏ´Â ¹æ½ÄÀ¸·Î ±¸Çö
+  // ì „ì²´ select, ì°œê°¯ìˆ˜ë³„, ë“±ë¡ì‹œê°„ìˆœ, ë‚®ì€ì‹œê°„ìˆœ ì •ë ¬
+  // selectë¬¸ì— order by ë©˜íŠ¸ë¥¼ ì¶”ê°€í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ êµ¬í˜„
 
 
 
-  // ¼¿·ºÆ®µ¥ÀÌÅÍ´Â °ıÈ£ ¾È¿¡ ÀÖ´Â °ªÀ» Äõ¸® ³¡¿¡ order by·Î Ãß°¡ÇÔ. ÃÖ´ë 3°³±îÁö Àû¿ë °¡´É
+  // ì…€ë ‰íŠ¸ë°ì´í„°ëŠ” ê´„í˜¸ ì•ˆì— ìˆëŠ” ê°’ì„ ì¿¼ë¦¬ ëì— order byë¡œ ì¶”ê°€í•¨. ìµœëŒ€ 3ê°œê¹Œì§€ ì ìš© ê°€ëŠ¥
 
 
-  // ¸Ş¼Òµå ¿À¹ö·Îµù
+  // ë©”ì†Œë“œ ì˜¤ë²„ë¡œë”©
   ArrayList<ItemList> searchData(String column) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from soldItemDB where name like '%" + column + "%'";
@@ -53,7 +53,7 @@ public class SoldItemDB {
   }
 
   ArrayList<ItemList> selectData() throws SQLException {
-    // executeQuery´Â ¼öÇà°á°ú·Î ResultSet °´Ã¼ÀÇ °ªÀ» ¹İÈ¯ÇÑ´Ù.
+    // executeQueryëŠ” ìˆ˜í–‰ê²°ê³¼ë¡œ ResultSet ê°ì²´ì˜ ê°’ì„ ë°˜í™˜í•œë‹¤.
     stmt = conn.createStatement();
     sql = "select * from soldItemDB";
     rs = stmt.executeQuery(sql);
@@ -143,24 +143,24 @@ public class SoldItemDB {
   }
 
 
-  // insertData¸¸ ¸¸µé¾îµÒ
+  // insertDataë§Œ ë§Œë“¤ì–´ë‘ 
   void insertData() throws SQLException {
-    // executeUpdate´Â ¹İ¿µµÈ ·¹ÄÚµåÀÇ °Ç¼ö¸¦ ¹İÈ¯ÇÑ´Ù.(¹Ù·Î insert, update, deleteÇÏ¸é µÇ´Ï±î rs¸¦ ¸®ÅÏ¹ŞÀ» ÇÊ¿ä°¡ ¾ø´Ù)
-    // ³¯Â¥ Ä­Àº ÀÔ·Â ¾ÈÇÏ¸é ¿À´ÃÀÚ°¡ ÀÚµ¿À¸·Î ÀÔ·ÂµÈ´Ù´Âµ¥ È®ÀÎÇØº¸ÀÚ.
+    // executeUpdateëŠ” ë°˜ì˜ëœ ë ˆì½”ë“œì˜ ê±´ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.(ë°”ë¡œ insert, update, deleteí•˜ë©´ ë˜ë‹ˆê¹Œ rsë¥¼ ë¦¬í„´ë°›ì„ í•„ìš”ê°€ ì—†ë‹¤)
+    // ë‚ ì§œ ì¹¸ì€ ì…ë ¥ ì•ˆí•˜ë©´ ì˜¤ëŠ˜ìê°€ ìë™ìœ¼ë¡œ ì…ë ¥ëœë‹¤ëŠ”ë° í™•ì¸í•´ë³´ì.
 
-    System.out.println("ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+    System.out.println("IDë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
     String inputId = sc.nextLine();
-    System.out.println("Á¦Ç°¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+    System.out.println("ì œí’ˆëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
 
     String inputName = sc.nextLine();
-    System.out.println("Èñ¸Á°¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+    System.out.println("í¬ë§ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”.");
     String inputPrice = sc.nextLine();
-    System.out.println("ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+    System.out.println("ì£¼ì†Œë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
     String inputAddress = sc.nextLine();
-    System.out.println("Á¦Ç° ¼³¸íÀ» Ãß°¡ÇØÁÖ¼¼¿ä.");
+    System.out.println("ì œí’ˆ ì„¤ëª…ì„ ì¶”ê°€í•´ì£¼ì„¸ìš”.");
     String description = sc.nextLine();
     String inputContent = description;
-    System.out.println("¹è¼ÛÇüÅÂ¸¦ °ñ¶ó ÁÖ¼¼¿ä.");
+    System.out.println("ë°°ì†¡í˜•íƒœë¥¼ ê³¨ë¼ ì£¼ì„¸ìš”.");
     String inputTransaction = sc.nextLine();
     int intPrice = Integer.parseInt(inputPrice);
     stmt = conn.createStatement();
@@ -170,29 +170,29 @@ public class SoldItemDB {
             inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
     int result = stmt.executeUpdate(sql);
 
-    System.out.println(result + " °ÇÀÇ µ¥ÀÌÅÍ¸¦ Ã³¸®Çß½À´Ï´Ù.");
+    System.out.println(result + " ê±´ì˜ ë°ì´í„°ë¥¼ ì²˜ë¦¬í–ˆìŠµë‹ˆë‹¤.");
   }
 
-  // ¹» ¸Å°³º¯¼ö·Î ³Ö¾î¼­ delete¸¦ ½ÇÇàÇÏ´Â °Ô ÁÁÀ»±î?
+  // ë­˜ ë§¤ê°œë³€ìˆ˜ë¡œ ë„£ì–´ì„œ deleteë¥¼ ì‹¤í–‰í•˜ëŠ” ê²Œ ì¢‹ì„ê¹Œ?
   void deleteData(String name) throws SQLException {
     stmt = conn.createStatement();
     String sql = String.format("delete from student where name=%s", name);
     int result = stmt.executeUpdate(sql);
-    System.out.println(result + " °ÇÀÇ µ¥ÀÌÅÍ°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+    System.out.println(result + " ê±´ì˜ ë°ì´í„°ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
   }
 
 
 
-  // update ÇÊ¿äÇÏ¸é ±¸Çö
+  // update í•„ìš”í•˜ë©´ êµ¬í˜„
 
 
   void updateData() {}
 
 
-  // ÆÇ¸ÅµÈ soldItemDBÀÇ Çà soldsoldItemDB¿¡ Ãß°¡ > soldItemDB Çà »èÁ¦
+  // íŒë§¤ëœ soldItemDBì˜ í–‰ soldsoldItemDBì— ì¶”ê°€ > soldItemDB í–‰ ì‚­ì œ
   void moveData() {
 
-    // addActionListener·Î Å¬¸¯ ÀÎ½Ä. this
+    // addActionListenerë¡œ í´ë¦­ ì¸ì‹. this
 
 
 
