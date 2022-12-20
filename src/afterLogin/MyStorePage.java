@@ -1,8 +1,7 @@
-package secondHand_site.afterLogIn;
+package afterLogin;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,23 +10,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import secondHand_site.beforeLogin.BeforeLogInMain;
-//LogInPage를 정확하게 임포트
-import secondHand_site.beforeLogin.LogInPage;
-import secondHand_site.beforeLogin.SignUpPage;
-import secondHand_site.userDB.User;
+import beforeLogin.BeforeLogInMain;
+import beforeLogin.LogInPage;
+import itemDB.ItemDB;
+import itemDB.ItemList;
+import itemDB.JTables;
+import userDB.User;
 
 public class MyStorePage {
 	public static JFrame frame;
@@ -59,17 +61,24 @@ public class MyStorePage {
 	JPanel panel1 = new JPanel();
 	UserService userService = new UserService(); // 개인정보조회 및 수정관련 기능
 	
-//	public static void main(String[] args) {
-//		new MyStorePage();
-//	}
+	// 판매중
+	JPanel panel2 = new JPanel();
+	ItemDB item = new ItemDB();
+	JTables tables = new JTables();
+	ArrayList<ItemList> itemList = new ArrayList<ItemList>();
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		MyStorePage window = new MyStorePage();
+		window.frame.setVisible(true);
+	}
 
 	// 생성자
-	public MyStorePage() {
+	public MyStorePage() throws ClassNotFoundException, SQLException {
 		run();
 	}
 
 	//----------------------------------------------------기본 뼈대 메소드--------------------------------------------------//
-	public void run() {
+	public void run() throws ClassNotFoundException, SQLException {
 		// 프레임
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1012, 680);
@@ -118,9 +127,11 @@ public class MyStorePage {
 		editUI();
 
 		// (2)판매중 아이템
-		label2 = new JLabel("판매중");
-		label2.setBounds(162, 94, 232, 117);
-		panel2.add(label2);
+		String id = LogInPage.logInUser.getId();
+		itemList = item.orderData(id);
+		JTable jtable = tables.toJTable(itemList);
+		JScrollPane spane = new JScrollPane(jtable);
+	    panel2.add(spane, BorderLayout.CENTER);
 
 		// (3)판매완료
 		label3 = new JLabel("판매완료");
