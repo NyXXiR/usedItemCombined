@@ -259,35 +259,48 @@ public class ItemDB {
     return itemList;
   }
 
-  // insertData만 만들어둠. 일단 주석처리해둠
-  // public void insertData() throws SQLException {
-  // // executeUpdate는 반영된 레코드의 건수를 반환한다.(바로 insert, update, delete하면 되니까 rs를 리턴받을 필요가 없다)
-  // // 날짜 칸은 입력 안하면 오늘자가 자동으로 입력된다는데 확인해보자.
-  //
-  // System.out.println("ID를 입력하세요.");
-  // String inputId = sc.nextLine();
-  // System.out.println("제품명을 입력하세요.");
-  //
-  // String inputName = sc.nextLine();
-  // System.out.println("희망가격을 입력하세요.");
-  // String inputPrice = sc.nextLine();
-  // System.out.println("주소를 입력하세요.");
-  // String inputAddress = sc.nextLine();
-  // System.out.println("제품 설명을 추가해주세요.");
-  // String description = sc.nextLine();
-  // String inputContent = description;
-  // System.out.println("배송형태를 골라 주세요.");
-  // String inputTransaction = sc.nextLine();
-  // int intPrice = Integer.parseInt(inputPrice);
-  // stmt = conn.createStatement();
-  //
-  // String sql =
-  // String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
-  // inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
-  // int result = stmt.executeUpdate(sql);
-  //
-  // System.out.println(result + " 건의 데이터를 처리했습니다.");
-  // }
+// // insertData만 만들어둠. 일단 주석처리해둠
+//   public void insertData() throws SQLException {
+//   // executeUpdate는 반영된 레코드의 건수를 반환한다.(바로 insert, update, delete하면 되니까 rs를 리턴받을 필요가 없다)
+//   // 날짜 칸은 입력 안하면 오늘자가 자동으로 입력된다는데 확인해보자.
+//  
+//   System.out.println("ID를 입력하세요.");
+//   String inputId = sc.nextLine();
+//   System.out.println("제품명을 입력하세요.");
+//  
+//   String inputName = sc.nextLine();
+//   System.out.println("희망가격을 입력하세요.");
+//   String inputPrice = sc.nextLine();
+//   System.out.println("주소를 입력하세요.");
+//   String inputAddress = sc.nextLine();
+//   System.out.println("제품 설명을 추가해주세요.");
+//   String description = sc.nextLine();
+//   String inputContent = description;
+//   System.out.println("배송형태를 골라 주세요.");
+//   String inputTransaction = sc.nextLine();
+//   int intPrice = Integer.parseInt(inputPrice);
+//   stmt = conn.createStatement();
+//  
+//   String sql =
+//   String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+//   inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
+//   int result = stmt.executeUpdate(sql);
+//  
+//   System.out.println(result + " 건의 데이터를 처리했습니다.");
+//   }
+  
+  
+	public void insertDatas(String inputId, String inputName ) throws SQLException {
+	int result=0;
+	stmt = conn.createStatement();
+	
+	String sql =
+	String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+	inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
+	int result = stmt.executeUpdate(sql);
+
+
+}
 }
 
 
