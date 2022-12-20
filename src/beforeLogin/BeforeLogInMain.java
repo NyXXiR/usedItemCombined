@@ -1,4 +1,4 @@
-package secondHand_site.beforeLogin;
+package beforeLogin;
 
 import java.awt.CardLayout;
 import java.awt.Color;

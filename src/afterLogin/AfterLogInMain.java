@@ -1,6 +1,5 @@
 package afterLogin;
 
-import beforeLogin;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -171,7 +170,7 @@ public class AfterLogInMain extends JFrame {
 		JButton bt2 = new JButton(updateIcon2);
 		bt2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getID());
+				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
 			}
 		});
 		bt2.setBounds(574, 30, 28, 23);

@@ -1,4 +1,4 @@
-package secondHand_site.beforeLogin;
+package beforeLogin;
 
 
 import java.awt.BorderLayout;
@@ -20,8 +20,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import secondHand_site.userDB.UserDao;
-import secondHand_site.userDB.User;
+import userDB.UserDao;
+import userDB.User;
 
 
 public class SignUpPage extends JFrame implements ActionListener {

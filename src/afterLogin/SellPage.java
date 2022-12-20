@@ -1,4 +1,4 @@
-package secondHand_site.afterLogIn;
+package afterLogin;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

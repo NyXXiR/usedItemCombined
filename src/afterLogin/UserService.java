@@ -1,15 +1,10 @@
-package secondHand_site.afterLogIn;
+package afterLogin;
 
-import java.awt.Font;
-
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
-import secondHand_site.beforeLogin.BeforeLogInMain;
-import secondHand_site.beforeLogin.LogInPage;
-import secondHand_site.userDB.UserDao;
-import secondHand_site.userDB.User;
+import beforeLogin.BeforeLogInMain;
+import beforeLogin.LogInPage;
+import userDB.User;
 
 public class UserService {
 

@@ -315,6 +315,8 @@ public class MyStorePage {
 				String inputPwd = new String(pwdTxt.getPassword());
 				String inputPwdRe = new String(pwdReTxt.getPassword());
 				userService.resignUser(logInUser, inputPwd, inputPwdRe);
+				
+				
 			}
 		});
 		cancelBtn.addActionListener(new ActionListener() {
