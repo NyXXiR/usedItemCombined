@@ -91,7 +91,7 @@ public class ItemDB {
     }
     return itemList;
   }
-  public ArrayList<ItemList> selectDataDesc(String column) throws SQLException {
+  public ArrayList<ItemList> orderDataDesc(String column) throws SQLException {
 	    stmt = conn.createStatement();
 	    sql = String.format("select * from itemDB order by %s Desc", column);
 	    rs = stmt.executeQuery(sql);

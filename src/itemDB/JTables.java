@@ -1,10 +1,14 @@
 package itemDB;
 
 import java.awt.BorderLayout;
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.*;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 public class JTables extends JPanel implements MouseListener {
@@ -128,7 +132,7 @@ public class JTables extends JPanel implements MouseListener {
   }
   public JTable tableActionDesc(String column) throws ClassNotFoundException, SQLException {
 	    ItemDB itemDB = new ItemDB();
-	    itemList = itemDB.selectDataDesc(column);
+	    itemList = itemDB.orderDataDesc(column);
 	    setLayout(new BorderLayout());
 	    // column을 입력하고
 	    // 각 배열마다 데이터 집어넣음
