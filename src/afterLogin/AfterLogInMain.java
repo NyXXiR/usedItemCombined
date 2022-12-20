@@ -227,11 +227,11 @@ public class AfterLogInMain extends JFrame {
 //	    table.setBounds(200, 200, 0, 0);
 //	    table.setSize(800, 600);
 //	    panel_1.add(table);
-	    
+//	    
 	    //패널 만들기
 		CardLayout c1 = new CardLayout();
 		JPanel table1 = new JPanel(c1);
-		table1.setBounds(10, 200, 960, 500);
+		table1.setBounds(10, 200, 960, 200);
 		frame.getContentPane().add(table1);
 		frame.setVisible(true);
 
@@ -271,7 +271,6 @@ public class AfterLogInMain extends JFrame {
 		});
 	}
 
-	
 	//----------------------------------------------------기본 뼈대 메소드 끝--------------------------------------------------//
 	
 	}

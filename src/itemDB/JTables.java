@@ -132,7 +132,7 @@ public class JTables extends JPanel implements MouseListener {
 	    setLayout(new BorderLayout());
 	    // column을 입력하고
 	    // 각 배열마다 데이터 집어넣음
-
+ 
 	    String[] columns =
 	        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
 
