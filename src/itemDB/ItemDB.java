@@ -343,9 +343,6 @@ public class ItemDB {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-   
-
-
   }
 }
 
