@@ -160,7 +160,7 @@ public class ItemDB {
   // whereData(String column, String data)= 입력한 column과 일치하는 데이터만 출력
   public ArrayList<ItemList> whereData(String column, String data) throws SQLException {
     stmt = conn.createStatement();
-    sql = String.format("select * from itemDB where %s=%s;", column, data);
+    sql = String.format("select * from itemDB where %s='%s';", column, data);
     rs = stmt.executeQuery(sql);
 
     while (rs.next()) {
