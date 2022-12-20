@@ -170,6 +170,7 @@ public class SellPage extends JFrame {
 			
 			contentPane.add(textField1);
 			textField1.setColumns(10);
+String inputName = textField1.getText();
 			
 			//하단 상품등록 상품상세정보창
 			textField2 = new JTextField();
@@ -178,6 +179,8 @@ public class SellPage extends JFrame {
 			
 			contentPane.add(textField2);
 			textField2.setColumns(10);
+String inputContent = textField2.getText();
+
 			
 			//가격창
 			textField3 = new JTextField();
@@ -204,7 +207,8 @@ public class SellPage extends JFrame {
 			contentPane.add(textField5);
 			textField5.setColumns(10);
 		
-		
+//로그인한 유저 아이디: LogInPage.logInUser.getId()        	
+//insertDatas("a", inputName, inputContent ..)
 	       
 			//Panel 1~3 -> 하단부분
 			//Panel 4 -> 상단부분
