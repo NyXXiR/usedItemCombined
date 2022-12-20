@@ -1,4 +1,4 @@
-package secondHand_site.afterLogIn;
+package afterLogIn;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -19,10 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import secondHand_site.beforeLogin.BeforeLogInMain;
+import beforeLogin.BeforeLogInMain;
 //LogInPage를 정확하게 임포트
-import secondHand_site.beforeLogin.LogInPage;
-import secondHand_site.userDB.User;
+import beforeLogin.LogInPage;
+import userDB.User;
 
 public class SellPage {
 	public static JFrame frame = new JFrame();
