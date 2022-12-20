@@ -126,6 +126,41 @@ public class JTables extends JPanel implements MouseListener {
 
 
   }
+  public JTable tableActionDesc(String column) throws ClassNotFoundException, SQLException {
+	    ItemDB itemDB = new ItemDB();
+	    itemList = itemDB.selectDataDesc(column);
+	    setLayout(new BorderLayout());
+	    // column을 입력하고
+	    // 각 배열마다 데이터 집어넣음
+
+	    String[] columns =
+	        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+
+	    DefaultTableModel model = new DefaultTableModel(columns, 0);
+	    jtable = new JTable(model);
+
+	    String[] row = new String[columns.length];
+
+	    for (int j = 0; j < itemList.size(); j++) {
+	      row[0] = itemList.get(j).num;
+	      row[1] = itemList.get(j).id;
+	      row[2] = itemList.get(j).name;
+	      row[3] = itemList.get(j).price;
+	      row[4] = itemList.get(j).address;
+	      row[5] = itemList.get(j).content;
+	      row[6] = itemList.get(j).transaction;
+	      row[7] = itemList.get(j).like;
+	      row[8] = itemList.get(j).date;
+	      model.addRow(row);
+	    } ;
+
+	    jtable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+	    jtable.addMouseListener(this);
+		return jtable;
+
+
+	  }
 
   @Override
   public void mouseClicked(MouseEvent e) {

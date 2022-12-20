@@ -191,7 +191,7 @@ public class AfterLogInMain extends JFrame {
 		frame.getContentPane().add(panel12);
 		panel12.setLayout(null);
 
-		JButton btnNewButton11 = new JButton("정확도순");
+		JButton btnNewButton11 = new JButton("번호순");
 		btnNewButton11.setBounds(646, 12, 88, 23);
 		panel12.add(btnNewButton11);
 
@@ -216,18 +216,63 @@ public class AfterLogInMain extends JFrame {
 	    // table.add(selectAll.tableAction());
 
 		// 테이블정보
-	    JTables orderByPrice = new JTables();
-	    ItemDB itemDB = new ItemDB();
-	    ArrayList<ItemList> itemList = itemDB.orderData("price");
-	    JTable a = orderByPrice.toJTable(itemList);
+//	    JTables orderByPrice = new JTables();
+//	    ItemDB itemDB = new ItemDB();
+//	    ArrayList<ItemList> itemList = itemDB.orderData("price");
+//	    JTable a = orderByPrice.toJTable(itemList);
+//	    
+//	    JPanel table = new JPanel();
+//	    table.add(a);
+//	    
+//	    table.setBounds(200, 200, 0, 0);
+//	    table.setSize(800, 600);
+//	    panel_1.add(table);
 	    
-	    JPanel table = new JPanel();
-	    table.add(a);
-	    
-	    table.setBounds(200, 200, 0, 0);
-	    table.setSize(800, 600);
-	    panel_1.add(table);
+	    //패널 만들기
+		CardLayout c1 = new CardLayout();
+		JPanel table1 = new JPanel(c1);
+		table1.setBounds(10, 200, 960, 500);
+		frame.getContentPane().add(table1);
+		frame.setVisible(true);
+
+		table1.add(new JTables().tableAction(), "0");
+		table1.add(new JTables().tableActionDesc("num"), "1");
+		table1.add(new JTables().tableAction("price"), "2");
+		table1.add(new JTables().tableActionDesc("price"), "3");
+		c1.show(table1, "0");
+
+		// 마우스 이벤트
+		btnNewButton11.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table1, "0");
+			}
+		});
+
+		btnNewButton12.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table1, "1");
+			}
+		});
+
+		btnNewButton13.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table1, "2");
+			}
+		});
+
+		btnNewButton14.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table1, "3");
+			}
+		});
 	}
+
+	
 	//----------------------------------------------------기본 뼈대 메소드 끝--------------------------------------------------//
 	
-}
+	}
+	

@@ -91,6 +91,26 @@ public class ItemDB {
     }
     return itemList;
   }
+  public ArrayList<ItemList> selectDataDesc(String column) throws SQLException {
+	    stmt = conn.createStatement();
+	    sql = String.format("select * from itemDB order by %s Desc", column);
+	    rs = stmt.executeQuery(sql);
+
+	    while (rs.next()) {
+	      String num = rs.getString("num");
+	      String id = rs.getString("id");
+	      String name = rs.getString("name");
+	      String price = rs.getString("price");
+	      String address = rs.getString("address");
+	      String content = rs.getString("content");
+	      String transaction = rs.getString("transaction");
+	      String like = rs.getString("like");
+	      String date = rs.getString("date");
+
+	      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+	    }
+	    return itemList;
+	  }
 
   // 2, 3중으로 정렬할 수 있는 orderData 메소드 오버로딩
   public ArrayList<ItemList> orderData(String column, String column2) throws SQLException {

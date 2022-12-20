@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -16,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import itemDB.JTables;
 
 public class BeforeLogInMain extends JFrame {
 	public static JFrame frame;
@@ -68,11 +71,11 @@ public class BeforeLogInMain extends JFrame {
 	}
 
 	// 생성자 메소드
-	public BeforeLogInMain() {
+	public BeforeLogInMain() throws ClassNotFoundException, SQLException {
 		initialize();
 	}
 
-	private void initialize() {
+	private void initialize() throws ClassNotFoundException, SQLException {
 		// 프레임
 		frame = new JFrame();
 		frame.setTitle("로그인 전 메인");
@@ -171,7 +174,7 @@ public class BeforeLogInMain extends JFrame {
 		frame.getContentPane().add(panel12);
 		panel12.setLayout(null);
 
-		JButton btnNewButton11 = new JButton("정확도순");
+		JButton btnNewButton11 = new JButton("번호순");
 		btnNewButton11.setBounds(646, 12, 88, 23);
 		panel12.add(btnNewButton11);
 
@@ -191,5 +194,50 @@ public class BeforeLogInMain extends JFrame {
 		panel_1.setBounds(12, 54, 971, 469);
 		panel12.add(panel_1);
 		panel_1.setLayout(new CardLayout(0, 0));
+		
+		// 테이블정보
+
+//		 패널 만들기
+		CardLayout c1 = new CardLayout();
+		JPanel table = new JPanel(c1);
+		table.setBounds(10, 200, 960, 200);
+		frame.getContentPane().add(table);
+		frame.setVisible(true);
+
+		table.add(new JTables().tableAction(), "0");
+		table.add(new JTables().tableActionDesc("num"), "1");
+		table.add(new JTables().tableAction("price"), "2");
+		table.add(new JTables().tableActionDesc("price"), "3");
+		c1.show(table, "0");
+
+		// 마우스 이벤트
+		btnNewButton11.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table, "0");
+			}
+		});
+
+		btnNewButton12.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table, "1");
+			}
+		});
+
+		btnNewButton13.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table, "2");
+			}
+		});
+
+		btnNewButton14.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c1.show(table, "3");
+			}
+		});
+	
 	}
 }
