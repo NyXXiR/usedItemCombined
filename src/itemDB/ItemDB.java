@@ -25,7 +25,7 @@ public class ItemDB {
 
 
 
-  // likeData(String data)=특정 단어 포함한 행 검색
+  // loveData(String data)=특정 단어 포함한 행 검색
   public ArrayList<ItemList> likeData(String data) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from itemDB where name like '%" + data + "%'";
@@ -39,10 +39,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -61,10 +61,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -83,10 +83,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -106,10 +106,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -127,10 +127,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -149,10 +149,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -171,10 +171,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -211,7 +211,7 @@ public class ItemDB {
     pstm.setString(6, itemList.address);
     pstm.setString(7, itemList.content);
     pstm.setString(8, itemList.transaction);
-    pstm.setString(9, itemList.like);
+    pstm.setString(9, itemList.love);
     pstm.setString(10, itemList.date);
     pstm.setString(11, LogInPage.logInUser.getId());
     pstm.setString(12, "now()");
@@ -229,7 +229,7 @@ public class ItemDB {
     String sql = String.format(
         "insert into soldItemDB values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',%s);",
         0, itemList.num, itemList.id, itemList.name, itemList.price, itemList.address,
-        itemList.content, itemList.transaction, itemList.like, itemList.date,
+        itemList.content, itemList.transaction, itemList.love, itemList.date,
         LogInPage.logInUser.getId(), "now()");
 
 
@@ -252,7 +252,7 @@ public class ItemDB {
     pstm.setString(5, itemList.address);
     pstm.setString(6, itemList.content);
     pstm.setString(7, itemList.transaction);
-    pstm.setString(8, itemList.like);
+    pstm.setString(8, itemList.love);
     pstm.setString(9, "now()");
 
 
@@ -263,8 +263,8 @@ public class ItemDB {
   }
 
 
-  public void insertLikeData(ItemList itemList) throws SQLException {
-    String sql = "insert into likeDB values (?,?)";
+  public void insertloveData(ItemList itemList) throws SQLException {
+    String sql = "insert into loveDB values (?,?)";
     pstm = conn.prepareStatement(sql);
 
     pstm.setString(1, itemList.id);
@@ -291,7 +291,7 @@ public class ItemDB {
   }
 
 
-  void likeMinus() {}
+  void loveMinus() {}
 
   public ArrayList<ItemList> numSelect(String num1) throws SQLException {
     stmt = conn.createStatement();
@@ -306,10 +306,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }

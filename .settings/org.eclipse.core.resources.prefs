@@ -4,7 +4,6 @@
 eclipse.preferences.version=1
 encoding//src/afterLogin=UTF-8
 encoding//src/afterLogin/AfterLogInMain.java=UTF-8
-encoding//src/afterLogin/AfterLogInMain2.java=UTF-8
 encoding//src/afterLogin/AfterLogInMain3.java=UTF-8
 encoding//src/afterLogin/MyStorePage.java=UTF-8
 encoding//src/afterLogin/SellPage.java=UTF-8
@@ -14,7 +13,6 @@ encoding//src/beforeLogin/BeforeLogInMain.java=UTF-8
 encoding//src/beforeLogin/LogInPage.java=UTF-8
 encoding//src/beforeLogin/SignUpPage.java=UTF-8
 encoding//src/itemDB/ItemDB.java=UTF-8
-encoding//src/itemDB/ItemDB2.java=UTF-8
 encoding//src/itemDB/JTables.java=UTF-8
 encoding//src/itemDB/SoldItemDB.java=UTF-8
 encoding//src/userDB/User.java=UTF-8

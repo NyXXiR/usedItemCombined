@@ -22,7 +22,7 @@ public class JTables extends JPanel implements MouseListener {
     // 각 배열마다 데이터 집어넣음
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -36,7 +36,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList1.get(j).address;
       row[5] = itemList1.get(j).content;
       row[6] = itemList1.get(j).transaction;
-      row[7] = itemList1.get(j).like;
+      row[7] = itemList1.get(j).love;
       row[8] = itemList1.get(j).date;
       model.addRow(row);
     } ;
@@ -61,7 +61,7 @@ public class JTables extends JPanel implements MouseListener {
     // 각 배열마다 데이터 집어넣음
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -76,7 +76,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
@@ -99,7 +99,7 @@ public class JTables extends JPanel implements MouseListener {
     // 각 배열마다 데이터 집어넣음
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -114,7 +114,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
@@ -135,7 +135,7 @@ public class JTables extends JPanel implements MouseListener {
     // 각 배열마다 데이터 집어넣음
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -150,7 +150,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
@@ -172,6 +172,8 @@ public class JTables extends JPanel implements MouseListener {
     // jtable.getValueAt(row,0) = 해당 행의 primary key값.
     System.out.println(jtable.getValueAt(row, 0) + "선택");
 
+
+    // 클릭한 행 soldItemDB로 이동, itemDB에서 삭제하는 부분. 나중에 찜 버튼 옆에 함께 배치
     Object x = jtable.getValueAt(row, 0);
     try {
       ItemDB itemDB = new ItemDB();
@@ -180,6 +182,7 @@ public class JTables extends JPanel implements MouseListener {
       itemDB.whereData("num", y);
       ItemList a = itemDB.whereData("num", y).get(0);
       itemDB.moveData(y);
+
 
       // itemDB.moveData(y);
     } catch (ClassNotFoundException | SQLException e1) {
