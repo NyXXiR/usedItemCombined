@@ -1,5 +1,6 @@
-package secondHand_site.afterLogIn;
+package afterLogin;
 
+import beforeLogin;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -16,10 +17,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import secondHand_site.beforeLogin.BeforeLogInMain;
+import beforeLogin.BeforeLogInMain;
 //LogInPage를 정확하게 임포트
-import secondHand_site.beforeLogin.LogInPage;
-import secondHand_site.userDB.User;
+import beforeLogin.LogInPage;
+import userDB.User;
 
 public class AfterLogInMain extends JFrame {
 	public static JFrame frame;
@@ -170,7 +171,7 @@ public class AfterLogInMain extends JFrame {
 		JButton bt2 = new JButton(updateIcon2);
 		bt2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
+				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getID());
 			}
 		});
 		bt2.setBounds(574, 30, 28, 23);

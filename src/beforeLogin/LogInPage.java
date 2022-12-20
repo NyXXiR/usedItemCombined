@@ -1,4 +1,4 @@
-package secondHand_site.beforeLogin;
+package beforeLogin;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -17,11 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import secondHand_site.userDB.UserDao;
-import secondHand_site.afterLogIn.AfterLogInMain;
-import secondHand_site.afterLogIn.MyStorePage;
-import secondHand_site.afterLogIn.SellPage;
-import secondHand_site.userDB.User;
+import userDB.UserDao;
+import afterLogin.AfterLogInMain;
+import afterLogin.MyStorePage;
+import afterLogin.SellPage;
+import userDB.User;
 
 public class LogInPage extends JFrame implements ActionListener {
 	static LogInPage logInPage;

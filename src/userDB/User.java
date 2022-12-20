@@ -1,4 +1,4 @@
-package secondHand_site.userDB;
+package userDB;
 
 public class User { 
 	private String id;

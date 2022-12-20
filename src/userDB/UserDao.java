@@ -1,4 +1,4 @@
-package secondHand_site.userDB;
+package userDB;
 
 import java.sql.*;
 import java.util.ArrayList;
