@@ -1,5 +1,6 @@
 package afterLogin;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -8,17 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import beforeLogin.BeforeLogInMain;
-//LogInPage를 정확하게 임포트
 import beforeLogin.LogInPage;
+import itemDB.ItemDB;
+import itemDB.ItemList;
+import itemDB.JTables;
 import userDB.User;
 
 public class AfterLogInMain extends JFrame {
@@ -72,18 +79,20 @@ public class AfterLogInMain extends JFrame {
 	}
 
 	// 생성자 메소드
-	public AfterLogInMain() {
+	public AfterLogInMain() throws ClassNotFoundException, SQLException {
 		initialize();
 	}
 
 	//----------------------------------------------------기본 뼈대 메소드 --------------------------------------------------//
-	private void initialize() {
+	private void initialize() throws ClassNotFoundException, SQLException {
 		// 프레임
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1012, 680);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
+		
+		
 
 		// 상단 패널
 		JPanel panel = new JPanel();
@@ -199,9 +208,25 @@ public class AfterLogInMain extends JFrame {
 		panel12.add(btnNewButton14);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(12, 54, 971, 469);
+		panel_1.setBounds(0, 45, 971, 469);
 		panel12.add(panel_1);
 		panel_1.setLayout(new CardLayout(0, 0));
+
+	    // JTables selectAll = new JTables();
+	    // table.add(selectAll.tableAction());
+
+		// 테이블정보
+	    JTables orderByPrice = new JTables();
+	    ItemDB itemDB = new ItemDB();
+	    ArrayList<ItemList> itemList = itemDB.orderData("price");
+	    JTable a = orderByPrice.toJTable(itemList);
+	    
+	    JPanel table = new JPanel();
+	    table.add(a);
+	    
+	    table.setBounds(200, 200, 0, 0);
+	    table.setSize(800, 600);
+	    panel_1.add(table);
 	}
 	//----------------------------------------------------기본 뼈대 메소드 끝--------------------------------------------------//
 	
