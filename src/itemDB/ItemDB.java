@@ -38,7 +38,9 @@ public class ItemDB {
 
 
 
-  // likeData(String data)=�뱀�� �⑥�� �ы�⑦�� �� 寃���
+
+
+  // loveData(String data)=특정 단어 포함한 행 검색
   public ArrayList<ItemList> likeData(String data) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from itemDB where name like '%" + data + "%'";
@@ -52,10 +54,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -74,10 +76,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -96,10 +98,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -119,10 +121,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -140,10 +142,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -162,10 +164,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -173,7 +175,7 @@ public class ItemDB {
   // whereData(String column, String data)= ���ν�� column怨� �쇱����� �곗�댄�곕� 異���
   public ArrayList<ItemList> whereData(String column, String data) throws SQLException {
     stmt = conn.createStatement();
-    sql = String.format("select * from itemDB where %s=%s;", column, data);
+    sql = String.format("select * from itemDB where %s='%s';", column, data);
     rs = stmt.executeQuery(sql);
 
     while (rs.next()) {
@@ -184,10 +186,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -206,36 +208,58 @@ public class ItemDB {
     ArrayList<ItemList> itemList1 = new ArrayList<>();
     ItemDB itemDB = new ItemDB();
     itemList1 = itemDB.whereData("num", num1);
-    itemDB.insertSoldData(itemList1.get(0));
 
-    // itemDB ������ �������� num������ ������������������ ������ ������������
+    itemDB.insertSoldData2(itemList1.get(0));
     itemDB.deleteData(num1);
   }
 
 
   // insertSoldData(String num) = ���ν�� num怨� �쇱����� ���� soldItemDB�� 蹂듭��
   public void insertSoldData(ItemList itemList) throws SQLException {
-    String sql = "insert into soldItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
+    String sql = "insert into soldItemDB values ('?','?','?','?','?','?','?','?','?','?','?','?')";
     pstm = conn.prepareStatement(sql);
-    pstm.setString(1, itemList.num);
-    pstm.setString(2, itemList.id);
-    pstm.setString(3, itemList.name);
-    pstm.setString(4, itemList.price);
-    pstm.setString(5, itemList.address);
-    pstm.setString(6, itemList.content);
-    pstm.setString(7, itemList.transaction);
-    pstm.setString(8, itemList.like);
-    pstm.setString(9, itemList.date);
-    pstm.setString(10, LogInPage.logInUser.getId());
-    pstm.setString(11, "now()");
+
+    pstm.setString(1, "0");
+    pstm.setString(2, itemList.num);
+    pstm.setString(3, itemList.id);
+    pstm.setString(4, itemList.name);
+    pstm.setString(5, itemList.price);
+    pstm.setString(6, itemList.address);
+    pstm.setString(7, itemList.content);
+    pstm.setString(8, itemList.transaction);
+    pstm.setString(9, itemList.love);
+    pstm.setString(10, itemList.date);
+    pstm.setString(11, LogInPage.logInUser.getId());
+    pstm.setString(12, "now()");
+
+
+    // pstm.setString(10, LogInPage.logInUser.getId());
 
     int result = pstm.executeUpdate(sql);
     System.out.println(result + "嫄� 泥�由щ�����듬����.");
 
   }
 
+  public void insertSoldData2(ItemList itemList) throws SQLException {
+    stmt = conn.createStatement();
+    String sql = String.format(
+        "insert into soldItemDB values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',%s);",
+        0, itemList.num, itemList.id, itemList.name, itemList.price, itemList.address,
+        itemList.content, itemList.transaction, itemList.love, itemList.date,
+        LogInPage.logInUser.getId(), "now()");
+
+
+    // pstm.setString(10, LogInPage.logInUser.getId());
+
+    int result = stmt.executeUpdate(sql);
+    System.out.println(result + "건 처리되었습니다.");
+
+  }
+
+
+
   public void insertData(ItemList itemList) throws SQLException {
-    String sql = "insert into ItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
+    String sql = "insert into ItemDB values ('?','?','?','?','?','?','?','?','?','?','?')";
     pstm = conn.prepareStatement(sql);
     pstm.setString(1, itemList.num);
     pstm.setString(2, LogInPage.logInUser.getId());
@@ -244,7 +268,7 @@ public class ItemDB {
     pstm.setString(5, itemList.address);
     pstm.setString(6, itemList.content);
     pstm.setString(7, itemList.transaction);
-    pstm.setString(8, itemList.like);
+    pstm.setString(8, itemList.love);
     pstm.setString(9, "now()");
 
 
@@ -255,8 +279,8 @@ public class ItemDB {
   }
 
 
-  public void insertLikeData(ItemList itemList) throws SQLException {
-    String sql = "insert into likeDB values (?,?)";
+  public void insertloveData(ItemList itemList) throws SQLException {
+    String sql = "insert into loveDB values (?,?)";
     pstm = conn.prepareStatement(sql);
 
     pstm.setString(1, itemList.id);
@@ -283,7 +307,7 @@ public class ItemDB {
   }
 
 
-  void likeMinus() {}
+  void loveMinus() {}
 
   public ArrayList<ItemList> numSelect(String num1) throws SQLException {
     stmt = conn.createStatement();
@@ -298,10 +322,10 @@ public class ItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }

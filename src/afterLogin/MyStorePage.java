@@ -63,9 +63,18 @@ public class MyStorePage {
 	
 	// 판매중
 	JPanel panel2 = new JPanel();
-	ItemDB item = new ItemDB();
+	ItemDB itemDB = new ItemDB();
 	JTables tables = new JTables();
-	ArrayList<ItemList> itemList = new ArrayList<ItemList>();
+	ArrayList<ItemList> itemListSell = new ArrayList<ItemList>();
+	
+	//판매완료
+	JPanel panel3 = new JPanel();
+	SoldItemDB soldItemDB = new SoldItemDB();
+	ArrayList<ItemList> itemListSold = new ArrayList<ItemList>();
+	
+	//구매
+	JPanel panel4 = new JPanel();
+	ArrayList<ItemList> itemListBuy = new ArrayList<ItemList>();
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		MyStorePage window = new MyStorePage();
@@ -127,21 +136,32 @@ public class MyStorePage {
 		editUI();
 
 		// (2)판매중 아이템
-		String id = LogInPage.logInUser.getId();
-		itemList = item.orderData(id);
-		JTable jtable = tables.toJTable(itemList);
-		JScrollPane spane = new JScrollPane(jtable);
-	    panel2.add(spane, BorderLayout.CENTER);
+		panel2.setLayout(new BorderLayout());
+		label2 = new JLabel("판매중");
+		panel2.add(label2, BorderLayout.NORTH);
+		
+		itemListSell = itemDB.whereData("id", LogInPage.logInUser.getId());
+		JTable jtable = tables.toJTable(itemListSell);
+		panel2.add(jtable, BorderLayout.CENTER);
 
 		// (3)판매완료
+		panel3.setLayout(new BorderLayout());
 		label3 = new JLabel("판매완료");
-		label3.setBounds(162, 94, 232, 117);
-		panel3.add(label3);
-
+		panel3.add(label3, BorderLayout.NORTH);
+		itemListSold = soldItemDB.whereData("id", LogInPage.logInUser.getId());
+		JTable jtable2 = tables.toJTable(itemListSold);
+		JScrollPane spane2 = new JScrollPane(jtable2);
+		panel3.add(jtable2, BorderLayout.CENTER);
+		
 		// (4)구매목록
+		panel4.setLayout(new BorderLayout());
 		label4 = new JLabel("구매 목록");
-		label4.setBounds(162, 94, 232, 117);
-		panel4.add(label4);
+		panel4.add(label4, BorderLayout.NORTH);
+		
+		itemListBuy = soldItemDB.whereData("buyer_id", LogInPage.logInUser.getId());
+		JTable jtable3 = tables.toJTable(itemListBuy);
+		JScrollPane spane3 = new JScrollPane(jtable3);
+		panel4.add(jtable3, BorderLayout.CENTER);
 
 		// (5)찜목록
 		label5 = new JLabel("찜 목록");

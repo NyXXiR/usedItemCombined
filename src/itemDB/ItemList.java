@@ -10,7 +10,7 @@ public class ItemList {
   String address;
   String content;
   String transaction;
-  String like;
+  String love;
   String date;
 
 
@@ -19,14 +19,14 @@ public class ItemList {
   public String toString() {
     return "ItemList [num=" + num + ", id=" + id + ", name=" + name + ", price=" + price
         + ", address=" + address + ", content=" + content + ", transaction=" + transaction
-        + ", like=" + like + ", date=" + date + "]";
+        + ", love=" + love + ", date=" + date + "]";
   }
 
 
 
   // 9개의 변수를 받는 생성자. id는 userDB를 통해 입력받아야 함.
   ItemList(String num, String id, String name, String price, String address, String content,
-      String transaction, String like, String date) {
+      String transaction, String love, String date) {
     super();
     this.num = num;
     this.id = id;
@@ -35,7 +35,7 @@ public class ItemList {
     this.address = address;
     this.content = content;
     this.transaction = transaction;
-    this.like = like;
+    this.love = love;
     this.date = date;
 
   }
