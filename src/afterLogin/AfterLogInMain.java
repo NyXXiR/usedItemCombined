@@ -155,7 +155,7 @@ public class AfterLogInMain extends JFrame {
 			 BeforeLogInMain.frame.setVisible(true);
 			 frame.dispose();
 			 MyStorePage.frame.dispose();
-			 SellPage.frame.dispose();
+			 SellPage.FRAMEBITS.dispose();
 			}
 		});
 		// 내상점
@@ -170,7 +170,7 @@ public class AfterLogInMain extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SellPage.frame.setVisible(true);
+				SellPage.FRAMEBITS.setVisible(true);
 				frame.setVisible(false);
 			}
 		});
@@ -234,11 +234,13 @@ public class AfterLogInMain extends JFrame {
 		table1.setBounds(10, 200, 960, 200);
 		frame.getContentPane().add(table1);
 		frame.setVisible(true);
-
+       
+		
 		table1.add(new JTables().tableAction(), "0");
 		table1.add(new JTables().tableActionDesc("num"), "1");
 		table1.add(new JTables().tableAction("price"), "2");
 		table1.add(new JTables().tableActionDesc("price"), "3");
+		
 		c1.show(table1, "0");
 
 		// 마우스 이벤트
