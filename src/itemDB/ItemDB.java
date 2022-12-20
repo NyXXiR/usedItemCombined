@@ -310,14 +310,15 @@ public class ItemDB {
 //   }
   
   
-	public void insertDatas(String inputId, String inputName ) throws SQLException {
+	public void insertDatas
+	(String inputId, String inputName,String inputPrice,String inputAddress,String inputContent,String inputTransaction )throws SQLException {
 	int result=0;
 	stmt = conn.createStatement();
 	
 	String sql =
 	String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
 	inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
-	int result = stmt.executeUpdate(sql);
+	int result1 = stmt.executeUpdate(sql);
 
 
 }
