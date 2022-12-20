@@ -3,7 +3,14 @@
 >>>>>>>=8ee4e98abc01f121373f1a308e43206c8c7f5ea2
 eclipse.preferences.version=1
 encoding//src/afterLogin=UTF-8
+encoding//src/afterLogin/AfterLogInMain.java=UTF-8
+encoding//src/afterLogin/MyStorePage.java=UTF-8
+encoding//src/afterLogin/SellPage.java=UTF-8
+encoding//src/afterLogin/UserService.java=UTF-8
 encoding//src/beforeLogin=UTF-8
+encoding//src/beforeLogin/BeforeLogInMain.java=UTF-8
+encoding//src/beforeLogin/LogInPage.java=UTF-8
+encoding//src/beforeLogin/SignUpPage.java=UTF-8
 encoding//src/userDB/User.java=UTF-8
 encoding//src/userDB/UserDao.java=UTF-8
 encoding/<project>=x-windows-949
