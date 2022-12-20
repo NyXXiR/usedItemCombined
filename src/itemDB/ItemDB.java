@@ -2,6 +2,7 @@ package itemDB;
 
 import java.sql.*;
 import java.util.ArrayList;
+import beforeLogin.LogInPage;
 
 public class ItemDB {
   // columns: num, id, name, price, address, date
@@ -19,12 +20,12 @@ public class ItemDB {
     Class.forName("com.mysql.cj.jdbc.Driver");
     conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
         "mysql");
-    System.out.println("itemDB ¿¬°á ¼º°ø");
+    System.out.println("itemDB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
   }
 
 
 
-  // likeData(Data) = ÀÌ¸§¿¡ StringÀÌ Æ÷ÇÔµÈ Çà °Ë»ö
+  // likeData(Data) = ï¿½Ì¸ï¿½ï¿½ï¿½ Stringï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ ï¿½Ë»ï¿½
   public ArrayList<ItemList> likeData(String data) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from itemDB where name like '%" + data + "%'";
@@ -46,14 +47,14 @@ public class ItemDB {
     return itemList;
   }
 
-  // selectData() = ÀüÃ¼ Çà Ãâ·Â
+  // selectData() = ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ï¿½
   public ArrayList<ItemList> selectData() throws SQLException {
-    // executeQuery´Â ¼öÇà°á°ú·Î ResultSet °´Ã¼ÀÇ °ªÀ» ¹ÝÈ¯ÇÑ´Ù.
+    // executeQueryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ResultSet ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
     stmt = conn.createStatement();
     sql = "select * from itemDB";
     rs = stmt.executeQuery(sql);
 
-    // for¹®À¸·Î ¹Ù²ã¼­ ÇÑ ÁÙ¾¿ Ãâ·ÂµÇ°Ô ¸¸µé¾î¾ß
+    // forï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ã¼­ ï¿½ï¿½ ï¿½Ù¾ï¿½ ï¿½ï¿½ÂµÇ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     while (rs.next()) {
       String num = rs.getString("num");
       String id = rs.getString("id");
@@ -70,7 +71,7 @@ public class ItemDB {
     return itemList;
   }
 
-  // orderData(Column)= ÇØ´ç columnÀ» ±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä. ³»¸²Â÷¼øÀÌ ÇÊ¿äÇÒ °æ¿ì desc ºÙ¿©¼­ »ý¼º(ex. orderDataDesc)
+  // orderData(Column)= ï¿½Ø´ï¿½ columnï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ desc ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ex. orderDataDesc)
   public ArrayList<ItemList> orderData(String column) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from itemDB order by %s;", column);
@@ -91,28 +92,31 @@ public class ItemDB {
     }
     return itemList;
   }
+
   public ArrayList<ItemList> orderDataDesc(String column) throws SQLException {
 	    stmt = conn.createStatement();
 	    sql = String.format("select * from itemDB order by %s Desc", column);
 	    rs = stmt.executeQuery(sql);
 
-	    while (rs.next()) {
-	      String num = rs.getString("num");
-	      String id = rs.getString("id");
-	      String name = rs.getString("name");
-	      String price = rs.getString("price");
-	      String address = rs.getString("address");
-	      String content = rs.getString("content");
-	      String transaction = rs.getString("transaction");
-	      String like = rs.getString("like");
-	      String date = rs.getString("date");
 
-	      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
-	    }
-	    return itemList;
-	  }
 
-  // 2, 3ÁßÀ¸·Î Á¤·ÄÇÒ ¼ö ÀÖ´Â orderData ¸Þ¼Òµå ¿À¹ö·Îµù
+    while (rs.next()) {
+      String num = rs.getString("num");
+      String id = rs.getString("id");
+      String name = rs.getString("name");
+      String price = rs.getString("price");
+      String address = rs.getString("address");
+      String content = rs.getString("content");
+      String transaction = rs.getString("transaction");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
+
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+    }
+    return itemList;
+  }
+
+  // 2, 3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ orderData ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
   public ArrayList<ItemList> orderData(String column, String column2) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from itemDB order by %s, %s;", column, column2);
@@ -156,7 +160,7 @@ public class ItemDB {
     return itemList;
   }
 
-  // where Á¶°Ç½ÄÀ» ºÙ¿© ÀÔ·ÂÇÑ column¿¡ Æ¯Á¤ data°¡ Á¸ÀçÇÒ °æ¿ì¿¡¸¸ Ãâ·Â
+  // where ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ columnï¿½ï¿½ Æ¯ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½
   public ArrayList<ItemList> whereData(String column, String data) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from itemDB where %s=%s;", column, data);
@@ -182,38 +186,38 @@ public class ItemDB {
     stmt = conn.createStatement();
     String sql = String.format("delete from itemDB where num=%s", num);
     int result = stmt.executeUpdate(sql);
-    System.out.println(result + " °ÇÀÇ µ¥ÀÌÅÍ°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+    System.out.println(result + " ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 
   }
 
 
-  // ±¸¸ÅÇßÀ» ¶§ ¾×¼Ç. ÀÌ¸§ moveData, numÀ» ÀÔ·Â¹ÞÀ¸¸é itemDB¿¡¼­ ÇØ´ç numÀ» °¡Áø ÇàÀ» soldItemDB·Î º¹Á¦ÇÑ´Ù.
-  // sql¹®: select * from itemDB where num=?
+  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¼ï¿½. ï¿½Ì¸ï¿½ moveData, numï¿½ï¿½ ï¿½Ô·Â¹ï¿½ï¿½ï¿½ï¿½ï¿½ itemDBï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ numï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ soldItemDBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+  // sqlï¿½ï¿½: select * from itemDB where num=?
 
 
-  // selectÇÑ µ¥ÀÌÅÍ¸¦ ÀÏ´Ü itemList¿¡ ³Ö¾î¼­ ¸®ÅÏÇÏÀÚ.
+  // selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ï´ï¿½ itemListï¿½ï¿½ ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
-  // ¸®ÅÏ¹ÞÀº valuesµéÀ» ³ÖÀ¸¸é µÇÀÝ¾Æ
-  // ±×·¯·Á¸é numÀ» ¼±ÅÃÇÑ itemList¸¦ ¸®ÅÏÇÏ´Â ¸Þ¼Òµå¸¦ ¸¸µé¾î¾ßµÅ
-  // ¸¸µé¾ú¾î
-  // ±×·³ ÀÌÁ¦ ItemListÀÇ °¢ °ªµéÀ» insertÇÏÀÚ.
+  // ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½ valuesï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¾ï¿½
+  // ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ numï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ itemListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½
+  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  // ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ItemListï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½.
 
 
 
   public void moveData(String num1) throws SQLException, ClassNotFoundException {
 
     ArrayList<ItemList> itemList1 = new ArrayList<>();
-    // numÀ» ÃßÃâÇØ soldData¿¡ ÀÔ·Â
+    // numï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ soldDataï¿½ï¿½ ï¿½Ô·ï¿½
     ItemDB itemDB = new ItemDB();
     itemList1 = itemDB.whereData("num", num1);
     itemDB.insertSoldData(itemList1.get(0));
 
-    // itemDB ³» ÇØ´ç numÀ» º¸À¯ÇÑ Çà »èÁ¦
+    // itemDB ï¿½ï¿½ ï¿½Ø´ï¿½ numï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     itemDB.deleteData(num1);
   }
 
 
-  // int¶û string ¸ÂÃç¾ß ÇÒ¼öµµ ÀÖÀ½(num, price, like)
+  // intï¿½ï¿½ string ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(num, price, like)
   public void insertSoldData(ItemList itemList) throws SQLException {
     String sql = "insert into soldItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
     pstm = conn.prepareStatement(sql);
@@ -225,18 +229,31 @@ public class ItemDB {
     pstm.setString(1, itemList.content);
     pstm.setString(1, itemList.transaction);
     pstm.setString(1, itemList.date);
-    // ·Î±×ÀÎÀ¯Àú ¾ÆÀÌµð ¹Þ¾Æ¾ßÇÔ
+    // ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Þ¾Æ¾ï¿½ï¿½ï¿½
     pstm.setString(1, "buyerIDNeeded");
     pstm.setString(1, itemList.name);
     pstm.setString(11, "now()");
 
     int result = pstm.executeUpdate(sql);
-    System.out.println(result + "°ÇÀ» Ã³¸®Çß½À´Ï´Ù.");
+    System.out.println(result + "ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+
+  }
+
+  public void insertLikeData(ItemList itemList) throws SQLException {
+    String sql = "insert into likeDB values (?,?)";
+    pstm = conn.prepareStatement(sql);
+
+    pstm.setString(1, itemList.id);
+    pstm.setString(2, LogInPage.logInUser.getId());
+
+    int result = pstm.executeUpdate(sql);
+    System.out.println(result + "ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 
   }
 
 
-  // update ÇÊ¿äÇÏ¸é ±¸Çö
+
+  // update ï¿½Ê¿ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
   void updateData(ItemList itemList) {
@@ -251,13 +268,19 @@ public class ItemDB {
 
 
 
-  // ÂòÇÏ±â ¹öÆ° Å¬¸¯½Ã like°¡ 1 ¿Ã¶ó°¡´Â ±â´É. Ã¼Å©¹Ú½º ÇØÁ¦½Ã like°¡ ´Ù½Ã 1 °¨¼ÒÇØ¾ß ÇÔ.
-  void likePlus() {}
+  // ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ likeï¿½ï¿½ 1 ï¿½Ã¶ó°¡´ï¿½ ï¿½ï¿½ï¿½. Ã¼Å©ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ likeï¿½ï¿½ ï¿½Ù½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½.
+  // void likePlus(String num) {
+  //
+  // alter like from itemDB where num = ? like +1 ;
+  // sout "likeDB ï¿½Ô·Â¿Ï·ï¿½"
+  //
+  // }
 
-  // this È°¿ëÇØ addListener ÅëÇØ Å¬¸¯µÈ Çà¿¡ Àû¿ë
+
+  // this È°ï¿½ï¿½ï¿½ï¿½ addListener ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½
   void likeMinus() {}
 
-  // whereData ¹ø°Å·Î¿ï ¼öµµ ÀÖ¾î¼­ »ì·ÁµÒ. whereData(num,data)¿Í ±â´É °°À½
+  // whereData ï¿½ï¿½ï¿½Å·Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½. whereData(num,data)ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   public ArrayList<ItemList> numSelect(String num1) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from itemDB where num=%s;", num1);
@@ -279,49 +302,48 @@ public class ItemDB {
     return itemList;
   }
 
-// // insertData¸¸ ¸¸µé¾îµÒ. ÀÏ´Ü ÁÖ¼®Ã³¸®ÇØµÒ
-//   public void insertData() throws SQLException {
-//   // executeUpdate´Â ¹Ý¿µµÈ ·¹ÄÚµåÀÇ °Ç¼ö¸¦ ¹ÝÈ¯ÇÑ´Ù.(¹Ù·Î insert, update, deleteÇÏ¸é µÇ´Ï±î rs¸¦ ¸®ÅÏ¹ÞÀ» ÇÊ¿ä°¡ ¾ø´Ù)
-//   // ³¯Â¥ Ä­Àº ÀÔ·Â ¾ÈÇÏ¸é ¿À´ÃÀÚ°¡ ÀÚµ¿À¸·Î ÀÔ·ÂµÈ´Ù´Âµ¥ È®ÀÎÇØº¸ÀÚ.
-//  
-//   System.out.println("ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
-//   String inputId = sc.nextLine();
-//   System.out.println("Á¦Ç°¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
-//  
-//   String inputName = sc.nextLine();
-//   System.out.println("Èñ¸Á°¡°ÝÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
-//   String inputPrice = sc.nextLine();
-//   System.out.println("ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
-//   String inputAddress = sc.nextLine();
-//   System.out.println("Á¦Ç° ¼³¸íÀ» Ãß°¡ÇØÁÖ¼¼¿ä.");
-//   String description = sc.nextLine();
-//   String inputContent = description;
-//   System.out.println("¹è¼ÛÇüÅÂ¸¦ °ñ¶ó ÁÖ¼¼¿ä.");
-//   String inputTransaction = sc.nextLine();
-//   int intPrice = Integer.parseInt(inputPrice);
-//   stmt = conn.createStatement();
-//  
-//   String sql =
-//   String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
-//   inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
-//   int result = stmt.executeUpdate(sql);
-//  
-//   System.out.println(result + " °ÇÀÇ µ¥ÀÌÅÍ¸¦ Ã³¸®Çß½À´Ï´Ù.");
-//   }
-  
-  
-	public void insertDatas
-	(String inputId, String inputName,String inputPrice,String inputAddress,String inputContent,String inputTransaction )throws SQLException {
-	int result=0;
-	stmt = conn.createStatement();
-	
-	String sql =
-	String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
-	inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
-	int result1 = stmt.executeUpdate(sql);
+  // // insertDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½Ï´ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ï¿½Øµï¿½
+  // public void insertData() throws SQLException {
+  // // executeUpdateï¿½ï¿½ ï¿½Ý¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.(ï¿½Ù·ï¿½ insert, update, deleteï¿½Ï¸ï¿½ ï¿½Ç´Ï±ï¿½ rsï¿½ï¿½ ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½)
+  // // ï¿½ï¿½Â¥ Ä­ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ÂµÈ´Ù´Âµï¿½ È®ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½.
+  //
+  // System.out.println("IDï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
+  // String inputId = sc.nextLine();
+  // System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
+  //
+  // String inputName = sc.nextLine();
+  // System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
+  // String inputPrice = sc.nextLine();
+  // System.out.println("ï¿½Ö¼Ò¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
+  // String inputAddress = sc.nextLine();
+  // System.out.println("ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
+  // String description = sc.nextLine();
+  // String inputContent = description;
+  // System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
+  // String inputTransaction = sc.nextLine();
+  // int intPrice = Integer.parseInt(inputPrice);
+  // stmt = conn.createStatement();
+  //
+  // String sql =
+  // String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+  // inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
+  // int result = stmt.executeUpdate(sql);
+  //
+  // System.out.println(result + " ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ Ã³ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+  // }
 
 
-}
+  public void insertDatas(String inputId, String inputName) throws SQLException {
+    int result = 0;
+    stmt = conn.createStatement();
+
+    String sql =
+        String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+            inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
+    int result = stmt.executeUpdate(sql);
+
+
+  }
 }
 
 
