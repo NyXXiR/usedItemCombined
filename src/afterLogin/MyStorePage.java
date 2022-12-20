@@ -61,7 +61,7 @@ public class MyStorePage {
 	JPanel panel1 = new JPanel();
 	UserService userService = new UserService(); // 개인정보조회 및 수정관련 기능
 	
-	// 판매목록
+	// 판매중
 	JPanel panel2 = new JPanel();
 	ItemDB item = new ItemDB();
 	JTables tables = new JTables();
