@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import beforeLogin.LogInPage;
 
-public class ItemDB {
+public class ItemDB2 {
   // columns: num, id, name, price, address, date
   Connection conn;
   Statement stmt;
@@ -15,7 +15,7 @@ public class ItemDB {
   SoldItemDB soldItemDB = new SoldItemDB();
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
-  public ItemDB() throws ClassNotFoundException, SQLException {
+  public ItemDB2() throws ClassNotFoundException, SQLException {
     // connection part
     Class.forName("com.mysql.cj.jdbc.Driver");
     conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
@@ -191,59 +191,56 @@ public class ItemDB {
   public void moveData(String num1) throws SQLException, ClassNotFoundException {
 
     ArrayList<ItemList> itemList1 = new ArrayList<>();
-    ItemDB itemDB = new ItemDB();
+    ItemDB2 itemDB = new ItemDB2();
     itemList1 = itemDB.whereData("num", num1);
-    itemDB.insertSoldData2(itemList1.get(0));
+    itemDB.insertSoldData(itemList1.get(0));
     itemDB.deleteData(num1);
   }
 
 
   // insertSoldData(String num) = 입력한 num과 일치하는 행을 soldItemDB에 복제
   public void insertSoldData(ItemList itemList) throws SQLException {
-    String sql = "insert into soldItemDB values ('?','?','?','?','?','?','?','?','?','?','?','?')";
+    String sql = "insert into soldItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
     pstm = conn.prepareStatement(sql);
-
-    pstm.setString(1, "0");
-    pstm.setString(2, itemList.num);
-    pstm.setString(3, itemList.id);
-    pstm.setString(4, itemList.name);
-    pstm.setString(5, itemList.price);
-    pstm.setString(6, itemList.address);
-    pstm.setString(7, itemList.content);
-    pstm.setString(8, itemList.transaction);
-    pstm.setString(9, itemList.like);
-    pstm.setString(10, itemList.date);
-    pstm.setString(11, LogInPage.logInUser.getId());
-    pstm.setString(12, "now()");
-
-
-    // pstm.setString(10, LogInPage.logInUser.getId());
+    pstm.setString(1, itemList.num);
+    pstm.setString(2, itemList.id);
+    pstm.setString(3, itemList.name);
+    pstm.setString(4, itemList.price);
+    pstm.setString(5, itemList.address);
+    pstm.setString(6, itemList.content);
+    pstm.setString(7, itemList.transaction);
+    pstm.setString(8, itemList.like);
+    pstm.setString(9, itemList.date);
+    pstm.setString(10, LogInPage.logInUser.getId());
+    pstm.setString(11, "now()");
 
     int result = pstm.executeUpdate(sql);
     System.out.println(result + "건 처리되었습니다.");
 
   }
 
-  public void insertSoldData2(ItemList itemList) throws SQLException {
-    stmt = conn.createStatement();
-    String sql = String.format(
-        "insert into soldItemDB values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',%s);",
-        0, itemList.num, itemList.id, itemList.name, itemList.price, itemList.address,
-        itemList.content, itemList.transaction, itemList.like, itemList.date,
-        LogInPage.logInUser.getId(), "now()");
+  public void insertSoldDataBackup(ItemList itemList) throws SQLException {
+    String sql = "insert into soldItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
+    pstm = conn.prepareStatement(sql);
+    pstm.setString(1, itemList.num);
+    pstm.setString(2, itemList.id);
+    pstm.setString(3, itemList.name);
+    pstm.setString(4, itemList.price);
+    pstm.setString(5, itemList.address);
+    pstm.setString(6, itemList.content);
+    pstm.setString(7, itemList.transaction);
+    pstm.setString(8, itemList.like);
+    pstm.setString(9, itemList.date);
+    pstm.setString(10, LogInPage.logInUser.getId());
+    pstm.setString(11, "now()");
 
-
-    // pstm.setString(10, LogInPage.logInUser.getId());
-
-    int result = stmt.executeUpdate(sql);
+    int result = pstm.executeUpdate(sql);
     System.out.println(result + "건 처리되었습니다.");
 
   }
 
-
-
   public void insertData(ItemList itemList) throws SQLException {
-    String sql = "insert into ItemDB values ('?','?','?','?','?','?','?','?','?','?','?')";
+    String sql = "insert into ItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
     pstm = conn.prepareStatement(sql);
     pstm.setString(1, itemList.num);
     pstm.setString(2, LogInPage.logInUser.getId());

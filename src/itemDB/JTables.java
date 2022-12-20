@@ -172,7 +172,20 @@ public class JTables extends JPanel implements MouseListener {
     // jtable.getValueAt(row,0) = 해당 행의 primary key값.
     System.out.println(jtable.getValueAt(row, 0) + "선택");
 
+    Object x = jtable.getValueAt(row, 0);
+    try {
+      ItemDB itemDB = new ItemDB();
+      String y = (String) x;
+      System.out.println(y);
+      itemDB.whereData("num", y);
+      ItemList a = itemDB.whereData("num", y).get(0);
+      itemDB.moveData(y);
 
+      // itemDB.moveData(y);
+    } catch (ClassNotFoundException | SQLException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    }
   }
 
 
