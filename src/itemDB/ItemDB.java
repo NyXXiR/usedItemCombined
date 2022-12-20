@@ -2,6 +2,7 @@ package itemDB;
 
 import java.sql.*;
 import java.util.ArrayList;
+import beforeLogin.LogInPage;
 
 public class ItemDB {
   // columns: num, id, name, price, address, date
@@ -91,26 +92,27 @@ public class ItemDB {
     }
     return itemList;
   }
+
   public ArrayList<ItemList> selectDataDesc(String column) throws SQLException {
-	    stmt = conn.createStatement();
-	    sql = String.format("select * from itemDB order by %s Desc", column);
-	    rs = stmt.executeQuery(sql);
+    stmt = conn.createStatement();
+    sql = String.format("select * from itemDB order by %s Desc", column);
+    rs = stmt.executeQuery(sql);
 
-	    while (rs.next()) {
-	      String num = rs.getString("num");
-	      String id = rs.getString("id");
-	      String name = rs.getString("name");
-	      String price = rs.getString("price");
-	      String address = rs.getString("address");
-	      String content = rs.getString("content");
-	      String transaction = rs.getString("transaction");
-	      String like = rs.getString("like");
-	      String date = rs.getString("date");
+    while (rs.next()) {
+      String num = rs.getString("num");
+      String id = rs.getString("id");
+      String name = rs.getString("name");
+      String price = rs.getString("price");
+      String address = rs.getString("address");
+      String content = rs.getString("content");
+      String transaction = rs.getString("transaction");
+      String like = rs.getString("like");
+      String date = rs.getString("date");
 
-	      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
-	    }
-	    return itemList;
-	  }
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+    }
+    return itemList;
+  }
 
   // 2, 3중으로 정렬할 수 있는 orderData 메소드 오버로딩
   public ArrayList<ItemList> orderData(String column, String column2) throws SQLException {
@@ -235,6 +237,19 @@ public class ItemDB {
 
   }
 
+  public void insertLikeData(ItemList itemList) throws SQLException {
+    String sql = "insert into likeDB values (?,?)";
+    pstm = conn.prepareStatement(sql);
+
+    pstm.setString(1, itemList.id);
+    pstm.setString(2, LogInPage.logInUser.getId());
+
+    int result = pstm.executeUpdate(sql);
+    System.out.println(result + "건을 처리했습니다.");
+
+  }
+
+
 
   // update 필요하면 구현
 
@@ -252,7 +267,13 @@ public class ItemDB {
 
 
   // 찜하기 버튼 클릭시 like가 1 올라가는 기능. 체크박스 해제시 like가 다시 1 감소해야 함.
-  void likePlus() {}
+  // void likePlus(String num) {
+  //
+  // alter like from itemDB where num = ? like +1 ;
+  // sout "likeDB 입력완료"
+  //
+  // }
+
 
   // this 활용해 addListener 통해 클릭된 행에 적용
   void likeMinus() {}
@@ -279,48 +300,48 @@ public class ItemDB {
     return itemList;
   }
 
-// // insertData만 만들어둠. 일단 주석처리해둠
-//   public void insertData() throws SQLException {
-//   // executeUpdate는 반영된 레코드의 건수를 반환한다.(바로 insert, update, delete하면 되니까 rs를 리턴받을 필요가 없다)
-//   // 날짜 칸은 입력 안하면 오늘자가 자동으로 입력된다는데 확인해보자.
-//  
-//   System.out.println("ID를 입력하세요.");
-//   String inputId = sc.nextLine();
-//   System.out.println("제품명을 입력하세요.");
-//  
-//   String inputName = sc.nextLine();
-//   System.out.println("희망가격을 입력하세요.");
-//   String inputPrice = sc.nextLine();
-//   System.out.println("주소를 입력하세요.");
-//   String inputAddress = sc.nextLine();
-//   System.out.println("제품 설명을 추가해주세요.");
-//   String description = sc.nextLine();
-//   String inputContent = description;
-//   System.out.println("배송형태를 골라 주세요.");
-//   String inputTransaction = sc.nextLine();
-//   int intPrice = Integer.parseInt(inputPrice);
-//   stmt = conn.createStatement();
-//  
-//   String sql =
-//   String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
-//   inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
-//   int result = stmt.executeUpdate(sql);
-//  
-//   System.out.println(result + " 건의 데이터를 처리했습니다.");
-//   }
-  
-  
-	public void insertDatas(String inputId, String inputName ) throws SQLException {
-	int result=0;
-	stmt = conn.createStatement();
-	
-	String sql =
-	String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
-	inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
-	int result = stmt.executeUpdate(sql);
+  // // insertData만 만들어둠. 일단 주석처리해둠
+  // public void insertData() throws SQLException {
+  // // executeUpdate는 반영된 레코드의 건수를 반환한다.(바로 insert, update, delete하면 되니까 rs를 리턴받을 필요가 없다)
+  // // 날짜 칸은 입력 안하면 오늘자가 자동으로 입력된다는데 확인해보자.
+  //
+  // System.out.println("ID를 입력하세요.");
+  // String inputId = sc.nextLine();
+  // System.out.println("제품명을 입력하세요.");
+  //
+  // String inputName = sc.nextLine();
+  // System.out.println("희망가격을 입력하세요.");
+  // String inputPrice = sc.nextLine();
+  // System.out.println("주소를 입력하세요.");
+  // String inputAddress = sc.nextLine();
+  // System.out.println("제품 설명을 추가해주세요.");
+  // String description = sc.nextLine();
+  // String inputContent = description;
+  // System.out.println("배송형태를 골라 주세요.");
+  // String inputTransaction = sc.nextLine();
+  // int intPrice = Integer.parseInt(inputPrice);
+  // stmt = conn.createStatement();
+  //
+  // String sql =
+  // String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+  // inputId, inputName, intPrice, inputAddress, inputContent, inputTransaction);
+  // int result = stmt.executeUpdate(sql);
+  //
+  // System.out.println(result + " 건의 데이터를 처리했습니다.");
+  // }
 
 
-}
+  public void insertDatas(String inputId, String inputName) throws SQLException {
+    int result = 0;
+    stmt = conn.createStatement();
+
+    String sql =
+        String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+            inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
+    int result = stmt.executeUpdate(sql);
+
+
+  }
 }
 
 
