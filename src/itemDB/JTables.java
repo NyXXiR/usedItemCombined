@@ -10,13 +10,11 @@ import javax.swing.table.DefaultTableModel;
 public class JTables extends JPanel implements MouseListener {
   String[] columns;
   JTable jtable;
-  public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
+
+
 
   public JTable toJTable(ArrayList<ItemList> itemList1)
       throws ClassNotFoundException, SQLException {
-    ArrayList<ItemList> itemList = new ArrayList<>();
-    itemList1 = itemList;
-    ItemDB itemDB = new ItemDB();
 
     setLayout(new BorderLayout());
     // column을 입력하고
@@ -30,7 +28,7 @@ public class JTables extends JPanel implements MouseListener {
 
     String[] row = new String[columns.length];
 
-    for (int j = 0; j < itemList.size(); j++) {
+    for (int j = 0; j < itemList1.size(); j++) {
       row[0] = itemList1.get(j).num;
       row[1] = itemList1.get(j).id;
       row[2] = itemList1.get(j).name;
@@ -50,7 +48,6 @@ public class JTables extends JPanel implements MouseListener {
 
 
   }
-
 
 
   // 일단 살려둠. 나중에 ToJTable로 다 바꾸면 삭제해도 됨

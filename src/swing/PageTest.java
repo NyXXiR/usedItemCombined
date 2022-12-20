@@ -3,8 +3,9 @@ package swing;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.*;
-import itemDB.JTables;
+import itemDB.*;
 
 public class PageTest extends JFrame {
 
@@ -167,11 +168,14 @@ public class PageTest extends JFrame {
     table.setSize(800, 600);
     frame.getContentPane().add(table);
 
-    JTables selectAll = new JTables();
-    table.add(selectAll.tableAction());
+    // JTables selectAll = new JTables();
+    // table.add(selectAll.tableAction());
 
     JTables orderByPrice = new JTables();
-    table.add(orderByPrice.tableAction("price"));
+    ItemDB itemDB = new ItemDB();
+    ArrayList<ItemList> itemList = itemDB.orderData("price");
+    JTable a = orderByPrice.toJTable(itemList);
+    table.add(a);
 
 
     // 마우스이벤트
