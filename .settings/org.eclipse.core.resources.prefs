@@ -4,5 +4,6 @@
 eclipse.preferences.version=1
 encoding//src/afterLogin=UTF-8
 encoding//src/beforeLogin=UTF-8
+encoding//src/userDB/User.java=UTF-8
 encoding//src/userDB/UserDao.java=UTF-8
 encoding/<project>=x-windows-949
