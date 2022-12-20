@@ -173,26 +173,33 @@ public class ItemDB {
   }
 
   // whereData(String column, String data)= ���ν�� column怨� �쇱����� �곗�댄�곕� 異���
-  public ArrayList<ItemList> whereData(String column, String data) throws SQLException {
-    stmt = conn.createStatement();
-    sql = String.format("select * from itemDB where %s='%s';", column, data);
-    rs = stmt.executeQuery(sql);
+	
+	public ArrayList<ItemList> whereData(String column, String data) {
+		try {
+			stmt = conn.createStatement();
+			sql = String.format("select * from itemDB where %s='%s';", column, data);
+			rs = stmt.executeQuery(sql);
 
-    while (rs.next()) {
-      String num = rs.getString("num");
-      String id = rs.getString("id");
-      String name = rs.getString("name");
-      String price = rs.getString("price");
-      String address = rs.getString("address");
-      String content = rs.getString("content");
-      String transaction = rs.getString("transaction");
-      String love = rs.getString("love");
-      String date = rs.getString("date");
+			while (rs.next()) {
+				String num = rs.getString("num");
+				String id = rs.getString("id");
+				String name = rs.getString("name");
+				String price = rs.getString("price");
+				String address = rs.getString("address");
+				String content = rs.getString("content");
+				String transaction = rs.getString("transaction");
+				String like = rs.getString("like");
+				String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
-    }
-    return itemList;
-  }
+				itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return itemList;
+	}
 
   public void deleteData(String num) throws SQLException {
     stmt = conn.createStatement();

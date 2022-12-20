@@ -106,19 +106,19 @@ public class MyStorePage {
 		frame.getContentPane().add(panel1);
 		panel1.setVisible(true);
 
-		JPanel panel2 = new JPanel();
+		
 		arr1[1] = panel2;
 		panel2.setBounds(0, 239, 995, 402);
 		frame.getContentPane().add(panel2);
 		panel2.setVisible(false);
 
-		JPanel panel3 = new JPanel();
+		
 		arr1[2] = panel3;
 		panel3.setBounds(0, 239, 995, 402);
 		frame.getContentPane().add(panel3);
 		panel3.setVisible(false);
 
-		JPanel panel4 = new JPanel();
+		
 		arr1[3] = panel4;
 		panel4.setBounds(0, 239, 995, 402);
 		frame.getContentPane().add(panel4);
