@@ -29,62 +29,65 @@ import itemDB.JTables;
 import userDB.User;
 
 public class AfterLogInMain extends JFrame {
-	public static JFrame frame;
-	public JTextField textField;
-	public String value;
+  public static JFrame frame;
+  public JTextField textField;
+  public String value;
 
-	// 번개장터 로고 버튼
-	ImageIcon icon = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
-	Image img = icon.getImage();
-	Image imgChange = img.getScaledInstance(180, 60, Image.SCALE_SMOOTH);
-	ImageIcon updateIcon = new ImageIcon(imgChange);
+  // 번개장터 로고 버튼
+  ImageIcon icon =
+      new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
+  Image img = icon.getImage();
+  Image imgChange = img.getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+  ImageIcon updateIcon = new ImageIcon(imgChange);
 
-	// 검색바 돋보기 버튼
-	ImageIcon icon2 = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Icon.png");
-	Image img2 = icon2.getImage();
-	Image imgChange2 = img2.getScaledInstance(28, 23, Image.SCALE_SMOOTH);
-	ImageIcon updateIcon2 = new ImageIcon(imgChange2);
+  // 검색바 돋보기 버튼
+  ImageIcon icon2 =
+      new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Icon.png");
+  Image img2 = icon2.getImage();
+  Image imgChange2 = img2.getScaledInstance(28, 23, Image.SCALE_SMOOTH);
+  ImageIcon updateIcon2 = new ImageIcon(imgChange2);
 
-	 //메인 메소드
-		public static void main(String[] args) {	
-			run();
-		}
+  // 메인 메소드
+  public static void main(String[] args) {
+    run();
+  }
 
-	// 실행 메소드
-	public static void run() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AfterLogInMain window = new AfterLogInMain();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+  // 실행 메소드
+  public static void run() {
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        try {
+          AfterLogInMain window = new AfterLogInMain();
+          window.frame.setVisible(true);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
 
-	// 새로고침 메소드
-	public static void run2() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AfterLogInMain window = new AfterLogInMain();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+  // 새로고침 메소드
+  public static void run2() {
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        try {
+          AfterLogInMain window = new AfterLogInMain();
+          window.frame.setVisible(true);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
 
-	// 생성자 메소드
-	public AfterLogInMain() throws ClassNotFoundException, SQLException {
-		initialize();
-	}
+  // 생성자 메소드
+  public AfterLogInMain() throws ClassNotFoundException, SQLException {
+    initialize();
+  }
 
-	//----------------------------------------------------기본 뼈대 메소드 --------------------------------------------------//
-	private void initialize() throws ClassNotFoundException, SQLException {
+  // ----------------------------------------------------기본 뼈대 메소드
+  // --------------------------------------------------//
+  private void initialize() throws ClassNotFoundException, SQLException {
 		// 프레임
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1012, 680);
@@ -189,7 +192,7 @@ public class AfterLogInMain extends JFrame {
 		JPanel panel12 = new JPanel();
 		panel12.setBounds(0, 108, 995, 533);
 		frame.getContentPane().add(panel12);
-		panel12.setLayout(null);
+		panel12.setLayout(null);dfdsdsf
 
 		JButton btnNewButton11 = new JButton("번호순");
 		btnNewButton11.setBounds(646, 12, 88, 23);
@@ -273,7 +276,8 @@ public class AfterLogInMain extends JFrame {
 		});
 	}
 
-	//----------------------------------------------------기본 뼈대 메소드 끝--------------------------------------------------//
-	
-	}
-	
+  // ----------------------------------------------------기본 뼈대 메소드
+  // 끝--------------------------------------------------//
+
+}
+
