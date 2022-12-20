@@ -19,11 +19,11 @@ public class JTables extends JPanel implements MouseListener {
       throws ClassNotFoundException, SQLException {
 
     setLayout(new BorderLayout());
-    // columnÀ» ÀÔ·ÂÇÏ°í
-    // °¢ ¹è¿­¸¶´Ù µ¥ÀÌÅÍ Áý¾î³ÖÀ½
+    // columnï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½
+    // ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -37,7 +37,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList1.get(j).address;
       row[5] = itemList1.get(j).content;
       row[6] = itemList1.get(j).transaction;
-      row[7] = itemList1.get(j).like;
+      row[7] = itemList1.get(j).love;
       row[8] = itemList1.get(j).date;
       model.addRow(row);
     } ;
@@ -51,18 +51,18 @@ public class JTables extends JPanel implements MouseListener {
   }
 
 
-  // ÀÏ´Ü »ì·ÁµÒ. ³ªÁß¿¡ ToJTable·Î ´Ù ¹Ù²Ù¸é »èÁ¦ÇØµµ µÊ
+  // ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ß¿ï¿½ ToJTableï¿½ï¿½ ï¿½ï¿½ ï¿½Ù²Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½
 
-  // select * from ItemDBÀÇ Á¤º¸¸¦ ÀÔ·ÂÇÑ JTableÀ» ¹ÝÈ¯ÇÏ´Â ¸Þ¼Òµå
+  // select * from ItemDBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ JTableï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
   public JTable tableAction() throws ClassNotFoundException, SQLException {
     ItemDB itemDB = new ItemDB();
     itemList = itemDB.selectData();
     setLayout(new BorderLayout());
-    // columnÀ» ÀÔ·ÂÇÏ°í
-    // °¢ ¹è¿­¸¶´Ù µ¥ÀÌÅÍ Áý¾î³ÖÀ½
+    // columnï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½
+    // ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -77,7 +77,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
@@ -91,16 +91,16 @@ public class JTables extends JPanel implements MouseListener {
   }
 
 
-  // StringÀ» ÀÔ·Â¹Þ°í ÇØ´ç StringÀ» ±âÁØÀ¸·Î Á¤·ÄÇÑ JTableÀ» ¹ÝÈ¯ÇÏ´Â ¸Þ¼Òµå ¿À¹ö·Îµù
+  // Stringï¿½ï¿½ ï¿½Ô·Â¹Þ°ï¿½ ï¿½Ø´ï¿½ Stringï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ JTableï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
   public JTable tableAction(String column) throws ClassNotFoundException, SQLException {
     ItemDB itemDB = new ItemDB();
     itemList = itemDB.orderData(column);
     setLayout(new BorderLayout());
-    // columnÀ» ÀÔ·ÂÇÏ°í
-    // °¢ ¹è¿­¸¶´Ù µ¥ÀÌÅÍ Áý¾î³ÖÀ½
+    // columnï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½
+    // ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -115,7 +115,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
@@ -131,11 +131,11 @@ public class JTables extends JPanel implements MouseListener {
     ItemDB itemDB = new ItemDB();
     itemList = itemDB.orderDataDesc(column);
     setLayout(new BorderLayout());
-    // columnÀ» ÀÔ·ÂÇÏ°í
-    // °¢ ¹è¿­¸¶´Ù µ¥ÀÌÅÍ Áý¾î³ÖÀ½
+    // columnï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½
+    // ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     String[] columns =
-        {"num", "id", "name", "price", "address", "content", "transaction", "like", "date"};
+        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
 
     DefaultTableModel model = new DefaultTableModel(columns, 0);
     jtable = new JTable(model);
@@ -150,7 +150,7 @@ public class JTables extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;
@@ -172,8 +172,8 @@ public class JTables extends JPanel implements MouseListener {
     int row = jtable.getSelectedRow();
     int column = jtable.getSelectedColumn();
 
-    // jtable.getValueAt(row,0) = ÇØ´ç ÇàÀÇ primary key°ª.
-    System.out.println(jtable.getValueAt(row, 0) + "¼±ÅÃ");
+    // jtable.getValueAt(row,0) = ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ primary keyï¿½ï¿½.
+    System.out.println(jtable.getValueAt(row, 0) + "ï¿½ï¿½ï¿½ï¿½");
 
     Object x = jtable.getValueAt(row, 0);
     try {
