@@ -1,7 +1,14 @@
 package itemDB;
 
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
 import beforeLogin.LogInPage;
 
 public class ItemDB {
@@ -15,17 +22,23 @@ public class ItemDB {
   SoldItemDB soldItemDB = new SoldItemDB();
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
-  public ItemDB() throws ClassNotFoundException, SQLException {
+  public ItemDB()  {
     // connection part
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
-        "mysql");
-    System.out.println("itemDB 연결 성공");
+    try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
+		    "mysql");
+	} catch (ClassNotFoundException | SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+ 
+    System.out.println("itemDB �곌껐 �깃났");
   }
 
 
 
-  // likeData(String data)=특정 단어 포함한 행 검색
+  // likeData(String data)=�뱀�� �⑥�� �ы�⑦�� �� 寃���
   public ArrayList<ItemList> likeData(String data) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from itemDB where name like '%" + data + "%'";
@@ -47,7 +60,7 @@ public class ItemDB {
     return itemList;
   }
 
-  // selectData() = 전체 셀렉트
+  // selectData() = ��泥� ������
   public ArrayList<ItemList> selectData() throws SQLException {
     stmt = conn.createStatement();
     sql = "select * from itemDB";
@@ -69,7 +82,7 @@ public class ItemDB {
     return itemList;
   }
 
-  // orderData(String column)= 입력한 column 오름차순으로 행 정렬
+  // orderData(String column)= ���ν�� column �ㅻ�李⑥���쇰� �� ����
   public ArrayList<ItemList> orderData(String column) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from itemDB order by %s;", column);
@@ -157,7 +170,7 @@ public class ItemDB {
     return itemList;
   }
 
-  // whereData(String column, String data)= 입력한 column과 일치하는 데이터만 출력
+  // whereData(String column, String data)= ���ν�� column怨� �쇱����� �곗�댄�곕� 異���
   public ArrayList<ItemList> whereData(String column, String data) throws SQLException {
     stmt = conn.createStatement();
     sql = String.format("select * from itemDB where %s=%s;", column, data);
@@ -183,11 +196,11 @@ public class ItemDB {
     stmt = conn.createStatement();
     String sql = String.format("delete from itemDB where num=%s", num);
     int result = stmt.executeUpdate(sql);
-    System.out.println(result + " 건을 처리했습니다.");
+    System.out.println(result + " 嫄댁�� 泥�由ы���듬����.");
 
   }
 
-  // num 입력받으면 해당 행 move 처리
+  // num ���λ��쇰㈃ �대�� �� move 泥�由�
   public void moveData(String num1) throws SQLException, ClassNotFoundException {
 
     ArrayList<ItemList> itemList1 = new ArrayList<>();
@@ -195,12 +208,12 @@ public class ItemDB {
     itemList1 = itemDB.whereData("num", num1);
     itemDB.insertSoldData(itemList1.get(0));
 
-    // itemDB 占쏙옙 占쌔댐옙 num占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙
+    // itemDB ������ �������� num������ ������������������ ������ ������������
     itemDB.deleteData(num1);
   }
 
 
-  // insertSoldData(String num) = 입력한 num과 일치하는 행을 soldItemDB에 복제
+  // insertSoldData(String num) = ���ν�� num怨� �쇱����� ���� soldItemDB�� 蹂듭��
   public void insertSoldData(ItemList itemList) throws SQLException {
     String sql = "insert into soldItemDB values (?,?,?,?,?,?,?,?,?,?,?)";
     pstm = conn.prepareStatement(sql);
@@ -217,7 +230,7 @@ public class ItemDB {
     pstm.setString(11, "now()");
 
     int result = pstm.executeUpdate(sql);
-    System.out.println(result + "건 처리되었습니다.");
+    System.out.println(result + "嫄� 泥�由щ�����듬����.");
 
   }
 
@@ -237,7 +250,7 @@ public class ItemDB {
 
 
     int result = pstm.executeUpdate(sql);
-    System.out.println(result + "건 처리했습니다.");
+    System.out.println(result + "嫄� 泥�由ы���듬����.");
 
   }
 
@@ -250,13 +263,13 @@ public class ItemDB {
     pstm.setString(2, LogInPage.logInUser.getId());
 
     int result = pstm.executeUpdate(sql);
-    System.out.println(result + "건 처리했습니다.");
+    System.out.println(result + "嫄� 泥�由ы���듬����.");
 
   }
 
 
 
-  // update 占십울옙占싹몌옙 占쏙옙占쏙옙
+  // update �����몄�����밸��� ������������
 
 
   void updateData(ItemList itemList) {
@@ -294,14 +307,19 @@ public class ItemDB {
   }
 
   public void insertDatas(String inputId, String inputName, String inputPrice, String inputAddress,
-      String inputContent, String inputTransaction) throws SQLException {
+      String inputContent, String inputTransaction)  {
     int result = 0;
-    stmt = conn.createStatement();
-
-    String sql =
-        String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
+    try {
+		stmt = conn.createStatement(); 
+		String sql =
+        String.format("insert into itemDB values(0,'%s','%s', '%s','%s', '%s', '%s', 0, now())",
             inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
-    int result1 = stmt.executeUpdate(sql);
+    result = stmt.executeUpdate(sql);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+   
 
 
   }

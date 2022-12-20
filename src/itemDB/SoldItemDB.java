@@ -13,11 +13,17 @@ public class SoldItemDB {
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
 
-  public SoldItemDB() throws ClassNotFoundException, SQLException {
+  public SoldItemDB()  {
     // connection part
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
-        "mysql");
+    try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
+		    "mysql");
+	} catch (ClassNotFoundException | SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+   
     System.out.println("soldItemDB 연결 성공");
   }
 

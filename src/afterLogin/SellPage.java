@@ -7,24 +7,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import beforeLogin.BeforeLogInMain;
 import beforeLogin.LogInPage;
-import swing.Page2;
+import itemDB.ItemDB;
 import userDB.User;
 
 public class SellPage extends JFrame {
+	ItemDB itemDB = new ItemDB();
+	static LogInPage logInPage;
+	public static User logInUser = new User();
+	
 	
 	private JPanel contentPane;
 	private JTextField textField1;
@@ -43,7 +44,7 @@ public class SellPage extends JFrame {
 			EventQueue.invokeAndWait(new Runnable() {
 				public void run() {
 					try {
-						Page2 frame = new Page2();
+						SellPage frame = new SellPage();
 						frame.setVisible(true);
 					}
 					catch(Exception e) {
@@ -62,7 +63,7 @@ public class SellPage extends JFrame {
 	
 	private void run() {
 		
-	     
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setBounds(100,100,1000,800);
@@ -77,17 +78,16 @@ public class SellPage extends JFrame {
 		button.addActionListener(new ActionListener() {
 			String str = "";
 			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-					
-					 JFrame jFrame = new JFrame();
-				     JOptionPane.showMessageDialog(jFrame, "상품등록완료");
-				     
-					
-				
-			    
-				
+					if(e.getSource()==button) {
+						
+						System.out.println("상품등록완료");
+						JOptionPane.showMessageDialog(null, "상품등록완료");
+						
+						
+					}
+//					
 			}
 			
 		});
@@ -168,6 +168,8 @@ public class SellPage extends JFrame {
 			textField1.setBorder(new TitledBorder(null,"제목",TitledBorder.LEADING,TitledBorder.TOP,null,null));
 			textField1.setBounds(55, 350, 445, 45);
 			
+			
+			String inputId= LogInPage.logInUser.getId();
 			contentPane.add(textField1);
 			textField1.setColumns(10);
 			String inputName = textField1.getText();
@@ -210,7 +212,10 @@ public class SellPage extends JFrame {
 			String inputinputTransaction = textField5.getText();
 		
 //로그인한 유저 아이디: LogInPage.logInUser.getId()        	
-//insertDatas("a", inputName, inputContent ..)
+		
+			itemDB.insertDatas(inputId, inputName, inputPrice, inputAddress, inputContent, inputinputTransaction);
+			
+//			insertDatas("a", inputName, inputContent ..)
 	       
 			//Panel 1~3 -> 하단부분
 			//Panel 4 -> 상단부분

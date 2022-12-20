@@ -24,7 +24,7 @@ public class ItemList {
 
 
 
-  // 8개의 변수를 받는 생성자. id는 userDB를 통해 입력받아야 함.
+  // 9개의 변수를 받는 생성자. id는 userDB를 통해 입력받아야 함.
   ItemList(String num, String id, String name, String price, String address, String content,
       String transaction, String like, String date) {
     super();
