@@ -15,12 +15,18 @@ public class ItemDB {
   SoldItemDB soldItemDB = new SoldItemDB();
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
-  public ItemDB() throws ClassNotFoundException, SQLException {
+  public ItemDB() {
     // connection part
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
-        "mysql");
-    System.out.println("itemDB 연결 성공");
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
+          "mysql");
+      System.out.println("itemDB 연결 성공");
+    } catch (ClassNotFoundException | SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
   }
 
 
@@ -48,24 +54,30 @@ public class ItemDB {
   }
 
   // selectData() = 전체 셀렉트
-  public ArrayList<ItemList> selectData() throws SQLException {
-    stmt = conn.createStatement();
-    sql = "select * from itemDB";
-    rs = stmt.executeQuery(sql);
+  public ArrayList<ItemList> selectData() {
+    try {
+      stmt = conn.createStatement();
+      sql = "select * from itemDB";
+      rs = stmt.executeQuery(sql);
 
-    while (rs.next()) {
-      String num = rs.getString("num");
-      String id = rs.getString("id");
-      String name = rs.getString("name");
-      String price = rs.getString("price");
-      String address = rs.getString("address");
-      String content = rs.getString("content");
-      String transaction = rs.getString("transaction");
-      String love = rs.getString("love");
-      String date = rs.getString("date");
+      while (rs.next()) {
+        String num = rs.getString("num");
+        String id = rs.getString("id");
+        String name = rs.getString("name");
+        String price = rs.getString("price");
+        String address = rs.getString("address");
+        String content = rs.getString("content");
+        String transaction = rs.getString("transaction");
+        String love = rs.getString("love");
+        String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
+        itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
+
     return itemList;
   }
 
