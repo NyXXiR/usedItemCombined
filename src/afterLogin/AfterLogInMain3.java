@@ -3,6 +3,7 @@ package afterLogin;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -155,7 +156,7 @@ public class AfterLogInMain3 extends JFrame {
 			 BeforeLogInMain.frame.setVisible(true);
 			 frame.dispose();
 			 MyStorePage.frame.dispose();
-			 SellPage.FRAMEBITS.dispose();
+			 SellPage.frame.dispose();
 			}
 		});
 		// 내상점
@@ -170,7 +171,7 @@ public class AfterLogInMain3 extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SellPage.FRAMEBITS.setVisible(true);
+				SellPage.frame.setVisible(true);
 				frame.setVisible(false);
 			}
 		});
@@ -180,10 +181,22 @@ public class AfterLogInMain3 extends JFrame {
 		bt2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
+				frame.setVisible(true);
 			}
 		});
 		bt2.setBounds(574, 30, 28, 23);
 		panel.add(bt2);
+		
+		ItemDB itemDB = new ItemDB();
+		JPanel table = new JPanel();
+		ArrayList<ItemList> itemList = itemDB.likeData(value);
+		JTable a = ((JTables) table).toJTable(itemList);
+	    table.add(a);
+	    table.setBounds(10, 200, 960, 200);
+	    
+//		JTables selectAll = new JTables();
+//		table.add(selectAll.tableAction());
+
 
 		// 하단 패널 부분
 		JPanel panel12 = new JPanel();
