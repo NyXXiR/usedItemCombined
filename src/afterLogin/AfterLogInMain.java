@@ -2,15 +2,17 @@ package afterLogin;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import javax.swing.*;
 import beforeLogin.*;
-import itemDB.JTables;
+import itemDB.*;
 import userDB.User;
 
 public class AfterLogInMain extends JFrame {
   public static JFrame frame;
   public JTextField textField;
   public String value;
+  ItemDB itemDB = new ItemDB();
 
   // 번개장터 로고 버튼
   ImageIcon icon =
@@ -60,13 +62,13 @@ public class AfterLogInMain extends JFrame {
   }
 
   // 생성자 메소드
-  public AfterLogInMain() {
+  public AfterLogInMain() throws ClassNotFoundException, SQLException {
     initialize();
   }
 
   // ----------------------------------------------------기본 뼈대 메소드
   // --------------------------------------------------//
-  private void initialize() {
+  private void initialize() throws ClassNotFoundException, SQLException {
     // 프레임
     frame = new JFrame();
     frame.setBounds(100, 100, 1012, 680);
@@ -99,8 +101,7 @@ public class AfterLogInMain extends JFrame {
 
       @Override
       public void focusGained(FocusEvent e) {
-        textField.setText("");
-        value = textField.getText();
+
       }
 
       @Override
@@ -113,50 +114,10 @@ public class AfterLogInMain extends JFrame {
     panel.add(textField);
     textField.setColumns(10);
 
-		JButton btnNewButton_2 = new JButton("판매하기");
-		btnNewButton_2.setBounds(693, 24, 85, 42);
-		panel.add(btnNewButton_2);
-		
-		// --> 상단 우측 버튼 기능
-		// 로그아웃
-		btnNewButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			User logout = new User();
-			LogInPage.logInUser = logout; //로그인한 유저 끊기
-			
-			 BeforeLogInMain.frame.setVisible(true);
-			 frame.dispose();
-			 MyStorePage.frame.dispose();
-			 SellPage.frame.dispose();
-			}
-		});
-		// 내상점
-		btnNewButton_1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MyStorePage.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		//판매하기
-		btnNewButton_2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SellPage.frame.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		
-		// 돋보기 버튼
-		JButton bt2 = new JButton(updateIcon2);
-		bt2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
-			}
-		});
-		bt2.setBounds(574, 30, 28, 23);
-		panel.add(bt2);
+    // 상단 우측 버튼들
+    JButton btnNewButton = new JButton("로그아웃");
+    btnNewButton.setBounds(887, 23, 85, 42);
+    panel.add(btnNewButton);
 
     JButton btnNewButton_1 = new JButton("내 상점");
     btnNewButton_1.setBounds(790, 24, 85, 42);
@@ -197,15 +158,7 @@ public class AfterLogInMain extends JFrame {
       }
     });
 
-    // 돋보기 버튼
-    JButton bt2 = new JButton(updateIcon2);
-    bt2.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
-      }
-    });
-    bt2.setBounds(574, 30, 28, 23);
-    panel.add(bt2);
+
 
     // 하단 패널 부분
     JPanel panel12 = new JPanel();
@@ -257,11 +210,15 @@ public class AfterLogInMain extends JFrame {
     frame.getContentPane().add(table1);
     frame.setVisible(true);
 
+    textField.setText("검색");
+
 
     table1.add(new JTables().tableAction(), "0");
     table1.add(new JTables().tableActionDesc("num"), "1");
     table1.add(new JTables().tableAction("price"), "2");
     table1.add(new JTables().tableActionDesc("price"), "3");
+
+
 
     c1.show(table1, "0");
 
@@ -293,10 +250,33 @@ public class AfterLogInMain extends JFrame {
         c1.show(table1, "3");
       }
     });
+    // 돋보기 버튼
+    JButton bt2 = new JButton(updateIcon2);
+    bt2.addActionListener(new ActionListener() {
+
+
+      public void actionPerformed(ActionEvent e) {
+        textField.setText(textField.getText());
+        value = textField.getText();
+        try {
+          table1.add(new JTables().toJTable(itemDB.likeData(value)), "4");
+        } catch (SQLException e1) {
+          // TODO Auto-generated catch block
+          e1.printStackTrace();
+        }
+        System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
+        System.out.println("밸류값은" + value + "임");
+        //
+
+        c1.show(table1, "4");
+
+      }
+    });
+    bt2.setBounds(574, 30, 28, 23);
+    panel.add(bt2);
   }
 
   // ----------------------------------------------------기본 뼈대 메소드
   // 끝--------------------------------------------------//
 
 }
-
