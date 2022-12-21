@@ -155,7 +155,7 @@ public class AfterLogInMain extends JFrame {
 			 BeforeLogInMain.frame.setVisible(true);
 			 frame.dispose();
 			 MyStorePage.frame.dispose();
-			 SellPage.FRAMEBITS.dispose();
+			 SellPage.frame.dispose();
 			}
 		});
 		// 내상점
@@ -170,7 +170,7 @@ public class AfterLogInMain extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SellPage.FRAMEBITS.setVisible(true);
+				SellPage.frame.setVisible(true);
 				frame.setVisible(false);
 			}
 		});

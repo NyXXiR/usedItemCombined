@@ -3,7 +3,6 @@ package afterLogin;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -29,7 +28,7 @@ import itemDB.ItemList;
 import itemDB.JTables;
 import userDB.User;
 
-public class AfterLogInMain3 extends JFrame {
+public class AfterLogInMain2 extends JFrame {
 	public static JFrame frame;
 	public JTextField textField;
 	public String value;
@@ -56,7 +55,7 @@ public class AfterLogInMain3 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AfterLogInMain3 window = new AfterLogInMain3();
+					AfterLogInMain2 window = new AfterLogInMain2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,7 +69,7 @@ public class AfterLogInMain3 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AfterLogInMain3 window = new AfterLogInMain3();
+					AfterLogInMain2 window = new AfterLogInMain2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,7 +79,7 @@ public class AfterLogInMain3 extends JFrame {
 	}
 
 	// 생성자 메소드
-	public AfterLogInMain3() throws ClassNotFoundException, SQLException {
+	public AfterLogInMain2() throws ClassNotFoundException, SQLException {
 		initialize();
 	}
 
@@ -188,15 +187,13 @@ public class AfterLogInMain3 extends JFrame {
 		panel.add(bt2);
 		
 		ItemDB itemDB = new ItemDB();
-		JPanel table = new JPanel();
+		JPanel table1000 = new JPanel();
 		ArrayList<ItemList> itemList = itemDB.likeData(value);
-		JTable a = ((JTables) table).toJTable(itemList);
-	    table.add(a);
-	    table.setBounds(10, 200, 960, 200);
-	    
-//		JTables selectAll = new JTables();
-//		table.add(selectAll.tableAction());
-
+		JTable a = ((JTables) table1000).toJTable(itemList);
+	    table1000.add(a);
+	    table1000.setBounds(10, 200, 960, 200);
+		
+		
 
 		// 하단 패널 부분
 		JPanel panel12 = new JPanel();
