@@ -205,5 +205,32 @@ public class SoldItemDB {
 
   }
 
+  public ArrayList<ItemList> whereData(String column, String data) {
+    ArrayList<ItemList> soldItemList = new ArrayList<ItemList>();
+    try {
+      stmt = conn.createStatement();
+      sql = String.format("select * from soldItemDB where %s='%s';", column, data);
+      rs = stmt.executeQuery(sql);
+      while (rs.next()) {
+        String num = rs.getString("num");
+        String id = rs.getString("id");
+        String name = rs.getString("name");
+        String price = rs.getString("price");
+        String address = rs.getString("address");
+        String content = rs.getString("content");
+        String transaction = rs.getString("transaction");
+        String like = rs.getString("like");
+        String date = rs.getString("date");
+        soldItemList
+            .add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      }
+
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return soldItemList;
+
+  }
 }
 
