@@ -37,7 +37,7 @@ public class SoldItemDB {
 
 
   // 메소드 오버로딩
-  ArrayList<ItemList> searchData(String column) throws SQLException {
+  ArrayList<ItemList> likeData(String column) throws SQLException {
     stmt = conn.createStatement();
     String sql = "select * from soldItemDB where name like '%" + column + "%'";
     rs = stmt.executeQuery(sql);
@@ -51,10 +51,10 @@ public class SoldItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -74,10 +74,10 @@ public class SoldItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -96,10 +96,10 @@ public class SoldItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -118,10 +118,10 @@ public class SoldItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -141,10 +141,10 @@ public class SoldItemDB {
       String address = rs.getString("address");
       String content = rs.getString("content");
       String transaction = rs.getString("transaction");
-      String like = rs.getString("like");
+      String love = rs.getString("love");
       String date = rs.getString("date");
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, like, date));
+      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
     }
     return itemList;
   }
@@ -205,5 +205,32 @@ public class SoldItemDB {
 
   }
 
+  public ArrayList<ItemList> whereData(String column, String data) {
+    ArrayList<ItemList> soldItemList = new ArrayList<ItemList>();
+    try {
+      stmt = conn.createStatement();
+      sql = String.format("select * from soldItemDB where %s='%s';", column, data);
+      rs = stmt.executeQuery(sql);
+      while (rs.next()) {
+        String num = rs.getString("num");
+        String id = rs.getString("id");
+        String name = rs.getString("name");
+        String price = rs.getString("price");
+        String address = rs.getString("address");
+        String content = rs.getString("content");
+        String transaction = rs.getString("transaction");
+        String love = rs.getString("love");
+        String date = rs.getString("date");
+        soldItemList
+            .add(new ItemList(num, id, name, price, address, content, transaction, love, date));
+      }
+
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return soldItemList;
+
+  }
 }
 
