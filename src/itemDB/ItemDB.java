@@ -327,14 +327,19 @@ public class ItemDB {
   }
 
   public void insertDatas(String inputId, String inputName, String inputPrice, String inputAddress,
-      String inputContent, String inputTransaction) throws SQLException {
-    int result = 0;
-    stmt = conn.createStatement();
+      String inputContent, String inputTransaction)  {
+//    int result = 0;
+    try {
+		stmt = conn.createStatement();
+		String sql =
+				String.format("insert into itemDB values(0,'%s','%s','%s','%s', '%s', '%s',0,now());",
+						inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
+		int result1 = stmt.executeUpdate(sql);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 
-    String sql =
-        String.format("insert into itemDB values(0,'%s','%s', %d,'%s', '%s', '%s',0,now())",
-            inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
-    int result1 = stmt.executeUpdate(sql);
 
 
   }

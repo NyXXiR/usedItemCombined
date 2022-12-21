@@ -2,14 +2,20 @@ package afterLogin;
 
 import java.awt.Color;
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 // LogInPage를 정확하게 임포트
 import beforeLogin.*;
+import itemDB.ItemDB;
 import userDB.User;
 
-public class SellPage {
-  public static JFrame frame = new JFrame();
+public class SellPage extends JFrame{
+	ItemDB itemDB = new ItemDB();
+	static LogInPage logInPage;
+	public static User logInUser = new User();
+	JFrame frame = new JFrame();	 
 
   private JPanel contentPane;
   private JTextField textField1;
@@ -18,22 +24,31 @@ public class SellPage {
   private JTextField textField4;
   private JTextField textField5;
   private String value;
+  
+  
 
 
   // 생성자
-  public SellPage() {
+  public SellPage() throws SQLException {
     run();
   }
 
   // 메인메소드
-  // public static void main(String[]args) throws InvocationTargetException, InterruptedException {
-  // SellPage window = new SellPage();
-  // window.frame.setVisible(true);
-  //
-  // }
+   public static void main(String[]args){
+	     
+   SellPage window;
+try {
+	window = new SellPage();
+	window.frame.setVisible(true);
+} catch (SQLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+  
+   }
   // ----------------------------------------------------기본 뼈대
   // 메소드-----------------------------------------------//
-  public void run() {
+  public void run() throws SQLException {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setBounds(100, 100, 1000, 800);
     frame.setLocationRelativeTo(null);
@@ -129,6 +144,9 @@ public class SellPage {
 
     // -------------------------------------하단-------------------------------------//
     // 하단 상품등록 제목창
+    
+    LogInPage.logInUser.getId();
+    
     textField1 = new JTextField();
     textField1.setBorder(
         new TitledBorder(null, "제목", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -136,7 +154,8 @@ public class SellPage {
 
     contentPane.add(textField1);
     textField1.setColumns(10);
-    String inputName = textField1.getText();
+    
+    
 
     // 하단 상품등록 상품상세정보창
     textField2 = new JTextField();
@@ -146,7 +165,7 @@ public class SellPage {
 
     contentPane.add(textField2);
     textField2.setColumns(10);
-    String inputContent = textField2.getText();
+   
 
     // 가격창
     textField3 = new JTextField();
@@ -156,7 +175,7 @@ public class SellPage {
 
     contentPane.add(textField3);
     textField3.setColumns(10);
-    String inputPrice = textField3.getText();
+    
 
     // 지역창
     textField4 = new JTextField();
@@ -166,7 +185,7 @@ public class SellPage {
 
     contentPane.add(textField4);
     textField4.setColumns(10);
-    String inputAddress = textField4.getText();
+    
 
     // 배송유형
     textField5 = new JTextField();
@@ -176,25 +195,49 @@ public class SellPage {
 
     contentPane.add(textField5);
     textField5.setColumns(10);
-    String inputinputTransaction = textField5.getText();
-
-    // 로그인한 유저 아이디: LogInPage.logInUser.getId()
-    // insertDatas("a", inputName, inputContent ..)
-
-    // 하단 등록하기 버튼
+    
+    
+    
     JButton button = new JButton("등록하기");
-    button.addActionListener(new ActionListener() {
-      String str = "";
-
-      public void actionPerformed(ActionEvent e) {
-
-        JOptionPane.showMessageDialog(frame, "상품등록완료");
-      }
-    });
     button.setBounds(850, 650, 97, 55);
     contentPane.add(button);
-  }
+    button.addActionListener(new Listener());
+    
+    
+  }		
+    class Listener implements ActionListener{
+    	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(e.getActionCommand());
+			String inputName = textField1.getText();
+			System.out.println(inputName);
+			String inputContent = textField2.getText();
+			System.out.println(inputContent);
+			String inputPrice = textField3.getText();
+			System.out.println(inputPrice);
+			String inputAddress = textField4.getText();
+			System.out.println(inputAddress);
+			String inputTransaction = textField5.getText();
+			System.out.println(inputTransaction);
+			
+			
+			JOptionPane.showMessageDialog(frame, "상품등록완료");
+			itemDB.insertDatas(LogInPage.logInUser.getId(), inputName, inputPrice, inputAddress, inputContent, inputTransaction);
+			
+			
+		}
+
+    
+      
+
+      
+    }
+   
+    
+   
+	
+  
   // ----------------------------------------------------기본 뼈대
   // 메소드--------------------------------------------------//
-
 }
