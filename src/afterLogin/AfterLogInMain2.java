@@ -32,6 +32,7 @@ public class AfterLogInMain2 extends JFrame {
 	public static JFrame frame;
 	public JTextField textField;
 	public String value;
+	ItemDB itemDB = new ItemDB();
 
 	// 번개장터 로고 버튼
 	ImageIcon icon = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
@@ -175,25 +176,8 @@ public class AfterLogInMain2 extends JFrame {
 			}
 		});
 		
-		// 돋보기 버튼
-		JButton bt2 = new JButton(updateIcon2);
-		bt2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
-				frame.setVisible(true);
-			}
-		});
-		bt2.setBounds(574, 30, 28, 23);
-		panel.add(bt2);
 		
-		ItemDB itemDB = new ItemDB();
-		JPanel table1000 = new JPanel();
-		ArrayList<ItemList> itemList = itemDB.likeData(value);
-		JTable a = ((JTables) table1000).toJTable(itemList);
-	    table1000.add(a);
-	    table1000.setBounds(10, 200, 960, 200);
-		
-		
+
 
 		// 하단 패널 부분
 		JPanel panel12 = new JPanel();
@@ -250,6 +234,9 @@ public class AfterLogInMain2 extends JFrame {
 		table1.add(new JTables().tableActionDesc("num"), "1");
 		table1.add(new JTables().tableAction("price"), "2");
 		table1.add(new JTables().tableActionDesc("price"), "3");
+		table1.add(new JTables().toJTable(itemDB.likeData(value)),"4");
+				
+				
 		
 		c1.show(table1, "0");
 
@@ -281,6 +268,16 @@ public class AfterLogInMain2 extends JFrame {
 				c1.show(table1, "3");
 			}
 		});
+		// 돋보기 버튼
+				JButton bt2 = new JButton(updateIcon2);
+				bt2.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
+						c1.show(table1, "4");
+					}
+				});
+				bt2.setBounds(574, 30, 28, 23);
+				panel.add(bt2);
 	}
 
 	//----------------------------------------------------기본 뼈대 메소드 끝--------------------------------------------------//
