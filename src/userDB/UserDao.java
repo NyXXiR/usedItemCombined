@@ -13,8 +13,8 @@ public class UserDao {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       System.out.println("드라이버 설치");
-      String url = "jdbc:mysql://172.30.1.11:3306/thisisjava";
-      String id = "java";
+      String url = "jdbc:mysql://172.30.1.11:3306/useditemproject";
+      String id = "root2";
       String pwd = "mysql";
       conn = DriverManager.getConnection(url, id, pwd);
       System.out.println("접속 성공");

@@ -37,7 +37,7 @@ class JTableTest extends JPanel implements MouseListener {
       row[4] = itemList.get(j).address;
       row[5] = itemList.get(j).content;
       row[6] = itemList.get(j).transaction;
-      row[7] = itemList.get(j).like;
+      row[7] = itemList.get(j).love;
       row[8] = itemList.get(j).date;
       model.addRow(row);
     } ;

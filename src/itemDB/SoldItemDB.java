@@ -13,12 +13,19 @@ public class SoldItemDB {
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
 
 
-  public SoldItemDB() throws ClassNotFoundException, SQLException {
+  public SoldItemDB() {
     // connection part
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
-        "mysql");
-    System.out.println("soldItemDB 연결 성공");
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
+          "mysql");
+      System.out.println("soldItemDB 연결 성공");
+    } catch (ClassNotFoundException | SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+
   }
 
   // 전체 select, 찜갯수별, 등록시간순, 낮은시간순 정렬
