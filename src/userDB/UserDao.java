@@ -115,6 +115,7 @@ public class UserDao {
     try {
       String sql = "delete from userDB where id=? ";
       pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, inputId);
       result = pstmt.executeUpdate();
       System.out.printf("%s의 자료를 %d건 삭제", inputId, result);
     } catch (SQLException e) {
