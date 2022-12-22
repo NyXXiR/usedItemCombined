@@ -11,8 +11,10 @@ import userDB.User;
 public class AfterLogInMain extends JFrame {
   public static JFrame frame;
   public JTextField textField;
-  public String value;
-  ItemDB itemDB = new ItemDB();
+  public String value; // 검색바 입력값 ****
+  public String value2; // 테이블 클릭값 ****
+  JTables jtables; // ****
+  ItemDB itemDB; // *****
 
   // 번개장터 로고 버튼
   ImageIcon icon =

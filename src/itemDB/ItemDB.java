@@ -14,6 +14,8 @@ public class ItemDB {
 
   SoldItemDB soldItemDB = new SoldItemDB();
   public ArrayList<ItemList> itemList = new ArrayList<ItemList>();
+  public ArrayList<ItemList> itemList2 = new ArrayList<ItemList>(); // likeDB 데이터 값 받기 ****
+  ArrayList<String> likeList = new ArrayList<String>(); // 찜목록 데이터 받기
 
   public ItemDB() {
     // connection part
@@ -198,6 +200,56 @@ public class ItemDB {
 
     return itemList;
   }
+  
+	//likeDB에서 찾은 값 itemDB에서 찾기
+	public ArrayList whereDBLike(ArrayList<String> arraylist) {
+		try {
+			stmt = conn.createStatement();
+			for (int i = 0; i < arraylist.size(); i++) {
+				String data = arraylist.get(i);
+				sql = String.format("select * from itemDB where num='%s';", data);
+				rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					String num = rs.getString("num");
+					String id = rs.getString("id");
+					String name = rs.getString("name");
+					String price = rs.getString("price");
+					String address = rs.getString("address");
+					String content = rs.getString("content");
+					String transaction = rs.getString("transaction");
+					String love = rs.getString("love");
+					String date = rs.getString("date");
+					
+					itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return itemList;
+	}
+	
+	// likeDB에서 값 찾기 *****************************
+	public ArrayList<String> whereDataLike(String id) {
+		sql = "select num from likeDB where id = '" + id + "'";
+//		sql = "select num from likeDB where id = '" + "영희" + "'"; 테스트용 **** 
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				String likeNum = rs.getString("num");
+				likeList.add(likeNum);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return likeList;
+
+	}
 
   public void deleteData(String num) throws SQLException {
     stmt = conn.createStatement();
@@ -291,15 +343,19 @@ public class ItemDB {
   }
 
 
-  public void insertloveData(ItemList itemList) throws SQLException {
-    String sql = "insert into loveDB values (?,?)";
-    pstm = conn.prepareStatement(sql);
-
-    pstm.setString(1, itemList.id);
-    pstm.setString(2, LogInPage.logInUser.getId());
-
-    int result = pstm.executeUpdate(sql);
-    System.out.println(result + "건 처리했습니다.");
+  //찜하기 버튼 클릭시 likeDB에 입력되는 메소드 *************
+  public void insertloveData(ItemList itemList) {
+	try {
+		String sql = "insert into likeDB values (?,?)";
+		pstm = conn.prepareStatement(sql);
+		pstm.setString(1, LogInPage.logInUser.getId());
+		pstm.setString(2, itemList.num);
+		int result = pstm.executeUpdate();
+		System.out.println(result + "건 처리했습니다.");
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 
   }
 
@@ -314,8 +370,15 @@ public class ItemDB {
     // }
   }
 
-
-  void loveMinus() {}
+  //찜하기 버튼 클릭시 itemDB에 love값 증가 메소드 ******************
+  public void likePlus(String data) throws SQLException {
+	String sql = "Update itemDB Set love=love+1 Where num = ? ";
+	pstm = conn.prepareStatement(sql);
+	pstm.setString(1, data);
+	int result = pstm.executeUpdate();
+	System.out.println(result + "건 처리완료");
+	
+  }
 
   public ArrayList<ItemList> numSelect(String num1) throws SQLException {
     stmt = conn.createStatement();

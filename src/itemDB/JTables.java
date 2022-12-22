@@ -1,6 +1,8 @@
 package itemDB;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import javax.swing.table.DefaultTableModel;
 public class JTables extends JPanel implements MouseListener {
   String[] columns;
   JTable jtable;
+  Object x; //테이블 클릭이벤트 열값
+  String y; //x값을 스트링으로 바꾼 값
+  ItemDB itemDB = new ItemDB();
   ArrayList<ItemList> itemList = new ArrayList<>();
 
 
@@ -47,13 +52,42 @@ public class JTables extends JPanel implements MouseListener {
 
 
   }
+  
+  //찜목록 테이블 메소드(toJTable에서 마우스이벤트 제거) ***********
+  public JTable likeJTable(ArrayList<ItemList> itemList1) {
+
+	    setLayout(new BorderLayout());
+	    // column을 입력하고
+	    // 각 배열마다 데이터 집어넣음
+
+	    String[] columns =
+	        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
+
+	    DefaultTableModel model = new DefaultTableModel(columns, 0);
+	    jtable = new JTable(model);
+	    String[] row = new String[columns.length];
+
+	    for (int j = 0; j < itemList1.size(); j++) {
+	      row[0] = itemList1.get(j).num;
+	      row[1] = itemList1.get(j).id;
+	      row[2] = itemList1.get(j).name;
+	      row[3] = itemList1.get(j).price;
+	      row[4] = itemList1.get(j).address;
+	      row[5] = itemList1.get(j).content;
+	      row[6] = itemList1.get(j).transaction;
+	      row[7] = itemList1.get(j).love;
+	      row[8] = itemList1.get(j).date;
+	      model.addRow(row);
+	    };
+	    return jtable;
+  }
 
 
   // 일단 살려둠. 나중에 ToJTable로 다 바꾸면 삭제해도 됨
 
   // select * from ItemDB의 정보를 입력한 JTable을 반환하는 메소드
   public JTable tableAction() {
-    ItemDB itemDB = new ItemDB();
+    
     itemList = itemDB.selectData();
     setLayout(new BorderLayout());
     // column을 입력하고
@@ -182,25 +216,62 @@ public class JTables extends JPanel implements MouseListener {
     // jtable.getValueAt(row,0) = 해당 행의 primary key값.
     System.out.println(jtable.getValueAt(row, 0) + "선택");
 
-
     // 클릭한 행 soldItemDB로 이동, itemDB에서 삭제하는 부분. 나중에 찜 버튼 옆에 함께 배치
-    Object x = jtable.getValueAt(row, 0);
-    try {
-      ItemDB itemDB = new ItemDB();
-      String y = (String) x;
-      System.out.println(y);
-      itemDB.whereData("num", y);
-      ItemList a = itemDB.whereData("num", y).get(0);
-      itemDB.moveData(y);
+    x = jtable.getValueAt(row, 0);
+    y = (String) x;
+    
+    // 구매,찜 팝업창 *****
+    JFrame fr = new JFrame("선택하기");
+    JButton jb = new JButton("구매하기");
+    JButton jb2 = new JButton("찜하기");
+    fr.setSize(300, 200);
+    fr.setLocation(600, 500);
+    fr.setVisible(true);
+    Container c = fr.getContentPane();
+    c.setLayout(new BorderLayout());
+    JPanel jp = new JPanel(new FlowLayout());
+    jp.add(jb);
+    jp.add(jb2);
+    c.add(jp, BorderLayout.CENTER);
+    
+    // 구매하기 버튼 클릭 이벤트
+ 	jb.addActionListener(new ActionListener() {
 
+ 		@Override
+ 		public void actionPerformed(ActionEvent e) {
+ 			
+ 			try {
+ 		    	System.out.println(y);
+ 				itemDB.whereData("num", y);
+ 				ItemList a = itemDB.whereData("num", y).get(0);
+ 				itemDB.moveData(y);
+ 				itemDB.deleteLike(y); //likeDB 삭제 ****
+ 			} catch (ClassNotFoundException | SQLException e1) {
+ 				// TODO Auto-generated catch block
+ 				e1.printStackTrace();
+ 			}
+ 		}
+ 		
+ 	});
+ 	
+ 	// 찜하기 버튼 클릭 이벤트
+ 	jb2.addActionListener(new ActionListener() {
 
-      // itemDB.moveData(y);
-    } catch (ClassNotFoundException | SQLException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-    }
+ 		@Override
+ 		public void actionPerformed(ActionEvent e) {
+ 			try {
+ 				itemDB.likePlus(y);
+ 				ArrayList<ItemList> itemList = itemDB.numSelect(y);
+ 				itemDB.insertloveData(itemList.get(0));
+ 			} catch (SQLException e1) {
+ 				// TODO Auto-generated catch block
+ 				e1.printStackTrace();
+ 			}
+ 		}
+ 	
+ 	});
+    
   }
-
 
   @Override
   public void mousePressed(MouseEvent e) {

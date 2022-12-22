@@ -56,6 +56,11 @@ public class MyStorePage {
   JPanel panel4 = new JPanel();
   ArrayList<ItemList> itemListBuy = new ArrayList<ItemList>();
 
+  //찜목록 *********
+  JPanel panel5 = new JPanel();
+  ArrayList<ItemList> itemListLike = new ArrayList<ItemList>(); // itemDB에서 찾은 likeDB값
+  ArrayList<ItemList> itemListLike2 = new ArrayList<ItemList>(); // soldItemDB에서 찾은 likeDB값
+  
   public static void main(String[] args) throws ClassNotFoundException, SQLException {
     MyStorePage window = new MyStorePage();
     window.frame.setVisible(true);
@@ -205,10 +210,18 @@ public class MyStorePage {
     JScrollPane spane3 = new JScrollPane(jtable3);
     panel4.add(jtable3, BorderLayout.CENTER);
 
-    // (5)찜목록
+    // (5)찜목록 *****
+    panel5.setLayout(new BorderLayout());
     label5 = new JLabel("찜 목록");
-    label5.setBounds(162, 94, 232, 117);
-    panel5.add(label5);
+    panel5.add(label5, BorderLayout.NORTH);
+    
+    ArrayList love = itemDB.whereDataLike(LogInPage.logInUser.getId());
+    itemListLike = itemDB.whereDBLike(love);
+    JTable jtable4 = tables.likeJTable(itemListLike);
+    JScrollPane spane4 = new JScrollPane(jtable4);
+    panel5.add(jtable4, BorderLayout.CENTER);
+    
+    
     // 번개장터 로고 버튼 + 메인페이지 이동
     JButton bt11 = new JButton(updateIcon);
     bt11.addActionListener(new java.awt.event.ActionListener() {
