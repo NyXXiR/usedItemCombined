@@ -18,13 +18,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import itemDB.ItemDB;
 import itemDB.JTables;
 
 public class BeforeLogInMain extends JFrame {
 	public static JFrame frame;
 	public JTextField textField;
 	public String value;
-
+	ItemDB itemDB = new ItemDB();
+	
 	// 번개장터 로고 버튼
 	ImageIcon icon = new ImageIcon("C:\\Users\\admin\\Desktop\\usedItemCombined\\src\\swing/Logo.jpg");
 	Image img = icon.getImage();
@@ -159,14 +161,14 @@ public class BeforeLogInMain extends JFrame {
 		});
 
 		// 돋보기 버튼
-		JButton bt2 = new JButton(updateIcon2);
-		bt2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		bt2.setBounds(574, 30, 28, 23);
-		panel.add(bt2);
+//		JButton bt2 = new JButton(updateIcon2);
+//		bt2.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//
+//			}
+//		});
+//		bt2.setBounds(574, 30, 28, 23);
+//		panel.add(bt2);
 
 		// 하단 패널 부분
 		JPanel panel12 = new JPanel();
@@ -238,6 +240,29 @@ public class BeforeLogInMain extends JFrame {
 				c1.show(table, "3");
 			}
 		});
-	
+		   // 돋보기 버튼
+	    JButton bt2 = new JButton(updateIcon2);
+	    bt2.addActionListener(new ActionListener() {
+
+
+	      public void actionPerformed(ActionEvent e) {
+	        textField.setText(textField.getText());
+	        value = textField.getText();
+	        try {
+	          table.add(new JTables().toJTable(itemDB.likeData(value)), "4");
+	        } catch (SQLException e1) {
+	          // TODO Auto-generated catch block
+	          e1.printStackTrace();
+	        }
+	        System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
+	        System.out.println("밸류값은" + value + "임");
+	        //
+
+	        c1.show(table, "4");
+
+	      }
+	    });
+	    bt2.setBounds(574, 30, 28, 23);
+	    panel.add(bt2);
 	}
 }
