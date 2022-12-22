@@ -52,6 +52,36 @@ public class JTables_JH extends JPanel implements MouseListener {
     return jtable;
 
   }
+  
+  // 찜목록 테이블 메소드
+  public JTable likeJTable(ArrayList<ItemList> itemList1)
+	      throws ClassNotFoundException, SQLException {
+
+	    setLayout(new BorderLayout());
+	    // column을 입력하고
+	    // 각 배열마다 데이터 집어넣음
+
+	    String[] columns =
+	        {"num", "id", "name", "price", "address", "content", "transaction", "love", "date"};
+
+	    DefaultTableModel model = new DefaultTableModel(columns, 0);
+	    jtable = new JTable(model);
+	    String[] row = new String[columns.length];
+
+	    for (int j = 0; j < itemList1.size(); j++) {
+	      row[0] = itemList1.get(j).num;
+	      row[1] = itemList1.get(j).id;
+	      row[2] = itemList1.get(j).name;
+	      row[3] = itemList1.get(j).price;
+	      row[4] = itemList1.get(j).address;
+	      row[5] = itemList1.get(j).content;
+	      row[6] = itemList1.get(j).transaction;
+	      row[7] = itemList1.get(j).love;
+	      row[8] = itemList1.get(j).date;
+	      model.addRow(row);
+	    };
+	    return jtable;
+  }
 
 
   // 일단 살려둠. 나중에 ToJTable로 다 바꾸면 삭제해도 됨

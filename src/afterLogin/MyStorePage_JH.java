@@ -180,7 +180,7 @@ public class MyStorePage_JH {
     
     ArrayList love = itemDB.whereDataLike(LogInPage.logInUser.getId());
     itemListLike = itemDB.whereDBLike(love);
-    JTable jtable4 = tables.toJTable(itemListLike);
+    JTable jtable4 = tables.likeJTable(itemListLike);
     JScrollPane spane4 = new JScrollPane(jtable4);
     panel5.add(jtable4, BorderLayout.CENTER);
     
