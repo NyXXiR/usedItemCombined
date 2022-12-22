@@ -207,6 +207,14 @@ public class ItemDB {
 
   }
 
+  public void deleteLike(String num) throws SQLException {
+    stmt = conn.createStatement();
+    String sql = String.format("delete from likeDB where num=%s", num);
+    int result = stmt.executeUpdate(sql);
+    System.out.println(result + " 건을 처리했습니다.");
+
+  }
+
   // num 입력받으면 해당 행 move 처리
   public void moveData(String num1) throws SQLException, ClassNotFoundException {
 
@@ -294,10 +302,6 @@ public class ItemDB {
     System.out.println(result + "건 처리했습니다.");
 
   }
-
-
-
-  // update 占십울옙占싹몌옙 占쏙옙占쏙옙
 
 
   void updateData(ItemList itemList) {
