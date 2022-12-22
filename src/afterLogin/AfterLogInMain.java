@@ -14,7 +14,7 @@ public class AfterLogInMain extends JFrame {
   public String value; // 검색바 입력값 ****
   public String value2; // 테이블 클릭값 ****
   JTables jtables; // ****
-  ItemDB itemDB; // *****
+  ItemDB itemDB = new ItemDB(); // *****
 
   // 번개장터 로고 버튼
   ImageIcon icon =
@@ -108,7 +108,8 @@ public class AfterLogInMain extends JFrame {
 
       @Override
       public void focusGained(FocusEvent e) {
-
+        textField.setText("");
+        value = textField.getText();
       }
 
       @Override
@@ -194,30 +195,13 @@ public class AfterLogInMain extends JFrame {
     panel12.add(panel_1);
     panel_1.setLayout(new CardLayout(0, 0));
 
-    // JTables selectAll = new JTables();
-    // table.add(selectAll.tableAction());
 
-    // 테이블정보
-    // JTables orderByPrice = new JTables();
-    // ItemDB itemDB = new ItemDB();
-    // ArrayList<ItemList> itemList = itemDB.orderData("price");
-    // JTable a = orderByPrice.toJTable(itemList);
-    //
-    // JPanel table = new JPanel();
-    // table.add(a);
-    //
-    // table.setBounds(200, 200, 0, 0);
-    // table.setSize(800, 600);
-    // panel_1.add(table);
-    //
     // 패널 만들기
     CardLayout c1 = new CardLayout();
     JPanel table1 = new JPanel(c1);
     table1.setBounds(10, 200, 960, 200);
     frame.getContentPane().add(table1);
     frame.setVisible(true);
-
-    textField.setText("검색");
 
 
     table1.add(new JTables().tableAction(), "0");
