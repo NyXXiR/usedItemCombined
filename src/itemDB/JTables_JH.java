@@ -191,14 +191,13 @@ public class JTables_JH extends JPanel implements MouseListener {
     jp.add(jb2);
     c.add(jp, BorderLayout.CENTER);
 
-    
+    // 구매하기 버튼 클릭 이벤트
 	jb.addActionListener(new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
-				
 		    	System.out.println(y);
 				itemDB.whereData("num", y);
 				ItemList a = itemDB.whereData("num", y).get(0);
@@ -211,6 +210,7 @@ public class JTables_JH extends JPanel implements MouseListener {
 		
 	});
 	
+	// 찜하기 버튼 클릭 이벤트
 	jb2.addActionListener(new ActionListener() {
 
 		@Override

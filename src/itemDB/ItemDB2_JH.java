@@ -179,7 +179,8 @@ public class ItemDB2_JH {
 		}
 		return itemList;
 	}
-
+	
+	// likeDB에서 찾은 값 itemDB에서 찾기
 	public ArrayList whereDBLike(ArrayList<String> arraylist) throws SQLException {
 		stmt = conn.createStatement();
 		for (int i = 0; i < arraylist.size(); i++) {
@@ -205,7 +206,7 @@ public class ItemDB2_JH {
 
 	// likeDB에서 값 찾기 *****************************
 	public ArrayList<String> whereDataLike(String id) throws SQLException {
-		sql = "select num from likeDB where id = '" + "영희" + "'";
+		sql = "select num from likeDB where id = '" + "id" + "'";
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 
@@ -292,7 +293,8 @@ public class ItemDB2_JH {
 		System.out.println(result + "건 처리했습니다.");
 
 	}
-
+	
+	// 찜하기 버튼 클릭시 likeDB에 입력되는 메소드
 	public void insertloveData(ItemList itemList) {
 		try {
 			String sql = "insert into likeDB values (?,?)";
@@ -308,7 +310,6 @@ public class ItemDB2_JH {
 
 	}
 
-	// update 占십울옙占싹몌옙 占쏙옙占쏙옙
 
 	void updateData(ItemList itemList) {
 		// String sql = "update itemDB " + "set column1 = ?, 2=? ~~";
@@ -319,7 +320,8 @@ public class ItemDB2_JH {
 		// e.printStackTrace();
 		// }
 	}
-
+	
+	// 찜하기 버튼 클릭시 itemDB에 love값 증가 메소드
 	public void likePlus(String data) throws SQLException {
 		String sql = "Update itemDB Set love=love+1 Where num = ? ";
 		pstm = conn.prepareStatement(sql);
