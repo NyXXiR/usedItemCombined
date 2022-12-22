@@ -104,7 +104,9 @@ public class LogInPage extends JFrame implements ActionListener {
 
           new AfterLogInMain(); // 로그인 성공 이후 화면 관련
           AfterLogInMain.frame.setVisible(true);
+
           new SellPage();
+
           SellPage.frame.setVisible(false);
           new MyStorePage();
           MyStorePage.frame.setVisible(false);

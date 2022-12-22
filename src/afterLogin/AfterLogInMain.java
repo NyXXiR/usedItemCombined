@@ -62,8 +62,13 @@ public class AfterLogInMain extends JFrame {
   }
 
   // 생성자 메소드
-  public AfterLogInMain() throws ClassNotFoundException, SQLException {
-    initialize();
+  public AfterLogInMain() {
+    try {
+      initialize();
+    } catch (ClassNotFoundException | SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   // ----------------------------------------------------기본 뼈대 메소드

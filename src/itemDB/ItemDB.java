@@ -170,24 +170,32 @@ public class ItemDB {
   }
 
   // whereData(String column, String data)= 입력한 column과 일치하는 데이터만 출력
-  public ArrayList<ItemList> whereData(String column, String data) throws SQLException {
-    stmt = conn.createStatement();
-    sql = String.format("select * from itemDB where %s='%s';", column, data);
-    rs = stmt.executeQuery(sql);
+  public ArrayList<ItemList> whereData(String column, String data) {
 
-    while (rs.next()) {
-      String num = rs.getString("num");
-      String id = rs.getString("id");
-      String name = rs.getString("name");
-      String price = rs.getString("price");
-      String address = rs.getString("address");
-      String content = rs.getString("content");
-      String transaction = rs.getString("transaction");
-      String love = rs.getString("love");
-      String date = rs.getString("date");
+    try {
+      stmt = conn.createStatement();
+      sql = String.format("select * from itemDB where %s='%s';", column, data);
+      rs = stmt.executeQuery(sql);
 
-      itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
+      while (rs.next()) {
+        String num = rs.getString("num");
+        String id = rs.getString("id");
+        String name = rs.getString("name");
+        String price = rs.getString("price");
+        String address = rs.getString("address");
+        String content = rs.getString("content");
+        String transaction = rs.getString("transaction");
+        String love = rs.getString("love");
+        String date = rs.getString("date");
+
+        itemList.add(new ItemList(num, id, name, price, address, content, transaction, love, date));
+
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
+
     return itemList;
   }
 
@@ -327,18 +335,18 @@ public class ItemDB {
   }
 
   public void insertDatas(String inputId, String inputName, String inputPrice, String inputAddress,
-      String inputContent, String inputTransaction)  {
-//    int result = 0;
+      String inputContent, String inputTransaction) {
+    // int result = 0;
     try {
-		stmt = conn.createStatement();
-		String sql =
-				String.format("insert into itemDB values(0,'%s','%s','%s','%s', '%s', '%s',0,now());",
-						inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
-		int result1 = stmt.executeUpdate(sql);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+      stmt = conn.createStatement();
+      String sql =
+          String.format("insert into itemDB values(0,'%s','%s','%s','%s', '%s', '%s',0,now());",
+              inputId, inputName, inputPrice, inputAddress, inputContent, inputTransaction);
+      int result1 = stmt.executeUpdate(sql);
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
 
 

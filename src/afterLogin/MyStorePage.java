@@ -111,43 +111,7 @@ public class MyStorePage {
     frame.getContentPane().add(panel5);
     panel5.setVisible(false);
 
-    // 하단 UI
-    // (1)개인정보 조회 및 수정
-    panel1.setLayout(new BorderLayout());
-    editUI();
 
-    // (2)판매중 아이템
-    panel2.setLayout(new BorderLayout());
-    label2 = new JLabel("판매중");
-    panel2.add(label2, BorderLayout.NORTH);
-
-    itemListSell = itemDB.whereData("id", LogInPage.logInUser.getId());
-    JTable jtable = tables.toJTable(itemListSell);
-    panel2.add(jtable, BorderLayout.CENTER);
-
-    // (3)판매완료
-    panel3.setLayout(new BorderLayout());
-    label3 = new JLabel("판매완료");
-    panel3.add(label3, BorderLayout.NORTH);
-    itemListSold = soldItemDB.whereData("id", LogInPage.logInUser.getId());
-    JTable jtable2 = tables.toJTable(itemListSold);
-    JScrollPane spane2 = new JScrollPane(jtable2);
-    panel3.add(jtable2, BorderLayout.CENTER);
-
-    // (4)구매목록
-    panel4.setLayout(new BorderLayout());
-    label4 = new JLabel("구매 목록");
-    panel4.add(label4, BorderLayout.NORTH);
-
-    itemListBuy = soldItemDB.whereData("buyer_id", LogInPage.logInUser.getId());
-    JTable jtable3 = tables.toJTable(itemListBuy);
-    JScrollPane spane3 = new JScrollPane(jtable3);
-    panel4.add(jtable3, BorderLayout.CENTER);
-
-    // (5)찜목록
-    label5 = new JLabel("찜 목록");
-    label5.setBounds(162, 94, 232, 117);
-    panel5.add(label5);
 
     // 버튼
     JButton bt1 = new JButton("회원정보 조회 및 수정");
@@ -192,16 +156,59 @@ public class MyStorePage {
     arr3[4][1] = bt5;
 
     for (Object[] object : arr3) {
+
       ((JButton) object[1]).addActionListener((e) -> {
+
         // 초기화
         for (Object[] object2 : arr3) {
           ((JPanel) object2[0]).setVisible(false);
         }
+
         // 원하는 부분 보여주기
+
+
         ((JPanel) object[0]).setVisible(true);
+
       });
     }
 
+    // 하단 UI
+    // (1)개인정보 조회 및 수정
+    panel1.setLayout(new BorderLayout());
+    editUI();
+
+    // (2)판매중 아이템
+    panel2.setLayout(new BorderLayout());
+    label2 = new JLabel("판매중");
+    panel2.add(label2, BorderLayout.NORTH);
+
+    itemListSell = itemDB.whereData("id", LogInPage.logInUser.getId());
+    JTable jtable = tables.toJTable(itemListSell);
+    panel2.add(jtable, BorderLayout.CENTER);
+
+    // (3)판매완료
+    panel3.setLayout(new BorderLayout());
+    label3 = new JLabel("판매완료");
+    panel3.add(label3, BorderLayout.NORTH);
+    itemListSold = soldItemDB.whereData("id", LogInPage.logInUser.getId());
+    JTable jtable2 = tables.toJTable(itemListSold);
+    JScrollPane spane2 = new JScrollPane(jtable2);
+    panel3.add(jtable2, BorderLayout.CENTER);
+
+    // (4)구매목록
+    panel4.setLayout(new BorderLayout());
+    label4 = new JLabel("구매 목록");
+    panel4.add(label4, BorderLayout.NORTH);
+
+    itemListBuy = soldItemDB.whereData("buyer_id", LogInPage.logInUser.getId());
+    JTable jtable3 = tables.toJTable(itemListBuy);
+    JScrollPane spane3 = new JScrollPane(jtable3);
+    panel4.add(jtable3, BorderLayout.CENTER);
+
+    // (5)찜목록
+    label5 = new JLabel("찜 목록");
+    label5.setBounds(162, 94, 232, 117);
+    panel5.add(label5);
     // 번개장터 로고 버튼 + 메인페이지 이동
     JButton bt11 = new JButton(updateIcon);
     bt11.addActionListener(new java.awt.event.ActionListener() {
@@ -217,24 +224,24 @@ public class MyStorePage {
     panel.setLayout(null);
 
     // 검색바
-    textField = new JTextField("  검색");
-    textField.addFocusListener(new FocusListener() {
-
-      @Override
-      public void focusGained(FocusEvent e) {
-        textField.setText("");
-        value = textField.getText();
-      }
-
-      @Override
-      public void focusLost(FocusEvent e) {
-
-      }
-    });
-    textField.setBounds(234, 25, 333, 34);
-    textField.setBorder(BorderFactory.createLineBorder(Color.decode("#ff0000")));
-    panel.add(textField);
-    textField.setColumns(10);
+    // textField = new JTextField(" 검색");
+    // textField.addFocusListener(new FocusListener() {
+    //
+    // @Override
+    // public void focusGained(FocusEvent e) {
+    // textField.setText("");
+    // value = textField.getText();
+    // }
+    //
+    // @Override
+    // public void focusLost(FocusEvent e) {
+    //
+    // }
+    // });
+    // textField.setBounds(234, 25, 333, 34);
+    // textField.setBorder(BorderFactory.createLineBorder(Color.decode("#ff0000")));
+    // panel.add(textField);
+    // textField.setColumns(10);
 
     // 상단 우측 버튼들
     JButton btnNewButton = new JButton("로그아웃");
@@ -272,14 +279,14 @@ public class MyStorePage {
     });
 
     // 돋보기 버튼
-    JButton bt12 = new JButton(updateIcon2);
-    bt12.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-
-      }
-    });
-    bt12.setBounds(574, 30, 28, 23);
-    panel.add(bt12);
+    // JButton bt12 = new JButton(updateIcon2);
+    // bt12.addActionListener(new java.awt.event.ActionListener() {
+    // public void actionPerformed(ActionEvent e) {
+    //
+    // }
+    // });
+    // bt12.setBounds(574, 30, 28, 23);
+    // panel.add(bt12);
   }
   // ----------------------------------------------------기본 뼈대 메소드
   // 끝--------------------------------------------------//
