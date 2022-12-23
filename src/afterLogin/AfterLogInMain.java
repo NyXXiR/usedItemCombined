@@ -143,18 +143,17 @@ public class AfterLogInMain extends JFrame {
         User logout = new User();
         LogInPage.logInUser = logout; // 로그인한 유저 끊기
 
-        BeforeLogInMain.frame.setVisible(true);
+  BeforeLogInMain.frame.setVisible(true);
         frame.dispose();
-        MyStorePage.frame.dispose();
-        SellPage.frame.dispose();
       }
     });
     // 내상점
     btnNewButton_1.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        MyStorePage.frame.setVisible(true);
-        frame.setVisible(false);
+       MyStorePage myStore = new MyStorePage();
+      	myStore.frame.setVisible(true);
+         frame.setVisible(false);
       }
     });
     // 판매하기
