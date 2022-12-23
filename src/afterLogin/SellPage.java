@@ -55,9 +55,8 @@ public class SellPage extends JFrame {
     JButton bt1 = new JButton();
     bt1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        AfterLogInMain.frame.setVisible(true);
+       AfterLogInMain.frame.setVisible(true);
         frame.setVisible(false);
-        System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
       }
     });
     bt1.setBorderPainted(false);
@@ -100,9 +99,9 @@ public class SellPage extends JFrame {
         User logout = new User();
         LogInPage.logInUser = logout; // 로그인한 유저 끊기
 
+      
         BeforeLogInMain.frame.setVisible(true);
         frame.dispose();
-        MyStorePage.frame.dispose();
         AfterLogInMain.frame.dispose();
       }
     });
@@ -110,8 +109,9 @@ public class SellPage extends JFrame {
     btnNewButton_1.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        MyStorePage.frame.setVisible(true);
-        frame.setVisible(false);
+         MyStorePage myStore = new MyStorePage();
+        	myStore.frame.setVisible(true);
+            frame.setVisible(false);
       }
     });
 
