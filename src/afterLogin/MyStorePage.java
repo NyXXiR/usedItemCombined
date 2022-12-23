@@ -76,7 +76,7 @@ public class MyStorePage {
   public void run() {
     // 프레임
     frame = new JFrame();
-    frame.setBounds(100, 100, 1012, 680);
+     frame.setSize(1012, 680);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setLocationRelativeTo(null);
