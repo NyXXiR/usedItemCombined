@@ -45,7 +45,7 @@ public class SellPage extends JFrame {
   // 메소드-----------------------------------------------//
   public void run() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setBounds(100, 100, 1000, 800);
+   frame.setSize(1012, 680);
     frame.setLocationRelativeTo(null);
     contentPane = new JPanel();
     frame.setContentPane(contentPane);
