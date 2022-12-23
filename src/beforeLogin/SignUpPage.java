@@ -53,7 +53,7 @@ public class SignUpPage extends JFrame implements ActionListener {
 	public SignUpPage() {
 		this.setTitle("회원가입 화면");
 		this.setSize(800, 800);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// 윈도우 화면 가운데에 놓기
 		Dimension frameSize = getSize();
