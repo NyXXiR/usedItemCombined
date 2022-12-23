@@ -101,17 +101,19 @@ public class LogInPage extends JFrame implements ActionListener {
 
           logInUser = userDao.getLogInUserInfo(inputId); // ****** 로그인한 유저의 정보 저장.
 
-
-          new AfterLogInMain(); // 로그인 성공 이후 화면 관련
-          AfterLogInMain.frame.setVisible(true);
-
-          new SellPage();
-
-          SellPage.frame.setVisible(false);
-          new MyStorePage();
-          MyStorePage.frame.setVisible(false);
-          BeforeLogInMain.frame.setVisible(false);
-          setVisible(false);
+					try {
+						new AfterLogInMain();
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} // 로그인 성공 이후 화면 관련
+					AfterLogInMain.frame.setVisible(true);
+					new SellPage();
+					SellPage.frame.setVisible(false);
+//					new MyStorePage();
+//					MyStorePage.frame.setVisible(false);
+					BeforeLogInMain.frame.setVisible(false);
+					setVisible(false);
         } else {
           System.out.println("로그인 실패 > 로그인 정보 불일치");
           JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다", "로그인 실패", JOptionPane.ERROR_MESSAGE);
