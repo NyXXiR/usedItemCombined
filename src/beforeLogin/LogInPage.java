@@ -101,12 +101,8 @@ public class LogInPage extends JFrame implements ActionListener {
 
           logInUser = userDao.getLogInUserInfo(inputId); // ****** 로그인한 유저의 정보 저장.
 
-					try {
-						new AfterLogInMain();
-					} catch (ClassNotFoundException | SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} // 로그인 성공 이후 화면 관련
+					// 로그인 성공 이후 화면 관련
+					ew AfterLogInMain();
 					AfterLogInMain.frame.setVisible(true);
 					new SellPage();
 					SellPage.frame.setVisible(false);
