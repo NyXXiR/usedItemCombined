@@ -81,7 +81,7 @@ public class BeforeLogInMain extends JFrame {
 		// 프레임
 		frame = new JFrame();
 		frame.setTitle("로그인 전 메인");
-		frame.setBounds(100, 100, 1012, 680);
+		frame.setSize(1012, 680);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
