@@ -37,7 +37,7 @@ public class LogInPage extends JFrame implements ActionListener {
     this.setTitle("메인페이지");
     this.setSize(400, 400);
     this.setLocationRelativeTo(null);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     body = getContentPane();
     body.setLayout(new GridLayout(3, 1));
