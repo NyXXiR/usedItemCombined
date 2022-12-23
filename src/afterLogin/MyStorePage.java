@@ -10,7 +10,7 @@ import itemDB.*;
 import userDB.User;
 
 public class MyStorePage {
-  public static JFrame frame;
+  public  JFrame frame;
   public JTextField textField;
   public String value;
   public JLabel label1; // 개인정보조회 및 수정
@@ -39,7 +39,7 @@ public class MyStorePage {
 
   // 개인정보조회 및 수정 UI
   JPanel panel1 = new JPanel();
-  UserService userService = new UserService(); // 개인정보조회 및 수정관련 기능
+
 
   // 판매중
   JPanel panel2 = new JPanel();
@@ -226,9 +226,8 @@ public class MyStorePage {
     JButton bt11 = new JButton(updateIcon);
     bt11.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        AfterLogInMain.frame.setVisible(true);
-        frame.setVisible(false);
-        System.out.println("로그인 유저 아이디: " + LogInPage.logInUser.getId());
+       AfterLogInMain.frame.setVisible(true);
+				frame.dispose();
       }
     });
     bt11.setBorderPainted(false);
@@ -276,18 +275,16 @@ public class MyStorePage {
       public void actionPerformed(ActionEvent e) {
         User logout = new User(null, null, null, null, null, 0);
         LogInPage.logInUser = logout; // 로그인한 유저 끊기
-        BeforeLogInMain.frame.setVisible(true);
-        frame.dispose();
-        SellPage.frame.dispose();
-        AfterLogInMain.frame.dispose();
+       BeforeLogInMain.frame.setVisible(true);
+				frame.dispose();
       }
     });
     // 판매하기
     btnNewButton_2.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        SellPage.frame.setVisible(true);
-        frame.setVisible(false);
+      SellPage.frame.setVisible(true);
+		        frame.dispose();
       }
     });
 
@@ -337,7 +334,7 @@ public class MyStorePage {
       public void actionPerformed(ActionEvent e) {
         String inputPwd = new String(pwdTxt.getPassword());
         String inputPwdRe = new String(pwdReTxt.getPassword());
-        userService.resignUser(logInUser, inputPwd, inputPwdRe);
+        resignUser(logInUser, inputPwd, inputPwdRe);
 
 
       }
@@ -415,7 +412,7 @@ public class MyStorePage {
         String updateAddress = inputAddress.getText().trim();
         String updateNick = inputPhone.getText().trim();
         String updatePhone = inputPhone.getText().trim();
-        userService.editUser(LogInPage.logInUser, updatePwd, updateName, updateAddress, updateNick,
+       editUser(LogInPage.logInUser, updatePwd, updateName, updateAddress, updateNick,
             updatePhone);
       }
     });
@@ -428,6 +425,39 @@ public class MyStorePage {
       }
     });
   }
+
+	void resignUser(User logInUser, String inputPwd, String inputPwdRe) { 
+		if ( inputPwd.equals(inputPwdRe) && logInUser.getPwd().equals(inputPwd)) {
+			int confirm = JOptionPane.showConfirmDialog(null, "정말로 탈퇴하시겠습니까?", "회원탈퇴 확인", JOptionPane.YES_NO_OPTION);
+			if (confirm == 0) {
+				LogInPage.userDao.deleteUserDB(logInUser.getId());
+				JOptionPane.showMessageDialog(null, "회원탈퇴 성공!");
+				BeforeLogInMain.frame.setVisible(true);
+				AfterLogInMain.frame.dispose();
+				SellPage.frame.dispose();
+				this.frame.dispose();
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "회원탈퇴 실패!", "오류", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	void editUser(User logInUser, String updatePwd, String updateName, String updateAddress, String updateNick, String updatePhone) {
+		if (updatePwd.equals("") || updateName.equals("")  ||updateAddress.equals("") || updateNick.equals("") || updatePhone.equals("")) {
+			JOptionPane.showMessageDialog(null, "정보를 모두 입력해주세요", "오류", 2);
+		} else {
+			int myPhone = 0;
+			try {
+				myPhone = Integer.valueOf(updatePhone);
+			} catch (NumberFormatException e1) {
+				JOptionPane.showMessageDialog(null, "전화번호를 숫자로 입력해주세요.", "오류", JOptionPane.ERROR_MESSAGE);
+			}
+			if (myPhone != 0) {
+				LogInPage.userDao.updateUserDB(logInUser);
+				JOptionPane.showMessageDialog(null, "회원정보가 수정되었습니다.");
+			}
+		}
+	}
   // --------------------------------------------개인정보 UI 메소드
   // 끝-----------------------------------------------//
 
