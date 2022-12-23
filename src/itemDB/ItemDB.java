@@ -23,7 +23,7 @@ public class ItemDB {
       Class.forName("com.mysql.cj.jdbc.Driver");
       conn = DriverManager.getConnection("jdbc:mysql://172.30.1.11:3306/usedItemProject", "root2",
           "mysql");
-      System.out.println("itemDB 연결 성공");
+     // System.out.println("itemDB 연결 성공");
     } catch (ClassNotFoundException | SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
